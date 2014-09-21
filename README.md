@@ -2,7 +2,7 @@
 
 Modern, JS-friendly API for real-time 3D-rendering over WebGL.
 
-[API documentation](https://github.com) | [Guide](https://github.com) | [Samples](https://github.com) | [Contributing](https://stackoverflow.com)  | [FAQ](https://stackoverflow.com)
+[API documentation](https://github.com) | [Guide](https://github.com) | [Samples](https://github.com) | [Contributing](CONTRIBUTING.md)  | [FAQ](https://stackoverflow.com)
 
 ## Features
 
@@ -20,7 +20,7 @@ The current version is `v.0.0.1`
 
 ## Licensing
 
-BLACKCELL is licensed under the [MIT license](https://github.com).
+BLACKCELL is licensed under the [MIT license](LICENSE.md).
 
 ## Example
 
