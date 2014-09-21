@@ -1,6 +1,6 @@
 # BLACKCELL.js
 
-Modern, JS-friendly API for real-time 3D-rendering over WebGL.
+Modern, JS-friendly API for real-time 3D-rendering over [WebGL](http://www.khronos.org/registry/webgl/specs/latest/1.0/).
 
 [API documentation](http://blackcelljs.com/api/B.html) | [Guide](http://blackcelljs.com/guide.html) | [Samples](http://blackcelljs.com/) | [Contributing](CONTRIBUTING.md)  | [FAQ](http://stackoverflow.com/questions/tagged/blackcell)
 
@@ -9,7 +9,7 @@ Modern, JS-friendly API for real-time 3D-rendering over WebGL.
 - Linear algebra (vectors, rotations, transformations) and geometry primitives
 - Staging graphics core (designed for custom rendering pipelines and shaders)
 - Common implementations (frustum culling, attributes & uniforms binding, context lost handling, etc)
-- WebGL Extensions supported / WebGL 2.0 oriented
+- [WebGL Extensions](http://www.khronos.org/registry/webgl/extensions/) supported / [WebGL 2.0](http://www.khronos.org/registry/webgl/specs/latest/2.0/) oriented
 
 ## Download
 
