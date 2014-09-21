@@ -7,8 +7,8 @@ Modern, JS-friendly API for real-time 3D-rendering over WebGL.
 ## Features
 
 - Linear algebra (vectors, rotations, transformations) and geometry primitives
-- Staging graphics core (oriented for custom rendering pipelines and shaders)
-- Common implementations (frustum culling, attributes binding, uniform placeholders, etc)
+- Staging graphics core (designed for custom rendering pipelines and shaders)
+- Common implementations (frustum culling, attributes & uniforms binding, context lost handling, etc)
 - WebGL Extensions supported / WebGL 2.0 oriented
 
 ## Download
