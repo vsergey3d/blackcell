@@ -2,7 +2,7 @@
 
 Modern, JS-friendly API for real-time 3D-rendering over WebGL.
 
-[API documentation](https://github.com) | [Guide](https://github.com) | [Samples](https://github.com) | [Contributing](CONTRIBUTING.md)  | [FAQ](https://stackoverflow.com)
+[API documentation](http://blackcelljs.com/api/B.html) | [Guide](http://blackcelljs.com/guide.html) | [Samples](http://blackcelljs.com/) | [Contributing](CONTRIBUTING.md)  | [FAQ](http://stackoverflow.com/questions/tagged/blackcell)
 
 ## Features
 
@@ -15,8 +15,8 @@ Modern, JS-friendly API for real-time 3D-rendering over WebGL.
 
 The current version is `v.0.0.1`
 
-- Download [minified](http://blackcell.min.js) library ([source map](http://blackcell))
-- Download [debug](http://blackcell.js) library
+- Download [minified](http://blackcelljs.com/b.min.zip) library ([source map](http://blackcelljs.com/b.map.zip))
+- Download [debug](http://blackcelljs.com/b.zip) library
 
 ## Licensing
 
