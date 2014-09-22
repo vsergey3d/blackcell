@@ -87,7 +87,7 @@ B.Sample.AppProto = function () {
 
                 var div = document.createElement("div");
                 div.id = "loading";
-                div.innerHTML = "<p style='color: #aaaaaa; font-size: 20px; " +
+                div.innerHTML = "<p style='color: #aaaaaa; font-size: 13px; " +
                     "padding: 30px'>Loading...</p>";
                 div.style.cssText = "position: absolute; top:" + canvas.offsetTop + "px";
                 canvas.parentNode.appendChild(div);
