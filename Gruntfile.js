@@ -188,6 +188,10 @@ module.exports = function(grunt) {
             server: {
                 background: true,
                 reporters: "dots"
+            },
+            travis: {
+                singleRun: true,
+                browsers: ['PhantomJS']
             }
         },
 
@@ -267,7 +271,7 @@ module.exports = function(grunt) {
     });
 
     registerGruntTask("bg", ["karma:server", "watch"]);
-
+    registerGruntTask("travis", ["karma:travis"]);
 
     registerGruntTask("lint", ["jshint"]);
     registerGruntTask("min", ["clean:min", "concat", "uglify-conf"]);
