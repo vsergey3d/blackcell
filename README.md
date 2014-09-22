@@ -2,7 +2,7 @@
 
 Modern, JS-friendly API for real-time 3D-rendering over [WebGL](http://www.khronos.org/registry/webgl/specs/latest/1.0/).
 
-[API documentation](http://blackcelljs.com/api/B.html) | [Guide](http://blackcelljs.com/guide.html) | [Samples](http://blackcelljs.com/) | [Contributing](CONTRIBUTING.md)  | [FAQ](http://stackoverflow.com/questions/tagged/blackcell)
+[API documentation](http://blackcelljs.com/api/B.html) | [Guide](http://blackcelljs.com/guide.html) | [Samples](http://blackcelljs.com/) | [Contributing](CONTRIBUTING.md)  | [Developer guide](https://github.com/vsergey3d/blackcell/wiki/Developer-guide)  | [FAQ](http://stackoverflow.com/questions/tagged/blackcell)
 
 ## Features
 
