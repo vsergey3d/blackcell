@@ -8,7 +8,7 @@ Modern, JS-friendly API for real-time 3D-rendering over [WebGL](http://www.khron
 
 - Linear algebra (vectors, rotations, transformations) and geometry primitives
 - Staging graphics core (designed for custom rendering pipelines and shaders)
-- Common implementations (frustum culling, attributes & uniforms binding, context lost handling, etc)
+- Common implementations (frustum culling, attributes & uniforms binding, context lost handling)
 - [WebGL Extensions](http://www.khronos.org/registry/webgl/extensions/) supported / [WebGL 2.0](http://www.khronos.org/registry/webgl/specs/latest/2.0/) oriented
 
 ## Download
