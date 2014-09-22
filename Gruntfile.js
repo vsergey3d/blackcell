@@ -270,13 +270,13 @@ module.exports = function(grunt) {
         grunt.task.run("before", "uglify", "after");
     });
 
-    registerGruntTask("bg", ["karma:server", "watch"]);
-    registerGruntTask("travis", ["karma:travis"]);
-
     registerGruntTask("lint", ["jshint"]);
     registerGruntTask("min", ["clean:min", "concat", "uglify-conf"]);
     registerGruntTask("test", ["clean:beforeTest", "karma", "clean:afterTest"]);
     registerGruntTask("doc", ["clean:beforeDoc", "jsdoc"]);
+
+    registerGruntTask("bg", ["karma:server", "watch"]);
+    registerGruntTask("travis", ["lint", "karma:travis"]);
 
     registerGruntTask("dev", ["lint", "min"]);
     registerGruntTask("default", ["lint", "test", "min", "doc"]);
