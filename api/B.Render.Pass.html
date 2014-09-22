@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: Pass</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Render.html" class="value">.Render</a>.Pass</span>()
+
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Defines a rendering configuration (shaders, samplers, states).</p>
+<p>To create the object use <a href="B.Render.Device.html#makePass">device.makePass()</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="device" class="title">
+
+<span class="value">device</span>()
+</p>
+
+
+
+<div class="description"><p>Returns linked rendering device.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="attributes" class="title">
+
+<span class="value">attributes</span>()
+</p>
+
+
+
+<div class="description"><p>Returns vertex attributes.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Object.&lt;string, <a href="B.Render.html#Attribute" class="type">B.Render.Attribute</a>>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="uniforms" class="title">
+
+<span class="value">uniforms</span>()
+</p>
+
+
+
+<div class="description"><p>Returns uniforms.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Object.&lt;string, {type: <a href="B.Render.html#Uniform" class="type">B.Render.Uniform</a>, count: number}>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="sampler" class="title">
+
+<span class="value">sampler</span>(name)
+</p>
+
+
+
+<div class="description"><p>Returns sampler object by name.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Sampler.html" class="type">B.Render.Sampler</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="state" class="title">
+
+<span class="value">state</span>(type)
+</p>
+
+
+
+<div class="description"><p>Returns state object by type.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#State" class="type">B.Render.State</a>}</span>
+type
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.html#State" class="type">B.Render.State</a> | null}</span></p>
+
+<p>null if the state object doesn't exist</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="compile" class="title">
+
+<span class="value">compile</span>(vs, fs, macros)
+</p>
+
+
+
+<div class="description"><p>Compile shaders.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+vs
+
+</p>
+
+<p>vertex shader source string</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{string}</span>
+fs
+
+</p>
+
+<p>fragment shader source string</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{Object.&lt;string, string>}</span>
+[macros]
+
+</p>
+
+<p>shader macro defines</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Pass.html" class="type">B.Render.Pass</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if internal or linking error is occurred or shader source is invalid</p>
+
+
+
+
+
+<div class="sh"></div>
+
+
+
+<p><span class="type">{<a href="B.Render.Pass.CompileError.html" class="type">B.Render.Pass.CompileError</a>}</span></p>
+<p>if shader compilation is failed</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="source" class="title">
+
+<span class="value">source</span>(type, translated)
+</p>
+
+
+
+<div class="description"><p>Returns shader source code.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Shader" class="type">B.Render.Shader</a>}</span>
+type
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{boolean}</span>
+[translated]
+ = false
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{string | null}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="free" class="title">
+
+<span class="value">free</span>()
+</p>
+
+
+
+<div class="description"><p>Frees all internal data and detach the resource from linked rendering device.</p></div>
+
+
+
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">CLASSES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Pass.CompileError.html" class="value">CompileError</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#device" class="value">device</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#attributes" class="value">attributes</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#uniforms" class="value">uniforms</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#sampler" class="value">sampler</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#state" class="value">state</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#compile" class="value">compile</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#source" class="value">source</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html#free" class="value">free</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

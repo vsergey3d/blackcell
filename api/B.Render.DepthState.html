@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: DepthState</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Render.html" class="value">.Render</a>.DepthState</span>()
+
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Represent a depth rendering state.</p>
+<p>To get the object use <a href="B.Render.Pass.html#state">pass.state(B.Render.State.DEPTH)</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="pass" class="title">
+
+<span class="value">pass</span>()
+</p>
+
+
+
+<div class="description"><p>Returns linked pass.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Pass.html" class="type">B.Render.Pass</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="default" class="title">
+
+<span class="value">default</span>()
+</p>
+
+
+
+<div class="description"><p>Resets to default values.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">// equivalent tostate.test(B.Render.CmpFunc.LESS_EQUAL);state.write(true);</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.DepthState.html" class="type">B.Render.DepthState</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="test" class="title">
+
+<span class="value">test</span>(func)
+</p>
+
+
+
+<div class="description"><p>Sets depth test compare function.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#CmpFunc" class="type">B.Render.CmpFunc</a> | false}</span>
+func
+
+</p>
+
+<p>pass false to disable depth test</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.DepthState.html" class="type">B.Render.DepthState</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="test" class="title">
+
+<span class="value">test</span>()
+</p>
+
+
+
+<div class="description"><p>Returns depth test compare function.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{false | <a href="B.Render.html#CmpFunc" class="type">B.Render.CmpFunc</a>}</span></p>
+
+<p>false if depth test is disabled</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="write" class="title">
+
+<span class="value">write</span>(mask)
+</p>
+
+
+
+<div class="description"><p>Sets depth write mask.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{boolean}</span>
+mask
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.DepthState.html" class="type">B.Render.DepthState</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="write" class="title">
+
+<span class="value">write</span>()
+</p>
+
+
+
+<div class="description"><p>Gets depth write mask.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.DepthState.html#pass" class="value">pass</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.DepthState.html#default" class="value">default</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.DepthState.html#test" class="value">test</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.DepthState.html#write" class="value">write</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

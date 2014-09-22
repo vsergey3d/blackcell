@@ -1,0 +1,1927 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: Vector2</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Math.html" class="value">.Math</a>.Vector2</span>()
+
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Represents a 2D vector.</p>
+<p>To create the object use <a href="B.Math.html#makeVector2">B.Math.makeVector2()</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>CONSTANTS:</h2>
+<div class="t">
+        
+
+
+<p id="ZERO" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">ZERO</span>
+    = {x: 0.0, y: 0.0}
+
+</p>
+
+
+    <p>Zero vector.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="INF" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">INF</span>
+    = {x: Infinity, y: Infinity}
+
+</p>
+
+
+    <p>Positive infinity point.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="N_INF" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">N_INF</span>
+    = {x: -Infinity, y: -Infinity}
+
+</p>
+
+
+    <p>Negative infinity point.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="X" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">X</span>
+    = {x: 1.0, y: 0.0}
+
+</p>
+
+
+    <p>Positive direction along X-axis.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Y" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">Y</span>
+    = {x: 0.0, y: 1.0}
+
+</p>
+
+
+    <p>Positive direction along Y-axis.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="N_X" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">N_X</span>
+    = {x: -1.0, y: 0.0}
+
+</p>
+
+
+    <p>Negative direction along X-axis.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="N_Y" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+    <span class="value">N_Y</span>
+    = {x: 0.0, y: -1.0}
+
+</p>
+
+
+    <p>Negative direction along Y-axis.</p>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>PROPERTIES:</h2>
+<div class="t">
+        
+
+
+<p id="x" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">x</span>
+    
+
+</p>
+
+
+    <p>X component.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="y" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">y</span>
+    
+
+</p>
+
+
+    <p>Y component.</p>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="clone" class="title">
+
+<span class="value">clone</span>()
+</p>
+
+
+
+<div class="description"><p>Clones this vector to a new vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="copy" class="title">
+
+<span class="value">copy</span>(v)
+</p>
+
+
+
+<div class="description"><p>Copies a given vector into this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="set" class="title">
+
+<span class="value">set</span>(x, y)
+</p>
+
+
+
+<div class="description"><p>Sets this vector from separated components.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+x
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+y
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="get" class="title">
+
+<span class="value">get</span>(index)
+</p>
+
+
+
+<div class="description"><p>Gets an element by its index.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+index
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{Error}</span></p>
+<p>if the index is out of range</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromArray" class="title">
+
+<span class="value">fromArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this vector from a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="toArray" class="title">
+
+<span class="value">toArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this vector to a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="length" class="title">
+
+<span class="value">length</span>()
+</p>
+
+
+
+<div class="description"><p>Calculates the length of this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>length</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="lengthSq" class="title">
+
+<span class="value">lengthSq</span>()
+</p>
+
+
+
+<div class="description"><p>Calculates the squared length of this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>squared length</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="normalize" class="title">
+
+<span class="value">normalize</span>()
+</p>
+
+
+
+<div class="description"><p>Normalizes this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="negate" class="title">
+
+<span class="value">negate</span>()
+</p>
+
+
+
+<div class="description"><p>Inverts this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="clamp" class="title">
+
+<span class="value">clamp</span>(minVal, maxVal)
+</p>
+
+
+
+<div class="description"><p>Clamps components of this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+[minVal]
+ = 0.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[maxVal]
+ = 1.0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="add" class="title">
+
+<span class="value">add</span>(v)
+</p>
+
+
+
+<div class="description"><p>Adds a vector or a scalar to this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="addVectors" class="title">
+
+<span class="value">addVectors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Adds two given vectors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="sub" class="title">
+
+<span class="value">sub</span>(v)
+</p>
+
+
+
+<div class="description"><p>Subtracts a vector or a scalar from this vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="subVectors" class="title">
+
+<span class="value">subVectors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Subtracts two given vectors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="mul" class="title">
+
+<span class="value">mul</span>(v)
+</p>
+
+
+
+<div class="description"><p>Multiplies this vector by a given vector or a scalar.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="mulVectors" class="title">
+
+<span class="value">mulVectors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Multiplies two given vectors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="div" class="title">
+
+<span class="value">div</span>(v)
+</p>
+
+
+
+<div class="description"><p>Divides this vector by a given vector or a scalar.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="divVectors" class="title">
+
+<span class="value">divVectors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Divides two given vectors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="dot" class="title">
+
+<span class="value">dot</span>(v)
+</p>
+
+
+
+<div class="description"><p>Calculates the dot product of this vector and another vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>dot product</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="angleTo" class="title">
+
+<span class="value">angleTo</span>(v)
+</p>
+
+
+
+<div class="description"><p>Calculates the angle in radians between this vector and another vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>angle</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="distanceTo" class="title">
+
+<span class="value">distanceTo</span>(v)
+</p>
+
+
+
+<div class="description"><p>Calculates the distance between this vector and another vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>distance</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="distanceToSq" class="title">
+
+<span class="value">distanceToSq</span>(v)
+</p>
+
+
+
+<div class="description"><p>Calculates the squared distance between this vector and another vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>squared distance</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="equal" class="title">
+
+<span class="value">equal</span>(v)
+</p>
+
+
+
+<div class="description"><p>Checks for strict equality of this vector and another vector.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">CONSTANTS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#ZERO" class="value">ZERO</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#INF" class="value">INF</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#N_INF" class="value">N_INF</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#X" class="value">X</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#Y" class="value">Y</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#N_X" class="value">N_X</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#N_Y" class="value">N_Y</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">PROPERTIES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#x" class="value">x</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#y" class="value">y</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#clone" class="value">clone</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#copy" class="value">copy</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#set" class="value">set</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#get" class="value">get</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#fromArray" class="value">fromArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#toArray" class="value">toArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#length" class="value">length</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#lengthSq" class="value">lengthSq</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#normalize" class="value">normalize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#negate" class="value">negate</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#clamp" class="value">clamp</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#add" class="value">add</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#addVectors" class="value">addVectors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#sub" class="value">sub</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#subVectors" class="value">subVectors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#mul" class="value">mul</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#mulVectors" class="value">mulVectors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#div" class="value">div</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#divVectors" class="value">divVectors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#dot" class="value">dot</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#angleTo" class="value">angleTo</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#distanceTo" class="value">distanceTo</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#distanceToSq" class="value">distanceToSq</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Vector2.html#equal" class="value">equal</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

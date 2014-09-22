@@ -1,0 +1,3466 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Module: Render</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a>.Render</span>
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Contains a set of primitives that provide staging graphics core architecture.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>ENUMERATIONS:</h2>
+<div class="t">
+        
+
+
+<p id="Mask" class="title">
+
+
+    <span class="value">Mask</span>
+
+</p>
+
+
+    <p>Color mask.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Mask.R">
+        
+        <span class="type">{number}</span>
+        <span class="value">R</span>
+        = 1
+        </p>
+        
+            <p>Red component.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Mask.G">
+        
+        <span class="type">{number}</span>
+        <span class="value">G</span>
+        = 2
+        </p>
+        
+            <p>Green component.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Mask.B">
+        
+        <span class="type">{number}</span>
+        <span class="value">B</span>
+        = 4
+        </p>
+        
+            <p>Blue component.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Mask.A">
+        
+        <span class="type">{number}</span>
+        <span class="value">A</span>
+        = 8
+        </p>
+        
+            <p>Alpha component.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Mask.RGB">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGB</span>
+        = 7
+        </p>
+        
+            <p>Red, Green, Blue components.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Mask.RGBA">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGBA</span>
+        = 15
+        </p>
+        
+            <p>Red, Green, Blue, Alpha components.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Attribute" class="title">
+
+
+    <span class="value">Attribute</span>
+
+</p>
+
+
+    <p>Vertex attribute type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Attribute.UINT">
+        
+        <span class="type">{number}</span>
+        <span class="value">UINT</span>
+        = 1
+        </p>
+        
+            <p>Unsigned integer.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.FLOAT">
+        
+        <span class="type">{number}</span>
+        <span class="value">FLOAT</span>
+        = 2
+        </p>
+        
+            <p>Floating-point scalar.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.VECTOR2">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR2</span>
+        = 3
+        </p>
+        
+            <p>Floating-point 2D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.VECTOR3">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR3</span>
+        = 4
+        </p>
+        
+            <p>Floating-point 3D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.VECTOR4">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR4</span>
+        = 5
+        </p>
+        
+            <p>Floating-point 4D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.POSITION">
+        
+        <span class="type">{number}</span>
+        <span class="value">POSITION</span>
+        = 6
+        </p>
+        
+            <p>Position (<a href="B.Render.html#Attribute.VECTOR3">VECTOR3</a> alias).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.NORMAL">
+        
+        <span class="type">{number}</span>
+        <span class="value">NORMAL</span>
+        = 7
+        </p>
+        
+            <p>Normal (<a href="B.Render.html#Attribute.VECTOR3">VECTOR3</a> alias).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.TANGENT">
+        
+        <span class="type">{number}</span>
+        <span class="value">TANGENT</span>
+        = 8
+        </p>
+        
+            <p>Tangent (<a href="B.Render.html#Attribute.VECTOR3">VECTOR3</a> alias).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.UV">
+        
+        <span class="type">{number}</span>
+        <span class="value">UV</span>
+        = 9
+        </p>
+        
+            <p>UV-coordinates (<a href="B.Render.html#Attribute.VECTOR2">VECTOR2</a> alias).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Attribute.COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">COLOR</span>
+        = 10
+        </p>
+        
+            <p>Color (<a href="B.Render.html#Attribute.UINT">UINT</a> alias).</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Index" class="title">
+
+
+    <span class="value">Index</span>
+
+</p>
+
+
+    <p>Index type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Index.USHORT">
+        
+        <span class="type">{number}</span>
+        <span class="value">USHORT</span>
+        = 1
+        </p>
+        
+            <p>16-bit index.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Index.UINT">
+        
+        <span class="type">{number}</span>
+        <span class="value">UINT</span>
+        = 2
+        </p>
+        
+            <p>32-bit index (to check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().indexUInt</a> flag).</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Primitive" class="title">
+
+
+    <span class="value">Primitive</span>
+
+</p>
+
+
+    <p>Primitive type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Primitive.POINT">
+        
+        <span class="type">{number}</span>
+        <span class="value">POINT</span>
+        = 1
+        </p>
+        
+            <p>Isolated point.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Primitive.LINE">
+        
+        <span class="type">{number}</span>
+        <span class="value">LINE</span>
+        = 2
+        </p>
+        
+            <p>Isolated straight line.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Primitive.TRIANGLE">
+        
+        <span class="type">{number}</span>
+        <span class="value">TRIANGLE</span>
+        = 3
+        </p>
+        
+            <p>Isolated triangle.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Usage" class="title">
+
+
+    <span class="value">Usage</span>
+
+</p>
+
+
+    <p>Specifies the usage pattern of the data store.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Usage.STATIC">
+        
+        <span class="type">{number}</span>
+        <span class="value">STATIC</span>
+        = 1
+        </p>
+        
+            <p>The data store contents will be modified once.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Usage.DYNAMIC">
+        
+        <span class="type">{number}</span>
+        <span class="value">DYNAMIC</span>
+        = 2
+        </p>
+        
+            <p>The data store contents will be modified repeatedly.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Format" class="title">
+
+
+    <span class="value">Format</span>
+
+</p>
+
+
+    <p>Surface format.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Format.A">
+        
+        <span class="type">{number}</span>
+        <span class="value">A</span>
+        = 1
+        </p>
+        
+            <p>8-bit format (alpha only).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGB">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGB</span>
+        = 2
+        </p>
+        
+            <p>24-bit format using 8 bits for the each channel (red, green, blue).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGBA">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGBA</span>
+        = 3
+        </p>
+        
+            <p>32-bit format using 8 bits for the each channel (red, green, blue, alpha).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGB_DXT1">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGB_DXT1</span>
+        = 4
+        </p>
+        
+            <p>DXT1 (S3TC) compression format.
+To check hardware support use <a href="B.Render.Device.html#Caps">device.caps().textureDXT</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGBA_DXT5">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGBA_DXT5</span>
+        = 5
+        </p>
+        
+            <p>DXT5 (S3TC) compression format.
+To check hardware support use <a href="B.Render.Device.html#Caps">device.caps().textureDXT</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.A_F16">
+        
+        <span class="type">{number}</span>
+        <span class="value">A_F16</span>
+        = 6
+        </p>
+        
+            <p>16-bit floating-point format (alpha only).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat16</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGB_F16">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGB_F16</span>
+        = 7
+        </p>
+        
+            <p>48-bit floating-point format using 16 bits for the each channel (red, green, blue).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat16</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGBA_F16">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGBA_F16</span>
+        = 8
+        </p>
+        
+            <p>64-bit floating-point format using 16 bits for the each channel (red, green, blue, alpha).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat16</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.A_F32">
+        
+        <span class="type">{number}</span>
+        <span class="value">A_F32</span>
+        = 9
+        </p>
+        
+            <p>32-bit floating-point format (alpha only).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat32</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGB_F32">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGB_F32</span>
+        = 10
+        </p>
+        
+            <p>96-bit floating-point format using 32 bits for the each channel (red, green, blue).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat32</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.RGBA_F32">
+        
+        <span class="type">{number}</span>
+        <span class="value">RGBA_F32</span>
+        = 11
+        </p>
+        
+            <p>128-bit floating-point format using 32 bits for the each channel (red, green, blue, alpha).
+To check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat32</a> flag.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.DEPTH">
+        
+        <span class="type">{number}</span>
+        <span class="value">DEPTH</span>
+        = 12
+        </p>
+        
+            <p>16-bit depth format.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Format.DEPTH_STENCIL">
+        
+        <span class="type">{number}</span>
+        <span class="value">DEPTH_STENCIL</span>
+        = 13
+        </p>
+        
+            <p>32-bit depth-stencil format using 24 bits for the depth and 8 bits for the stencil.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="CubeFace" class="title">
+
+
+    <span class="value">CubeFace</span>
+
+</p>
+
+
+    <p>Cubemap face.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="CubeFace.POSITIVE_X">
+        
+        <span class="type">{number}</span>
+        <span class="value">POSITIVE_X</span>
+        = 0
+        </p>
+        
+            <p>Positive X-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.NEGATIVE_X">
+        
+        <span class="type">{number}</span>
+        <span class="value">NEGATIVE_X</span>
+        = 1
+        </p>
+        
+            <p>Negative X-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.POSITIVE_Y">
+        
+        <span class="type">{number}</span>
+        <span class="value">POSITIVE_Y</span>
+        = 2
+        </p>
+        
+            <p>Positive Y-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.NEGATIVE_Y">
+        
+        <span class="type">{number}</span>
+        <span class="value">NEGATIVE_Y</span>
+        = 3
+        </p>
+        
+            <p>Negative Y-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.POSITIVE_Z">
+        
+        <span class="type">{number}</span>
+        <span class="value">POSITIVE_Z</span>
+        = 4
+        </p>
+        
+            <p>Positive Z-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.NEGATIVE_Z">
+        
+        <span class="type">{number}</span>
+        <span class="value">NEGATIVE_Z</span>
+        = 5
+        </p>
+        
+            <p>Negative Z-face.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CubeFace.COUNT">
+        
+        <span class="type">{number}</span>
+        <span class="value">COUNT</span>
+        = 6
+        </p>
+        
+            <p>Face count.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Uniform" class="title">
+
+
+    <span class="value">Uniform</span>
+
+</p>
+
+
+    <p>Uniform type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Uniform.FLOAT">
+        
+        <span class="type">{number}</span>
+        <span class="value">FLOAT</span>
+        = 1
+        </p>
+        
+            <p>Floating-point scalar.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.VECTOR2">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR2</span>
+        = 2
+        </p>
+        
+            <p>Floating-point 2D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.VECTOR3">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR3</span>
+        = 3
+        </p>
+        
+            <p>Floating-point 3D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.VECTOR4">
+        
+        <span class="type">{number}</span>
+        <span class="value">VECTOR4</span>
+        = 4
+        </p>
+        
+            <p>Floating-point 4D-vector.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.MATRIX3">
+        
+        <span class="type">{number}</span>
+        <span class="value">MATRIX3</span>
+        = 5
+        </p>
+        
+            <p>Floating-point 3x3-matrix.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.MATRIX4">
+        
+        <span class="type">{number}</span>
+        <span class="value">MATRIX4</span>
+        = 6
+        </p>
+        
+            <p>Floating-point 4x4-matrix.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.SAMPLER_2D">
+        
+        <span class="type">{number}</span>
+        <span class="value">SAMPLER_2D</span>
+        = 7
+        </p>
+        
+            <p>2D-sampler.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Uniform.SAMPLER_CUBE">
+        
+        <span class="type">{number}</span>
+        <span class="value">SAMPLER_CUBE</span>
+        = 8
+        </p>
+        
+            <p>Cube-sampler.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="State" class="title">
+
+
+    <span class="value">State</span>
+
+</p>
+
+
+    <p>Rendering state type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="State.POLYGON">
+        
+        <span class="type">{number}</span>
+        <span class="value">POLYGON</span>
+        = 0
+        </p>
+        
+            <p>Polygon state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.MULTISAMPLE">
+        
+        <span class="type">{number}</span>
+        <span class="value">MULTISAMPLE</span>
+        = 1
+        </p>
+        
+            <p>Multisample state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">COLOR</span>
+        = 2
+        </p>
+        
+            <p>Color state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.DEPTH">
+        
+        <span class="type">{number}</span>
+        <span class="value">DEPTH</span>
+        = 3
+        </p>
+        
+            <p>Depth state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.STENCIL">
+        
+        <span class="type">{number}</span>
+        <span class="value">STENCIL</span>
+        = 4
+        </p>
+        
+            <p>Stencil state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.BLEND">
+        
+        <span class="type">{number}</span>
+        <span class="value">BLEND</span>
+        = 5
+        </p>
+        
+            <p>Blend state.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="State.COUNT">
+        
+        <span class="type">{number}</span>
+        <span class="value">COUNT</span>
+        = 6
+        </p>
+        
+            <p>State count.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Face" class="title">
+
+
+    <span class="value">Face</span>
+
+</p>
+
+
+    <p>Polygon's face direction.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Face.FRONT">
+        
+        <span class="type">{number}</span>
+        <span class="value">FRONT</span>
+        = 1
+        </p>
+        
+            <p>Front.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Face.BACK">
+        
+        <span class="type">{number}</span>
+        <span class="value">BACK</span>
+        = 2
+        </p>
+        
+            <p>Back.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Face.BOTH">
+        
+        <span class="type">{number}</span>
+        <span class="value">BOTH</span>
+        = 3
+        </p>
+        
+            <p>Front and back.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="CmpFunc" class="title">
+
+
+    <span class="value">CmpFunc</span>
+
+</p>
+
+
+    <p>Compare function.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="CmpFunc.NEVER">
+        
+        <span class="type">{number}</span>
+        <span class="value">NEVER</span>
+        = 1
+        </p>
+        
+            <p>Never passes.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.ALWAYS">
+        
+        <span class="type">{number}</span>
+        <span class="value">ALWAYS</span>
+        = 2
+        </p>
+        
+            <p>Always passes.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.LESS">
+        
+        <span class="type">{number}</span>
+        <span class="value">LESS</span>
+        = 3
+        </p>
+        
+            <p>Passes if the incoming value is less than the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.LESS_EQUAL">
+        
+        <span class="type">{number}</span>
+        <span class="value">LESS_EQUAL</span>
+        = 4
+        </p>
+        
+            <p>Passes if the incoming value is less than or equal to the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.GREATER">
+        
+        <span class="type">{number}</span>
+        <span class="value">GREATER</span>
+        = 5
+        </p>
+        
+            <p>Passes if the incoming value is greater than the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.GREATER_EQUAL">
+        
+        <span class="type">{number}</span>
+        <span class="value">GREATER_EQUAL</span>
+        = 6
+        </p>
+        
+            <p>Passes if the incoming value is greater than or equal to the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.EQUAL">
+        
+        <span class="type">{number}</span>
+        <span class="value">EQUAL</span>
+        = 7
+        </p>
+        
+            <p>Passes if the incoming value is equal to the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="CmpFunc.NOT_EQUAL">
+        
+        <span class="type">{number}</span>
+        <span class="value">NOT_EQUAL</span>
+        = 8
+        </p>
+        
+            <p>Passes if the incoming value is not equal to the current value.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="StencilOp" class="title">
+
+
+    <span class="value">StencilOp</span>
+
+</p>
+
+
+    <p>Stencil-buffer operation.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="StencilOp.KEEP">
+        
+        <span class="type">{number}</span>
+        <span class="value">KEEP</span>
+        = 1
+        </p>
+        
+            <p>Keeps the current value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.ZERO">
+        
+        <span class="type">{number}</span>
+        <span class="value">ZERO</span>
+        = 2
+        </p>
+        
+            <p>Sets the value to 0.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.REPLACE">
+        
+        <span class="type">{number}</span>
+        <span class="value">REPLACE</span>
+        = 3
+        </p>
+        
+            <p>Sets the value to <strong>ref</strong>, as specified by
+<a href="B.Render.StencilState.html#test">stencilState.test(func, ref, mask)</a></p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.INCR">
+        
+        <span class="type">{number}</span>
+        <span class="value">INCR</span>
+        = 4
+        </p>
+        
+            <p>Increments the current value. Clamps to the maximum representable unsigned value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.INCR_WRAP">
+        
+        <span class="type">{number}</span>
+        <span class="value">INCR_WRAP</span>
+        = 5
+        </p>
+        
+            <p>Increments the current value. Wraps the value to zero when incrementing
+ the maximum representable unsigned value.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.DECR">
+        
+        <span class="type">{number}</span>
+        <span class="value">DECR</span>
+        = 6
+        </p>
+        
+            <p>Decrements the current value. Clamps to zero.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.DECR_WRAP">
+        
+        <span class="type">{number}</span>
+        <span class="value">DECR_WRAP</span>
+        = 7
+        </p>
+        
+            <p>Decrements the current value. Wraps the value to the maximum representable
+ unsigned value when decrementing a value of zero.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="StencilOp.INVERT">
+        
+        <span class="type">{number}</span>
+        <span class="value">INVERT</span>
+        = 8
+        </p>
+        
+            <p>Bitwise inverts the current value.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Blend" class="title">
+
+
+    <span class="value">Blend</span>
+
+</p>
+
+
+    <p>Blending factor.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Blend.ZERO">
+        
+        <span class="type">{number}</span>
+        <span class="value">ZERO</span>
+        = 1
+        </p>
+        
+            <p>Factor is (0, 0, 0, 0).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.ONE">
+        
+        <span class="type">{number}</span>
+        <span class="value">ONE</span>
+        = 2
+        </p>
+        
+            <p>Factor is (1, 1, 1, 1).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.SRC_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">SRC_COLOR</span>
+        = 3
+        </p>
+        
+            <p>Factor is (SrcR, SrcG, SrcB, SrcA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_SRC_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_SRC_COLOR</span>
+        = 4
+        </p>
+        
+            <p>Factor is (1 - SrcR, 1 - SrcG, 1 - SrcB, 1 - SrcA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.DEST_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">DEST_COLOR</span>
+        = 5
+        </p>
+        
+            <p>Factor is (DestR, DestG, DestB, DestA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_DEST_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_DEST_COLOR</span>
+        = 6
+        </p>
+        
+            <p>Factor is (1 - DestR, 1 - DestG, 1 - DestB, 1 - DestA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.SRC_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">SRC_ALPHA</span>
+        = 7
+        </p>
+        
+            <p>Factor is (SrcA, SrcA, SrcA, SrcA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_SRC_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_SRC_ALPHA</span>
+        = 8
+        </p>
+        
+            <p>Factor is (1 - SrcA, 1 - SrcA, 1 - SrcA, 1 - SrcA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.DEST_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">DEST_ALPHA</span>
+        = 9
+        </p>
+        
+            <p>Factor is (DestA, DestA, DestA, DestA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_DEST_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_DEST_ALPHA</span>
+        = 10
+        </p>
+        
+            <p>Factor is (1 - DestA, 1 - DestA, 1 - DestA, 1 - DestA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.CONST_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">CONST_COLOR</span>
+        = 11
+        </p>
+        
+            <p>Factor is (ConstR, ConstG, ConstB, ConstA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_CONST_COLOR">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_CONST_COLOR</span>
+        = 12
+        </p>
+        
+            <p>Factor is (1 - ConstR, 1 - ConstG, 1 - ConstB, 1 - ConstA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.CONST_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">CONST_ALPHA</span>
+        = 13
+        </p>
+        
+            <p>Factor is (ConstA, ConstA, ConstA, ConstA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.INV_CONST_ALPHA">
+        
+        <span class="type">{number}</span>
+        <span class="value">INV_CONST_ALPHA</span>
+        = 14
+        </p>
+        
+            <p>Factor is (1 - ConstA, 1 - ConstA, 1 - ConstA, 1 - ConstA).</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Blend.SRC_ALPHA_SAT">
+        
+        <span class="type">{number}</span>
+        <span class="value">SRC_ALPHA_SAT</span>
+        = 15
+        </p>
+        
+            <p>Factor is (f, f, f, 1) where f = min(SrcA, 1 - DestA).</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="BlendEq" class="title">
+
+
+    <span class="value">BlendEq</span>
+
+</p>
+
+
+    <p>Blending equation.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="BlendEq.ADD">
+        
+        <span class="type">{number}</span>
+        <span class="value">ADD</span>
+        = 1
+        </p>
+        
+            <p>Result = Src * SrcFactor + Dst * DstFactor</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="BlendEq.SUBTRACT">
+        
+        <span class="type">{number}</span>
+        <span class="value">SUBTRACT</span>
+        = 2
+        </p>
+        
+            <p>Result = Src * SrcFactor - Dst * DstFactor</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="BlendEq.REV_SUBTRACT">
+        
+        <span class="type">{number}</span>
+        <span class="value">REV_SUBTRACT</span>
+        = 3
+        </p>
+        
+            <p>Result = Dst * DstFactor - Src * SrcFactor</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Address" class="title">
+
+
+    <span class="value">Address</span>
+
+</p>
+
+
+    <p>Texture addressing mode.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Address.WRAP">
+        
+        <span class="type">{number}</span>
+        <span class="value">WRAP</span>
+        = 1
+        </p>
+        
+            <p>Tile the texture at every integer junction.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Address.MIRROR">
+        
+        <span class="type">{number}</span>
+        <span class="value">MIRROR</span>
+        = 2
+        </p>
+        
+            <p>Similar to WRAP, except that the texture is flipped at every integer junction.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Address.CLAMP">
+        
+        <span class="type">{number}</span>
+        <span class="value">CLAMP</span>
+        = 3
+        </p>
+        
+            <p>Texture coordinates outside the range [0.0, 1.0] are set to the texture color
+ at 0.0 or 1.0 respectively.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Filter" class="title">
+
+
+    <span class="value">Filter</span>
+
+</p>
+
+
+    <p>Texture filtering mode.</p>
+<p>To check floating-point texture filtering hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat16Filter</a> and
+ <a href="B.Render.Device.html#Caps">device.caps().textureFloat32Filter</a> flags.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Filter.NONE">
+        
+        <span class="type">{number}</span>
+        <span class="value">NONE</span>
+        = 1
+        </p>
+        
+            <p>Filtering disabled.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Filter.BILINEAR">
+        
+        <span class="type">{number}</span>
+        <span class="value">BILINEAR</span>
+        = 2
+        </p>
+        
+            <p>Bilinear filtering.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Filter.TRILINEAR">
+        
+        <span class="type">{number}</span>
+        <span class="value">TRILINEAR</span>
+        = 3
+        </p>
+        
+            <p>Trilinear filtering.</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Shader" class="title">
+
+
+    <span class="value">Shader</span>
+
+</p>
+
+
+    <p>Shader type.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Shader.VERTEX">
+        
+        <span class="type">{number}</span>
+        <span class="value">VERTEX</span>
+        = 0
+        </p>
+        
+            <p>Vertex shader.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Shader.FRAGMENT">
+        
+        <span class="type">{number}</span>
+        <span class="value">FRAGMENT</span>
+        = 1
+        </p>
+        
+            <p>Fragment shader.</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Shader.COUNT">
+        
+        <span class="type">{number}</span>
+        <span class="value">COUNT</span>
+        = 2
+        </p>
+        
+            <p>Shader count.</p>
+        
+    
+    </div>
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>TYPES:</h2>
+<div class="t">
+        
+
+
+<p id="WebglSettings" class="title">
+
+
+    <span class="value">WebglSettings</span>
+
+</p>
+
+
+    <p>Describea webgl-context settings.</p>
+<p>See: <a href="http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2">http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2</a></p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="WebglSettings.antialias">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">antialias</span>
+        = true
+        </p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="WebglSettings.premultipliedAlpha">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">premultipliedAlpha</span>
+        = true
+        </p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="WebglSettings.preserveDrawingBuffer">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">preserveDrawingBuffer</span>
+        = true
+        </p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="WebglSettings.preferLowPowerToHighPerformance">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">preferLowPowerToHighPerformance</span>
+        = true
+        </p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="WebglSettings.failIfMajorPerformanceCaveat">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">failIfMajorPerformanceCaveat</span>
+        = true
+        </p>
+        
+    
+    </div>
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>FUNCTIONS:</h2>
+<div class="t">
+        
+
+
+
+<p id="makeDevice" class="title">
+
+<span class="value">makeDevice</span>(canvas, colorFormat, depthFormat, settings)
+</p>
+
+
+
+<div class="description"><p>Makes a rendering device.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var device = B.Render.makeDevice(canvas);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, false);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, B.Render.Format.DEPTH_STENCIL,    {        antialias: false,        premultipliedAlpha: false    });</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{HTMLCanvasElement}</span>
+canvas
+
+</p>
+
+<p>rendering output</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+[colorFormat]
+ = <a href="B.Render.html#Format.RGB">B.Render.Format.RGB</a>
+</p>
+
+<p>color target format (supported formats are <a href="B.Render.html#Format.RGB">B.Render.Format.RGB</a>
+ and <a href="B.Render.html#Format.RGBA">B.Render.Format.RGBA</a>)</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a> | false}</span>
+[depthFormat]
+ = <a href="B.Render.html#Format.DEPTH">B.Render.Format.DEPTH</a>
+</p>
+
+<p>depth-stencil target format (supported formats are
+ <a href="B.Render.html#Format.DEPTH">B.Render.Format.DEPTH</a> and
+ <a href="B.Render.html#Format.DEPTH_STENCIL">B.Render.Format.DEPTH_STENCIL</a>) or <strong>false</strong> to disable depth</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#WebglSettings" class="type">B.Render~WebglSettings</a>}</span>
+[settings]
+
+</p>
+
+<p>webgl-context settings</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if WebGL is not supported or target parameters are incorrect</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="isPowerOfTwo" class="title">
+
+<span class="value">isPowerOfTwo</span>(value)
+</p>
+
+
+
+<div class="description"><p>Returns true if numeric value is power of two, false otherwise.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+value
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="toPowerOfTwo" class="title">
+
+<span class="value">toPowerOfTwo</span>(value)
+</p>
+
+
+
+<div class="description"><p>Converts numeric value to closest power of two.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+value
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="genQuad" class="title">
+
+<span class="value">genQuad</span>(device, xSize, ySize, uScale, vScale)
+</p>
+
+
+
+<div class="description"><p>Generates a quad mesh.</p>
+<p>The mesh will have positions, normals, tangents and uv-coordinates.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span>
+device
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[xSize]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[ySize]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[uScale]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[vScale]
+ = 1.0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Mesh.html" class="type">B.Render.Mesh</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="genBox" class="title">
+
+<span class="value">genBox</span>(device, xSize, ySize, zSize, uScale, vScale)
+</p>
+
+
+
+<div class="description"><p>Generates a box mesh.</p>
+<p>The mesh will have positions, normals, tangents and uv-coordinates.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span>
+device
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[xSize]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[ySize]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[zSize]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[uScale]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[vScale]
+ = 1.0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Mesh.html" class="type">B.Render.Mesh</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="genSphere" class="title">
+
+<span class="value">genSphere</span>(device, radius, segments, uScale, vScale)
+</p>
+
+
+
+<div class="description"><p>Generates a sphere mesh.</p>
+<p>The mesh will have positions, normals, tangents and uv-coordinates.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span>
+device
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[radius]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[segments]
+ = 32
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[uScale]
+ = 1.0
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[vScale]
+ = 1.0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Mesh.html" class="type">B.Render.Mesh</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="attributeByteSize" class="title">
+
+<span class="value">attributeByteSize</span>(type)
+</p>
+
+
+
+<div class="description"><p>Returns byte size of attribute type.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Attribute" class="type">B.Render.Attribute</a>}</span>
+type
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="checkAttributes" class="title">
+
+<span class="value">checkAttributes</span>(attributes)
+</p>
+
+
+
+<div class="description"><p>Checks vertex attributes consistency.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Object.&lt;string, <a href="B.Render.html#Attribute" class="type">B.Render.Attribute</a>>}</span>
+attributes
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="indexByteSize" class="title">
+
+<span class="value">indexByteSize</span>(type)
+</p>
+
+
+
+<div class="description"><p>Returns byte size of index type.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Index" class="type">B.Render.Index</a>}</span>
+type
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="indicesPerPrimitive" class="title">
+
+<span class="value">indicesPerPrimitive</span>(primitive)
+</p>
+
+
+
+<div class="description"><p>Returns index count per primitive.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Primitive" class="type">B.Render.Primitive</a>}</span>
+primitive
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="formatBitSize" class="title">
+
+<span class="value">formatBitSize</span>(format)
+</p>
+
+
+
+<div class="description"><p>Returns bit size of surface format.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="formatBlockByteSize" class="title">
+
+<span class="value">formatBlockByteSize</span>(format)
+</p>
+
+
+
+<div class="description"><p>Returns byte size of compressed format block.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="formatBlockTexelSize" class="title">
+
+<span class="value">formatBlockTexelSize</span>(format)
+</p>
+
+
+
+<div class="description"><p>Returns texel size (one dimension) of compressed format block.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="imagePitch" class="title">
+
+<span class="value">imagePitch</span>(format, width)
+</p>
+
+
+
+<div class="description"><p>Calculates pitch (in bytes) for arbitrary format and width.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+width
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="imageRows" class="title">
+
+<span class="value">imageRows</span>(format, height)
+</p>
+
+
+
+<div class="description"><p>Calculates rows count for arbitrary format and height.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+height
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="imageByteSize" class="title">
+
+<span class="value">imageByteSize</span>(format, width, height)
+</p>
+
+
+
+<div class="description"><p>Calculates byte size for arbitrary image.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+width
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+height
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="checkColorFormat" class="title">
+
+<span class="value">checkColorFormat</span>(device, format, renderable)
+</p>
+
+
+
+<div class="description"><p>Checks color format consistency.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span>
+device
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{boolean}</span>
+[renderable]
+ = false
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="checkDepthFormat" class="title">
+
+<span class="value">checkDepthFormat</span>(device, format)
+</p>
+
+
+
+<div class="description"><p>Checks depth-stencil format consistency.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span>
+device
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="uniformByteSize" class="title">
+
+<span class="value">uniformByteSize</span>(type)
+</p>
+
+
+
+<div class="description"><p>Returns byte size of uniform type.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Uniform" class="type">B.Render.Uniform</a>}</span>
+type
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">CLASSES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Error.html" class="value">Error</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.GLError.html" class="value">GLError</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Mesh.html" class="value">Mesh</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Depth.html" class="value">Depth</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Mip.html" class="value">Mip</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Texture.html" class="value">Texture</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Target.html" class="value">Target</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.PolygonState.html" class="value">PolygonState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.MultisampleState.html" class="value">MultisampleState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.ColorState.html" class="value">ColorState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.DepthState.html" class="value">DepthState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.StencilState.html" class="value">StencilState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.BlendState.html" class="value">BlendState</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Sampler.html" class="value">Sampler</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Pass.html" class="value">Pass</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Stage.html" class="value">Stage</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Material.html" class="value">Material</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Instance.html" class="value">Instance</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html" class="value">Device</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">ENUMERATIONS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.html#Mask" class="value">Mask</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Attribute" class="value">Attribute</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Index" class="value">Index</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Primitive" class="value">Primitive</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Usage" class="value">Usage</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Format" class="value">Format</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#CubeFace" class="value">CubeFace</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Uniform" class="value">Uniform</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#State" class="value">State</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Face" class="value">Face</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#CmpFunc" class="value">CmpFunc</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#StencilOp" class="value">StencilOp</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Blend" class="value">Blend</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#BlendEq" class="value">BlendEq</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Address" class="value">Address</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Filter" class="value">Filter</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#Shader" class="value">Shader</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">TYPES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.html#WebglSettings" class="value">WebglSettings</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">FUNCTIONS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.html#makeDevice" class="value">makeDevice</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#isPowerOfTwo" class="value">isPowerOfTwo</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#toPowerOfTwo" class="value">toPowerOfTwo</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#genQuad" class="value">genQuad</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#genBox" class="value">genBox</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#genSphere" class="value">genSphere</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#attributeByteSize" class="value">attributeByteSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#checkAttributes" class="value">checkAttributes</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#indexByteSize" class="value">indexByteSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#indicesPerPrimitive" class="value">indicesPerPrimitive</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#formatBitSize" class="value">formatBitSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#formatBlockByteSize" class="value">formatBlockByteSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#formatBlockTexelSize" class="value">formatBlockTexelSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#imagePitch" class="value">imagePitch</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#imageRows" class="value">imageRows</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#imageByteSize" class="value">imageByteSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#checkColorFormat" class="value">checkColorFormat</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#checkDepthFormat" class="value">checkDepthFormat</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.html#uniformByteSize" class="value">uniformByteSize</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

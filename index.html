@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - real-time 3D-rendering API</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+<link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    <table cellpadding=0 cellspacing=0 class="data">
+        <tr>
+            <td id="content">
+                <h3>The project's aims:</h3>
+                <ul style="list-style-type: disc; padding-left: 26px;">
+                <li>
+                <p style="padding-bottom: 6px">
+                Provide modern, JS-friendly API for real-time 3D-rendering over <a href="http://www.khronos.org/registry/webgl/specs/latest/1.0/">WebGL</a>
+                </p>
+                </li>
+                <li>
+                <p>
+                Give an expressive tool for rapid prototyping and publishing complex rendering techniques
+                </p>
+                </li>
+                </ul>
+                <div class="sh"></div>
+                <h3>The features:</h3>
+                <ul style="list-style-type: disc; padding-left: 26px">
+                    <li>
+                        <p style="padding-bottom: 6px">
+                            Linear algebra (vectors, rotations, transformations) and geometry primitives
+                        </p>
+                    </li>
+                    <li>
+                        <p style="padding-bottom: 6px">
+                            Staging graphics core (designed for custom rendering pipelines and shaders)
+                        </p>
+                    </li>
+                    <li>
+                        <p style="padding-bottom: 6px">
+                            Common implementations (frustum culling, attributes & uniforms binding, context lost handling, etc)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="http://www.khronos.org/registry/webgl/extensions/">WebGL Extensions</a> supported / <a href="http://www.khronos.org/registry/webgl/specs/latest/2.0/">WebGL 2.0</a> oriented architecture
+                        </p>
+                    </li>
+                </ul>
+                <div class="sh"></div>
+                <table class="data" cellpadding="0" cellspacing="0" style="padding-bottom: 13px; width: 754px">
+                    <tr>
+                        <td class="sample"><a href="http://blackcelljs.com/sample/run.html?shadow-mapping"><img src="sample/shadow-mapping.png" title="shadow mapping" style="padding-right: 11px"/></a></td>
+                        <td class="sample"><a href="http://blackcelljs.com/sample/run.html?simple-materials"><img src="sample/simple-materials.png" title="simple materials" style="padding-right: 11px"/></a></td>
+                        <td class="sample"><a href="http://blackcelljs.com/sample/run.html?dynamic-cubemap"><img src="sample/dynamic-cubemap.png" title="dynamic cubemap" style="padding-right: 11px"/></a></td>
+                        <td class="sample"><a href="http://blackcelljs.com/sample/run.html?post-processing"><img src="sample/post-processing.png" title="post processing"/></a></td>
+                    </tr>
+                </table>
+                <div class="sh"></div>
+                <pre class="language-javascript" style="margin-bottom: 0px"><code class="language-javascript">// code example:
+
+var M = B.Math, R = B.Render,
+    dev = R.makeDevice(canvas);
+
+dev.stage("main").output(dev.target()).
+    view(M.makeMatrix4().lookAt(M.makeVector3(0,1,-1), M.Vector3.ZERO, M.Vector3.Y)).
+    proj(M.makeMatrix4().perspective(Math.PI / 3, canvas.width / canvas.height, 0.1, 1000)).
+    uniform("mxVP", R.Stage.VIEW_PROJ);
+
+dev.material("default").
+    pass("main", dev.makePass(
+        "attribute vec3 position;" +
+        "uniform mat4 mxT;" +
+        "uniform mat4 mxVP;" +
+        "void main() { gl_Position = mxVP * mxT * vec4(position, 1.0); }",
+        "void main() { gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); }"));
+
+dev.instance("default",
+    dev.makeMesh().
+        attribute("position", R.Attribute.POSITION).
+        vertices([-1,0,-1, -1,0,1, 1,0,1, 1,0,-1, 0,1,0]).
+        indices([0,1, 1,2, 2,3, 3,0, 0,4, 1,4, 2,4, 3,4]).
+        primitive(R.Primitive.LINE),
+    M.makeMatrix4().scale(0.3, 0.4, 0.3)
+).
+    uniform("mxT", R.Instance.TRANSFORM);
+
+dev.frame();</code></pre>
+            </td>
+            <td id="separator"></td>
+            <td id="panel">
+                <h3 class="panel">DOWNLOAD: <span style="color:#bcbcbc">[v.0.0.1]</span></h3>
+                <ul style="padding-top: 2px">
+                    <li>
+                        <p style="padding-bottom: 2px">
+                            <a href="http://blackcelljs.com/b.min.zip">minified</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p style="padding-bottom: 2px">
+                            <a href="http://blackcelljs.com/b.map.zip">source map</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="http://blackcelljs.com/b.zip">debug</a>
+                        </p>
+                    </li>
+                </ul>
+                <div class="sh"></div>
+                <h3 class="panel">LICENCE:</h3>
+                <ul style="padding-top: 2px">
+                    <li>
+                        <p>
+                            <a href="https://github.com/vsergey3d/blackcell/blob/master/LICENSE.md">MIT license</a>
+                        </p>
+                    </li>
+                </ul>
+                <div class="sh"></div>
+                <h3 class="panel">CONTRIBUTING:</h3>
+                <ul style="padding-top: 2px">
+                    <li>
+                        <p style="padding-bottom: 2px">
+                            <a href="https://github.com/vsergey3d/blackcell/blob/master/CONTRIBUTING.md">how to contribute</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p style="padding-bottom: 2px">
+                            <a href="https://github.com/vsergey3d/blackcell/wiki/Developer-guide">developer guide</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="https://github.com/vsergey3d/blackcell/blob/master/CONTRIBUTING.md#contributors">contributors</a>
+                        </p>
+                    </li>
+                </ul>
+                <div class="sh"></div>
+                <h3 class="panel">CONTACTS:</h3>
+                <ul style="padding-top: 2px">
+                    <li>
+                        <p style="padding-bottom: 2px">
+                            <a href="https://github.com/vsergey3d/blackcell/issues">issue tracker</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="mailto:blackcelljs@gmail.com">mail to</a>
+                        </p>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

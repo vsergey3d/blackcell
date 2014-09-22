@@ -1,0 +1,1458 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: Color</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Math.html" class="value">.Math</a>.Color</span>()
+
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Represents a RGBA color.</p>
+<p>To create the object use <a href="B.Math.html#makeColor">B.Math.makeColor()</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>CONSTANTS:</h2>
+<div class="t">
+        
+
+
+<p id="WHITE" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">WHITE</span>
+    = {r: 1.0, g: 1.0, b: 1.0, a: 1.0}
+
+</p>
+
+
+    <p>White color.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="GRAY" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">GRAY</span>
+    = {r: 0.5, g: 0.5, b: 0.5, a: 1.0}
+
+</p>
+
+
+    <p>Gray color.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="BLACK" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">BLACK</span>
+    = {r: 0.0, g: 0.0, b: 0.0, a: 1.0}
+
+</p>
+
+
+    <p>Black color.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="RED" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">RED</span>
+    = {r: 1.0, g: 0.0, b: 0.0, a: 1.0}
+
+</p>
+
+
+    <p>Red color.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="GREEN" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">GREEN</span>
+    = {r: 0.0, g: 1.0, b: 0.0, a: 1.0}
+
+</p>
+
+
+    <p>Green color.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="BLUE" class="title">
+
+
+    <span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+    <span class="value">BLUE</span>
+    = {r: 0.0, g: 0.0, b: 1.0, a: 1.0}
+
+</p>
+
+
+    <p>Blue color.</p>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>PROPERTIES:</h2>
+<div class="t">
+        
+
+
+<p id="r" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">r</span>
+    
+
+</p>
+
+
+    <p>Red component.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="g" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">g</span>
+    
+
+</p>
+
+
+    <p>Green component.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="b" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">b</span>
+    
+
+</p>
+
+
+    <p>Blue component.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="a" class="title">
+
+
+    <span class="type">{number}</span>
+    <span class="value">a</span>
+    
+
+</p>
+
+
+    <p>Alpha component.</p>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="copy" class="title">
+
+<span class="value">copy</span>(color)
+</p>
+
+
+
+<div class="description"><p>Copies a given color into this color.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+color
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="clone" class="title">
+
+<span class="value">clone</span>()
+</p>
+
+
+
+<div class="description"><p>Clones this color to a new color.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="set" class="title">
+
+<span class="value">set</span>(r, g, b, a)
+</p>
+
+
+
+<div class="description"><p>Sets this color from separated components.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+r
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+g
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+b
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+a
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="get" class="title">
+
+<span class="value">get</span>(index)
+</p>
+
+
+
+<div class="description"><p>Gets an element by its index.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+index
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{Error}</span></p>
+<p>if the index is out of range</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="setHex" class="title">
+
+<span class="value">setHex</span>(hex)
+</p>
+
+
+
+<div class="description"><p>Sets RGB-components of this color from a hexadecimal value.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number}</span>
+hex
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="getHex" class="title">
+
+<span class="value">getHex</span>()
+</p>
+
+
+
+<div class="description"><p>Returns the hexadecimal value of this color (RGB-components).</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromArray" class="title">
+
+<span class="value">fromArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this color from a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="toArray" class="title">
+
+<span class="value">toArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this color components to a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="clamp" class="title">
+
+<span class="value">clamp</span>()
+</p>
+
+
+
+<div class="description"><p>Clamps components of this color to the range [0.0, 1.0].</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="add" class="title">
+
+<span class="value">add</span>(v)
+</p>
+
+
+
+<div class="description"><p>Adds a color or a scalar to this color.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="addColors" class="title">
+
+<span class="value">addColors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Adds two given colors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="sub" class="title">
+
+<span class="value">sub</span>(v)
+</p>
+
+
+
+<div class="description"><p>Subtracts a color or a scalar from this color.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="subColors" class="title">
+
+<span class="value">subColors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Subtracts two given colors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="mul" class="title">
+
+<span class="value">mul</span>(v)
+</p>
+
+
+
+<div class="description"><p>Multiplies this color by a given color or a scalar.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{number | <a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="mulColors" class="title">
+
+<span class="value">mulColors</span>(a, b)
+</p>
+
+
+
+<div class="description"><p>Multiplies two given colors and sets the result to this.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+a
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+b
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="equal" class="title">
+
+<span class="value">equal</span>(v)
+</p>
+
+
+
+<div class="description"><p>Checks for strict equality of this color and another color.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Color.html" class="type">B.Math.Color</a>}</span>
+v
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">CONSTANTS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Color.html#WHITE" class="value">WHITE</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#GRAY" class="value">GRAY</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#BLACK" class="value">BLACK</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#RED" class="value">RED</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#GREEN" class="value">GREEN</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#BLUE" class="value">BLUE</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">PROPERTIES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Color.html#r" class="value">r</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#g" class="value">g</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#b" class="value">b</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#a" class="value">a</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.Color.html#copy" class="value">copy</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#clone" class="value">clone</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#set" class="value">set</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#get" class="value">get</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#setHex" class="value">setHex</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#getHex" class="value">getHex</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#fromArray" class="value">fromArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#toArray" class="value">toArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#clamp" class="value">clamp</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#add" class="value">add</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#addColors" class="value">addColors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#sub" class="value">sub</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#subColors" class="value">subColors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#mul" class="value">mul</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#mulColors" class="value">mulColors</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.Color.html#equal" class="value">equal</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

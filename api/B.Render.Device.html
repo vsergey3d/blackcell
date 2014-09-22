@@ -1,0 +1,2663 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: Device</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Render.html" class="value">.Render</a>.Device</span>()
+->&nbsp;<span class="extends"><a href="B.Std.Listenable.html" class="extends">B.Std.Listenable</a></span>
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Represent a rendering pipeline as stage-material grid.
+Makes and stores all entities within a rendering context.</p>
+<p>To create the object use <a href="B.Render.html#makeDevice">B.Render.makeDevice()</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>TYPES:</h2>
+<div class="t">
+        
+
+
+<p id="FrameInfo" class="title">
+
+
+    <span class="value">FrameInfo</span>
+
+</p>
+
+
+    <p>Describes a frame information.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="FrameInfo.fps">
+        
+        <span class="type">{number}</span>
+        <span class="value">fps</span>
+        
+        </p>
+        
+            <p>frames per second</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.vertexDrawn">
+        
+        <span class="type">{number}</span>
+        <span class="value">vertexDrawn</span>
+        
+        </p>
+        
+            <p>drawn vertex count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.vertexTotal">
+        
+        <span class="type">{number}</span>
+        <span class="value">vertexTotal</span>
+        
+        </p>
+        
+            <p>total vertex count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.primitiveDrawn">
+        
+        <span class="type">{number}</span>
+        <span class="value">primitiveDrawn</span>
+        
+        </p>
+        
+            <p>drawn primitive count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.primitiveTotal">
+        
+        <span class="type">{number}</span>
+        <span class="value">primitiveTotal</span>
+        
+        </p>
+        
+            <p>total primitive count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.instanceDrawn">
+        
+        <span class="type">{number}</span>
+        <span class="value">instanceDrawn</span>
+        
+        </p>
+        
+            <p>drawn instance count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="FrameInfo.instanceTotal">
+        
+        <span class="type">{number}</span>
+        <span class="value">instanceTotal</span>
+        
+        </p>
+        
+            <p>total instance count</p>
+        
+    
+    </div>
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="Caps" class="title">
+
+
+    <span class="value">Caps</span>
+
+</p>
+
+
+    <p>Represents capabilities of the hardware.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="Caps.indexUInt">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">indexUInt</span>
+        
+        </p>
+        
+            <p>32-bit unsigned integer mesh indices</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureMaxSize">
+        
+        <span class="type">{number}</span>
+        <span class="value">textureMaxSize</span>
+        
+        </p>
+        
+            <p>highest possible texture width/height</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.cubemapMaxSize">
+        
+        <span class="type">{number}</span>
+        <span class="value">cubemapMaxSize</span>
+        
+        </p>
+        
+            <p>highest possible cubemap width/height</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.depthMaxSize">
+        
+        <span class="type">{number}</span>
+        <span class="value">depthMaxSize</span>
+        
+        </p>
+        
+            <p>highest possible depth-stencil buffer width/height</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureDXT">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">textureDXT</span>
+        
+        </p>
+        
+            <p>compressed texture formats</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureFloat16">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">textureFloat16</span>
+        
+        </p>
+        
+            <p>16-bit floating point texture formats</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureFloat32">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">textureFloat32</span>
+        
+        </p>
+        
+            <p>32-bit floating point texture formats</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureFloat16Filter">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">textureFloat16Filter</span>
+        
+        </p>
+        
+            <p>16-bit floating point texture filtering</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.textureFloat32Filter">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">textureFloat32Filter</span>
+        
+        </p>
+        
+            <p>32-bit floating point texture filtering</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.colorTargetFloat16">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">colorTargetFloat16</span>
+        
+        </p>
+        
+            <p>rendering to 16-bit floating point texture</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.colorTargetFloat32">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">colorTargetFloat32</span>
+        
+        </p>
+        
+            <p>rendering to 32-bit floating point texture</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.colorTargetCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">colorTargetCount</span>
+        
+        </p>
+        
+            <p>highest possible multiple color targets count</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.samplerAnisotropy">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">samplerAnisotropy</span>
+        
+        </p>
+        
+            <p>anisotropic filtering</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.samplerMaxAnisotropy">
+        
+        <span class="type">{number}</span>
+        <span class="value">samplerMaxAnisotropy</span>
+        
+        </p>
+        
+            <p>highest possible level of anisotropic filtering</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.readableDepth">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">readableDepth</span>
+        
+        </p>
+        
+            <p>reading from the depth buffer through a 2D-texture uniform</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.writableDepth">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">writableDepth</span>
+        
+        </p>
+        
+            <p>writing to the depth buffer from the fragment shader</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.derivatives">
+        
+        <span class="type">{boolean}</span>
+        <span class="value">derivatives</span>
+        
+        </p>
+        
+            <p>shader derivatives</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.attributeCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">attributeCount</span>
+        
+        </p>
+        
+            <p>highest possible count of vertex shader attributes</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.varyingCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">varyingCount</span>
+        
+        </p>
+        
+            <p>highest possible count of shader varyings</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.vertexUniformCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">vertexUniformCount</span>
+        
+        </p>
+        
+            <p>highest possible count of vertex shader uniforms</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.vertexTextureCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">vertexTextureCount</span>
+        
+        </p>
+        
+            <p>highest possible count of vertex shader textures</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.fragmentUniformCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">fragmentUniformCount</span>
+        
+        </p>
+        
+            <p>highest possible count of fragment shader uniforms</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="Caps.fragmentTextureCount">
+        
+        <span class="type">{number}</span>
+        <span class="value">fragmentTextureCount</span>
+        
+        </p>
+        
+            <p>highest possible count of fragment shader textures</p>
+        
+    
+    </div>
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>CONSTANTS:</h2>
+<div class="t">
+        
+
+
+<p id="TIME" class="title">
+
+
+    <span class="type">{Object}</span>
+    <span class="value">TIME</span>
+    
+
+</p>
+
+
+    <p>Device time uniform placeholder.
+It allows to set the time value (wrapped by 1 ms) to a uniform value automatically.</p>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">device.uniform("time", B.Render.Device.TIME);</code></pre>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="DELTA_TIME" class="title">
+
+
+    <span class="type">{Object}</span>
+    <span class="value">DELTA_TIME</span>
+    
+
+</p>
+
+
+    <p>Device delta time uniform placeholder.
+It allows to set the delta time value to a uniform value automatically.</p>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">device.uniform("deltaTime", B.Render.Device.DELTA_TIME);</code></pre>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="makeMesh" class="title">
+
+<span class="value">makeMesh</span>()
+</p>
+
+
+
+<div class="description"><p>Makes a mesh.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Mesh.html" class="type">B.Render.Mesh</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTexture" class="title">
+
+<span class="value">makeTexture</span>(format, width, height, mipCount, faceCount)
+</p>
+
+
+
+<div class="description"><p>Makes a 2D-texture/cubemap from parameters.</p>
+<p>To check maximum 2D-texture/cubemap size use
+ <a href="B.Render.Device.html#Caps">device.caps().textureMaxSize/cubemapMaxSize</a>.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var    // creating 2D-texture from parameters    textureA = device.makeTexture(Format.RGBA, 128, 128, 1),    // creating cubemap from parameters    textureB = device.makeTexture(Format.RGBA, 128, 128, 1, CubeFace.COUNT);</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[width]
+
+</p>
+
+<p>must be power of 2</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[height]
+
+</p>
+
+<p>must be power of 2</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[mipCount]
+ = 0
+</p>
+
+<p>omit if you want to build full mip levels chain</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[faceCount]
+ = 1
+</p>
+
+<p>omit for 2D-textures or set to
+ <a href="B.Render.html#CubeFace.COUNT">CubeFace.COUNT</a> for cubemaps</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Texture.html" class="type">B.Render.Texture</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTexture" class="title">
+
+<span class="value">makeTexture</span>(object)
+</p>
+
+
+
+<div class="description"><p>Makes a 2D-texture from a source object.</p>
+<p>To check maximum 2D-texture size use
+ <a href="B.Render.Device.html#Caps">device.caps().textureMaxSize</a>.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var textureA = device.makeTexture(image);</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{ImageData | HTMLImageElement | HTMLCanvasElement | HTMLVideoElement}</span>
+object
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Texture.html" class="type">B.Render.Texture</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTexture" class="title">
+
+<span class="value">makeTexture</span>(array)
+</p>
+
+
+
+<div class="description"><p>Makes a cubemap from array of six source objects.</p>
+<p>To check maximum cubemap texture size use
+ <a href="B.Render.Device.html#Caps">device.caps().cubemapMaxSize</a>.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var textureA = device.makeTexture([imgPX, imgNX, imgPY, imgNY, imgPZ, imgNZ]);</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;(ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement)>}</span>
+array
+
+</p>
+
+<p>array of objects</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Texture.html" class="type">B.Render.Texture</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeDepth" class="title">
+
+<span class="value">makeDepth</span>(format, width, height, readable)
+</p>
+
+
+
+<div class="description"><p>Makes a depth.</p>
+<p>To check maximum depth-stencil buffer width/height use
+ <a href="B.Render.Device.html#Caps">device.caps().depthMaxSize</a>.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+format
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+width
+
+</p>
+
+<p>must be power of 2</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+height
+
+</p>
+
+<p>must be power of 2</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{boolean}</span>
+[readable]
+ = false
+</p>
+
+<p>true if you want read from the depth buffer through
+a 2D-texture uniform (to check hardware support use
+ <a href="B.Render.Device.html#Caps">device.caps().readableDepth</a> flag)</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Depth.html" class="type">B.Render.Depth</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTarget" class="title">
+
+<span class="value">makeTarget</span>(color, depth)
+</p>
+
+
+
+<div class="description"><p>Makes a target from objects.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var targetA = device.makeTarget(texture.mip(0), depth),    targetB = device.makeTarget(texture, depth); // equivalent to above    targetC = device.makeTarget(texture); // no depth</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.Mip.html" class="type">B.Render.Mip</a> | <a href="B.Render.Texture.html" class="type">B.Render.Texture</a>}</span>
+color
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.Depth.html" class="type">B.Render.Depth</a>}</span>
+[depth]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Target.html" class="type">B.Render.Target</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTarget" class="title">
+
+<span class="value">makeTarget</span>(color, depth, width, height)
+</p>
+
+
+
+<div class="description"><p>Makes a target from parameters.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var targetA = device.makeTarget(Format.RGBA, Format.DEPTH, 512, 512),    targetB = device.makeTarget(Format.RGBA, false, 512, 512); // no depth</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a>}</span>
+color
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a> | false}</span>
+[depth]
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[width]
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[height]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Target.html" class="type">B.Render.Target</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTarget" class="title">
+
+<span class="value">makeTarget</span>(color, depth)
+</p>
+
+
+
+<div class="description"><p>Makes a target from objects (multiple color output).</p>
+<p>To check maximum color outputs count use
+ <a href="B.Render.Device.html#Caps">device.caps().colorTargetCount</a>.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var targetA = device.makeTarget([mip0, mip1], depth),    targetB = device.makeTarget([texture1, texture2], depth); // equivalent to above    targetC = device.makeTarget([texture1, texture2]); // no depth</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;(<a href="B.Render.Mip.html" class="type">B.Render.Mip</a>|<a href="B.Render.Texture.html" class="type">B.Render.Texture</a>)>}</span>
+color
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.Depth.html" class="type">B.Render.Depth</a>}</span>
+[depth]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Target.html" class="type">B.Render.Target</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makeTarget" class="title">
+
+<span class="value">makeTarget</span>(color, depth, width, height)
+</p>
+
+
+
+<div class="description"><p>Makes a target from parameters (multiple color output).</p>
+<p>To check maximum color outputs count use
+ <a href="B.Render.Device.html#Caps">device.caps().colorTargetCount</a>.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">var targetA = device.makeTarget([Format.RGBA, Format.RGB], Format.DEPTH, 512, 512),    targetB = device.makeTarget([Format.RGBA, Format.RGB], false, 512, 512); // no depth</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;<a href="B.Render.html#Format" class="type">B.Render.Format</a>>}</span>
+color
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.html#Format" class="type">B.Render.Format</a> | false}</span>
+[depth]
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[width]
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[height]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Target.html" class="type">B.Render.Target</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if parameters configuration is invalid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="makePass" class="title">
+
+<span class="value">makePass</span>(vs, fs, macros)
+</p>
+
+
+
+<div class="description"><p>Makes a pass.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+vs
+
+</p>
+
+<p>vertex shader source</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{string}</span>
+fs
+
+</p>
+
+<p>fragment shader source</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{Object.&lt;string, string>}</span>
+[macros]
+
+</p>
+
+<p>shader macro defines</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Pass.html" class="type">B.Render.Pass</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if internal or linking error is occurred or shader source is invalid</p>
+
+
+
+
+
+<div class="sh"></div>
+
+
+
+<p><span class="type">{<a href="B.Render.Pass.CompileError.html" class="type">B.Render.Pass.CompileError</a>}</span></p>
+<p>if shader compilation error is occurred</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="stage" class="title">
+
+<span class="value">stage</span>(name, before)
+</p>
+
+
+
+<div class="description"><p>Adds a new stage to the grid.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">// adds new stage to the end of griddevice.stage("new-name");// adds new stage before existing stagedevice.stage("new-name", "existing-name");</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{string}</span>
+[before]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Stage.html" class="type">B.Render.Stage</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="stage" class="title">
+
+<span class="value">stage</span>(name)
+</p>
+
+
+
+<div class="description"><p>Returns existing stage from the grid.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Stage.html" class="type">B.Render.Stage</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="stages" class="title">
+
+<span class="value">stages</span>()
+</p>
+
+
+
+<div class="description"><p>Returns ordered array of all stage names.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Array.&lt;string>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="material" class="title">
+
+<span class="value">material</span>(name, before)
+</p>
+
+
+
+<div class="description"><p>Adds a new material to the grid.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">// adds new material to the end of griddevice.material("new-name");// adds new material before existing materialdevice.material("new-name", "existing-name");</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{string}</span>
+[before]
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Material.html" class="type">B.Render.Material</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="material" class="title">
+
+<span class="value">material</span>(name)
+</p>
+
+
+
+<div class="description"><p>Returns existing material from the grid.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Material.html" class="type">B.Render.Material</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="materials" class="title">
+
+<span class="value">materials</span>()
+</p>
+
+
+
+<div class="description"><p>Returns ordered array of all material names.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Array.&lt;string>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="instance" class="title">
+
+<span class="value">instance</span>(material, mesh, transform, culling)
+</p>
+
+
+
+<div class="description"><p>Adds a new instance to the rendering.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string | <a href="B.Render.Material.html" class="type">B.Render.Material</a>}</span>
+material
+
+</p>
+
+<p>string name or object</p>
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Render.Mesh.html" class="type">B.Render.Mesh</a>}</span>
+mesh
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Matrix4.html" class="type">B.Math.Matrix4</a>}</span>
+[transform]
+ = <a href="B.Math.Matrix4.html#IDENTITY">B.Math.Matrix4.IDENTITY</a>
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{boolean}</span>
+[culling]
+ = true
+</p>
+
+<p>enable/disable frustum culling</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Instance.html" class="type">B.Render.Instance</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{<a href="B.Render.Error.html" class="type">B.Render.Error</a>}</span></p>
+<p>if the material is not found in the grid</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="uniforms" class="title">
+
+<span class="value">uniforms</span>()
+</p>
+
+
+
+<div class="description"><p>Returns array of uniforms names.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Array.&lt;string>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="uniform" class="title">
+
+<span class="value">uniform</span>(name, value)
+</p>
+
+
+
+<div class="description"><p>Sets uniform value.</p></div>
+
+
+
+    
+<pre class="language-javascript"><code class="language-javascript">device.    uniform("someNumber", 1.5).    uniform("someVector2", B.Math.makeVector2(1, 2)).    uniform("someVector3", B.Math.makeVector3(1, 2, 3)).    uniform("someVector4", B.Math.makeVector4(1, 2, 3, 4)).    uniform("someColor", B.Math.makeColor(1, 0, 0, 0.5)).    uniform("someMatrix3", B.Math.makeMatrix3().setRotationX(Math.PI)).    uniform("someMatrix4", B.Math.makeMatrix4().setTranslation(1, 2, 3)).    uniform("someTexture", dev.makeTexture(image)).    uniform("someTexture", dev.stage("someStage").output().color()).    uniform("someDepth", dev.stage("someStage").output().depth());device.uniform("someTexture", null); // removing</code></pre>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{null | number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a> | <a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a> | <a href="B.Math.Vector4.html" class="type">B.Math.Vector4</a> | <a href="B.Math.Color.html" class="type">B.Math.Color</a> | <a href="B.Math.Matrix3.html" class="type">B.Math.Matrix3</a> | <a href="B.Math.Matrix4.html" class="type">B.Math.Matrix4</a> | <a href="B.Render.Texture.html" class="type">B.Render.Texture</a> | <a href="B.Render.Depth.html" class="type">B.Render.Depth</a>}</span>
+value
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.html" class="type">B.Render.Device</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="uniform" class="title">
+
+<span class="value">uniform</span>(name)
+</p>
+
+
+
+<div class="description"><p>Gets uniform value.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{string}</span>
+name
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{null | number | <a href="B.Math.Vector2.html" class="type">B.Math.Vector2</a> | <a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a> | <a href="B.Math.Vector4.html" class="type">B.Math.Vector4</a> | <a href="B.Math.Color.html" class="type">B.Math.Color</a> | <a href="B.Math.Matrix3.html" class="type">B.Math.Matrix3</a> | <a href="B.Math.Matrix4.html" class="type">B.Math.Matrix4</a> | <a href="B.Render.Texture.html" class="type">B.Render.Texture</a> | <a href="B.Render.Depth.html" class="type">B.Render.Depth</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="frame" class="title">
+
+<span class="value">frame</span>()
+</p>
+
+
+
+<div class="description"><p>Performs a frame.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.html#FrameInfo" class="type">B.Render.Device~FrameInfo</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+    <div class="sh"></div>
+    <h3>FIRES:</h3>
+    <div class="t">
+
+
+
+<p><a href="B.Render.Device.html#event:resize"><span class='value'>resize</span></a></p>
+
+</div>
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="target" class="title">
+
+<span class="value">target</span>()
+</p>
+
+
+
+<div class="description"><p>Returns device target.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.Target.html" class="type">B.Render.Device.Target</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="canvas" class="title">
+
+<span class="value">canvas</span>()
+</p>
+
+
+
+<div class="description"><p>Returns linked canvas.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{HTMLCanvasElement}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="caps" class="title">
+
+<span class="value">caps</span>()
+</p>
+
+
+
+<div class="description"><p>Returns hardware capabilities.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Render.Device.html#Caps" class="type">B.Render.Device~Caps</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="free" class="title">
+
+<span class="value">free</span>()
+</p>
+
+
+
+<div class="description"><p>Frees all internal data and objects.</p></div>
+
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>EVENTS:</h2>
+<div class="t">
+        
+
+
+<p id="event:lose" class="title">
+
+
+    <span class="type">{<a href="B.Std.Event.html" class="type">B.Std.Event</a>}</span>
+    <span class="value">lose</span>
+
+</p>
+
+
+    <p>Reporting that the device has been lost.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="event:restore" class="title">
+
+
+    <span class="type">{<a href="B.Std.Event.html" class="type">B.Std.Event</a>}</span>
+    <span class="value">restore</span>
+
+</p>
+
+
+    <p>Reporting that the device has been restored.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="event:resize" class="title">
+
+
+    <span class="type">{<a href="B.Std.Event.html" class="type">B.Std.Event</a>}</span>
+    <span class="value">resize</span>
+
+</p>
+
+
+    <p>Reporting that the linked canvas element size has been changed.</p>
+
+
+
+
+
+    <div class="sh"></div>
+    <div class="t">
+    
+        <p id="resize.data.width">
+        
+        <span class="type">{number}</span>
+        <span class="value">data.width</span>
+        
+        </p>
+        
+            <p>a new width</p>
+        
+    
+            <div class="sh"></div>
+        
+        <p id="resize.data.height">
+        
+        <span class="type">{number}</span>
+        <span class="value">data.height</span>
+        
+        </p>
+        
+            <p>a new height</p>
+        
+    
+    </div>
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">CLASSES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Device.Target.html" class="value">Target</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">TYPES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Device.html#FrameInfo" class="value">FrameInfo</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#Caps" class="value">Caps</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">CONSTANTS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Device.html#TIME" class="value">TIME</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#DELTA_TIME" class="value">DELTA_TIME</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Device.html#makeMesh" class="value">makeMesh</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#makeTexture" class="value">makeTexture</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#makeDepth" class="value">makeDepth</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#makeTarget" class="value">makeTarget</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#makePass" class="value">makePass</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#stage" class="value">stage</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#stages" class="value">stages</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#material" class="value">material</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#materials" class="value">materials</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#instance" class="value">instance</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#uniforms" class="value">uniforms</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#uniform" class="value">uniform</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#frame" class="value">frame</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#target" class="value">target</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#canvas" class="value">canvas</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#caps" class="value">caps</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#free" class="value">free</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Std.Listenable.html#makeEvent" class="extends">makeEvent</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Std.Listenable.html#bubbling" class="extends">bubbling</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Std.Listenable.html#on" class="extends">on</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Std.Listenable.html#off" class="extends">off</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Std.Listenable.html#trigger" class="extends">trigger</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">EVENTS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Render.Device.html#event:lose" class="value">lose</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#event:restore" class="value">restore</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Render.Device.html#event:resize" class="value">resize</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

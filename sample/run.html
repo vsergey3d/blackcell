@@ -1,0 +1,89 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        :focus {
+            outline: none;
+        }
+        body {
+            width: 100%;
+            margin: 0;
+        }
+        #wrap {
+            padding-top: 30px;
+            width: 1000px;
+            margin: 0 auto;
+            min-width: 1000px;
+        }
+        #content {
+            width: 1000px;
+            height: 550px;
+        }
+        #stats {
+            height: 17px;
+            margin: 9px 0px 0px 0px;
+            background: #eaeaea;
+            text-align: center;
+            padding-top: 4px;
+        }
+        p {
+            font-family: Verdana;
+            font-size: 11px;
+            color: #555555;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            font-family: Verdana;
+            font-size: 11px;
+            text-decoration: none;
+            float: right;
+            padding-right: 5px;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="content">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="stats">
+
+            <div style="width:12%; height:100%; float:left;"><p id="fps"></p></div>
+            <div style="width:25%; height:100%; float:left;"><p id="instance"></p></div>
+            <div style="width:25%; height:100%; float:left;"><p id="primitive"></p></div>
+            <div style="width:25%; height:100%; float:left;"><p id="vertex"></p></div>
+            <div style="width:11%; height:100%; float:left"><p><a id="source">source code</a></p></div>
+            <div style="width:2%; height:100%; float:left;"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../b.js"></script>
+    <script type="text/javascript" src="sample.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="camera.js"></script>
+
+    <script type="text/javascript" >
+        var url = document.URL.toString(),
+            index = url.indexOf("?"), name, script;
+
+        if (index !== -1) {
+            name = url.substr(index + 1);
+
+            document.getElementById("source").href =
+                "https://github.com/vsergey3d/blackcell/tree/master/sample/" + name;
+
+            script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = name + "/main.js";
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

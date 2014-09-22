@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Guide</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+<link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    <table cellpadding=0 cellspacing=0 class="data">
+        <tr>
+            <td id="content">
+                <h1 id="device"><span class="value">Device</span></h1>
+                <div class="t">
+                    <p>
+                        First of all, create <a href="http://blackcelljs.com/api/B.Render.Device.html">device</a> object around a canvas.
+                        Device holds all entities and represent stage-material grid.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device = R.makeDevice(canvas);</code></pre>
+                    <p>
+                        You can also specify output color & depth <a href="http://blackcelljs.com/api/B.Render.html#Format">formats</a> and WebGL context attributes (see the <a href="http://blackcelljs.com/api/B.Render.html#makeDevice">reference page</a>).
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device = B.Render.makeDevice(canvas, B.Render.Format.RGBA, false,
+    {
+        antialias: false,
+        premultipliedAlpha: false
+    }
+);</code></pre>
+                    <p>
+                        When you resize linked canvas, device triggers <a href="http://blackcelljs.com/api/B.Render.Device.html#event:resize">resize</a> event.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.on("resize", handler);</code></pre>
+                    <p>
+                        If the WebGL context is lost, the device will trigger <a href="http://blackcelljs.com/api/B.Render.Device.html#event:lose">lose</a> event.
+                        When it is restored, the device will trigger restore event and <a href="http://blackcelljs.com/api/B.Render.Device.html#event:restore">restore</a> all entities automatically.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.
+    on("lose", loseHandler).
+    on("restore", restoreHandler);</code></pre>
+                    <p>
+                        There is a set of capabilities that vary with different hardware (like compressed & float textures, anisotropic filter, etc).
+                        You can check it using <a href="http://blackcelljs.com/api/B.Render.Device.html#Caps">Caps</a> structure:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">supportsFloat16Textures = device.caps().textureFloat16;</code></pre>
+                    <p>
+                        The <a href="http://blackcelljs.com/api/B.Render.Device.html#frame">frame</a> method performs a frame and returns <a href="http://blackcelljs.com/api/B.Render.Device.html#FrameInfo">information</a> about execution.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">info = device.frame();</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="mesh"><span class="value">Mesh</span></h1>
+                <div class="t">
+                    <p>
+                    <a href="http://blackcelljs.com/api/B.Render.Mesh.html">Mesh</a> contains vertices and indexed primitives and provides interface around it.
+                    To create a mesh, use following maker method:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh = device.makeMesh();</code></pre>
+                    <p>
+                    Mesh supports only interleaved vertex data.
+                    You need to specify the vertex format via <a href="http://blackcelljs.com/api/B.Render.Mesh.html#attribute">attributes</a>.
+                    </p>
+                    <p>
+                    <a href="http://blackcelljs.com/api/B.Render.html#Attribute">There is</a> a set of attribute types and commonly used aliases (which can be used in some calculations).
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.
+    attribute("position", R.Attribute.POSITION).
+    attribute("normal", R.Attribute.NORMAL).
+    attribute("uv", R.Attribute.UV).
+    attribute("customData", R.Attribute.VECTOR4);</code></pre>
+                    <p>
+                    Then you can upload vertex data to the mesh from an array (JS or Typed).
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.vertices(array);</code></pre>
+                    <p>
+                    Alternatively, you can allocate a number of vertices that you need.
+                    In this case the vertex data will be initialized by zero values.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.vertices(4);</code></pre>
+                    <p>
+                    If you want to update vertices repeatedly, it's highly recommended to use <a href="http://blackcelljs.com/api/B.Render.html#Usage">DYNAMIC</a> flag to avoid performance penalty.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.vertices(4, R.Usage.DYNAMIC);</code></pre>
+                    <p>
+                    Then update your vertices.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.updateVertices(array, offset);</code></pre>
+                    <p>
+                    Use the same approach to work with indices.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.indices(3, R.Usage.DYNAMIC);
+
+mesh.updateIndices(array);</code></pre>
+                    <p>
+                    Also you can specify a <a href="http://blackcelljs.com/api/B.Render.html#Primitive">type of primitive</a> which will be drawn.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.primitive(R.Primitive.LINE);</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="texture"><span class="value">Texture</span></h1>
+                <div class="t">
+                    <p>
+                    <a href="http://blackcelljs.com/api/B.Render.Texture.html">Texture</a> provides interface over a set of mip levels.
+                    </p>
+                    <p>
+                    There are two ways to create a texture: from parameters and from HTML objects (see the <a href="http://blackcelljs.com/api/B.Render.Device.html#makeTexture">reference page</a>).
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">texture = device.makeTexture(R.Format.RGBA, 128, 128);</code></pre>
+                    <p>
+                    To get specified <a href="http://blackcelljs.com/api/B.Render.Mip.html">mip</a> level, use the following method:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mip0 = texture.mip(0);</code></pre>
+                    <p>
+                    You can upload arbitrary data (array or HTML object) to any mip level via <a href="http://blackcelljs.com/api/B.Render.Mip.html#source">source</a> method:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mip0.source(image);</code></pre>
+                    <p>
+                    Also you can generate full mip level chain from the largest mip level:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">texture.buildMips();</code></pre>
+                    <p>
+                    To create cubemap you just need to set cube face count argument to <a href="http://blackcelljs.com/api/B.Render.html#CubeFace">CubeFace.COUNT</a>.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">cubemap = device.makeTexture(R.Format.RGBA, 128, 128, R.CubeFace.COUNT);</code></pre>
+                    <p>
+                    If you use cubemaps, you need to specify a cube face when you access to a mip-level:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mip0 = cubemap.mip(0, R.CubeFace.NEGATIVE_X);</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="depth"><span class="value">Depth</span></h1>
+                <div class="t">
+                    <p>
+                    <a href="http://blackcelljs.com/api/B.Render.Depth.html">Depth</a> object represents a depth-stencil buffer.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">depth = device.makeDepth(R.Format.DEPTH, 128, 128);</code></pre>
+                    <p>
+                    It can be used to write depth from the fragment shader and also to read it via sampler (if it's supported by your hardware).
+                    </p>
+                </div>
+                <div class="shb"></div>
+                <h1 id="target"><span class="value">Target</span></h1>
+                <div class="t">
+                    <p>
+                        <a href="http://blackcelljs.com/api/B.Render.Target.html">Target</a> represents a rendering output (color and depth) for a stage (see next section).
+                    </p>
+                    <p>
+                        You can construct a target from existent color and depth objects
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">target = device.makeTarget(texture, depth);</code></pre>
+                    <p>
+                        or from parameters.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">target = device.makeTarget(R.Format.RGB, R.Format.DEPTH, 128, 128);</code></pre>
+                    <p>
+                        It's also possible to draw to multiple color targets (if your hardware supports it).
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">target = device.makeTarget([textureA, textureB], depth);</code></pre>
+                    <p>
+                        You can clone your target to a new one and specify scale factor.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">downscaled = target.clone(0.5);</code></pre>
+                    <p>
+                        The device holds a specific type of target which wraps the canvas.
+                        If you want to draw directly to the display area, you need to use that target.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.target()</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="stage"><span class="value">Stage</span></h1>
+                <div class="t">
+                    <p>
+                        <a href="http://blackcelljs.com/api/B.Render.Stage.html">Stage</a> separates the rendering process within the frame.
+                    </p>
+                    <p>
+                        Stage executes to the target object. For each stage you can setup view/projection matrices, viewport & scissor rects, depth range and cleanup parameters.
+                    </p>
+                    <p>
+                        It's possible to implement any complex rendering pipeline via stage grid.
+                        There is an example of pipeline that uses shadow mapping and some post processing:
+                    </p>
+                    <img src="guide/stages.png" style="padding: 5px 0px 13px 0px"/>
+                    <p>
+                        For simplicity, the "map" means a texture and a depth buffer wrapped into a target.
+                        A stage draws to the target and then the texture from the target is used as uniform value (see <a href="#uniforms">uniforms</a> section) for another stage.
+                    </p>
+                    <p>
+                        There is a code snippet of the example:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.
+    stage("shadow-cast").output(shadowMap).device().
+
+    stage("main").output(mainMap).
+        uniform("shadowMap", shadowMap.color()).device().
+
+    stage("bright").output(blurMap0).
+        uniform("shadowMap", mainMap.color()).device().
+
+    stage("h-blur").output(blurMap1).
+        uniform("shadowMap", blurMap0.color()).device().
+
+    stage("v-blur").output(blurMap0).
+        uniform("shadowMap", blurMap1.color()).device().
+
+    stage("combine").output(device.target()).
+        uniform("mainMap", mainMap.color()).
+        uniform("blurMap", blurMap0.color());</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="pass"><span class="value">Pass</span></h1>
+                <p>
+                    <a href="http://blackcelljs.com/api/B.Render.Pass.html">Pass</a> defines a rendering configuration (shaders, samplers, states).
+                </p>
+                <p>
+                    You can create a pass from vertex & fragment shaders and an array of shader macro (optionally):
+                </p>
+                <pre class="language-javascript"><code class="language-javascript">pass = device.makePass(vs, fs, macros);</code></pre>
+                <p>
+                    Also you can recompile existent pass with new shaders & macros:
+                </p>
+                <pre class="language-javascript"><code class="language-javascript">pass.compile(vs, fs, macros);</code></pre>
+                <p>
+                    It extracts vertex attributes from the vertex shader and generates bindings. And so you can draw any mesh by any pass.
+                    It also extracts information about all uniforms from both vertex and fragment shaders.
+                </p>
+                <p>
+                    For each texture uniform you can configure sampler:
+                </p>
+                <pre class="language-javascript"><code class="language-javascript">pass.
+    sampler("shadowMap").filter(R.Filter.NONE).address(R.Address.CLAMP).pass().
+    sampler("albedoMap").filter(R.Filter.TRILINEAR).anisotropy(4).pass().
+    sampler("normalMap").filter(R.Filter.TRILINEAR).anisotropy(4);</code></pre>
+                <p>
+                    There is a set of rendering <a href="http://blackcelljs.com/api/B.Render.html#State">states</a> which you can change. For example:
+                </p>
+                <pre class="language-javascript"><code class="language-javascript">pass.
+    state(R.State.POLYGON).cull(false).pass().
+    state(R.State.DEPTH).test(false).write(false).
+    state(R.State.BLEND).src(R.Blend.SRC_ALPHA).dest(R.Blend.INV_SRC_ALPHA).eq(R.BlendEq.ADD);</code></pre>
+                <div class="t">
+                </div>
+                <div class="shb"></div>
+                <h1 id="material"><span class="value">Material</span></h1>
+                <div class="t">
+                    <p>
+                        <a href="http://blackcelljs.com/api/B.Render.Material.html">Material</a> describes a rendering method that can be applied to an <a href="#instance">instance</a>.
+                        It defines a set of passes for the stage grid.
+                    </p>
+                    <p>
+                        There is an example of using materials in the pipeline which was described above.
+                    </p>
+                    <p>
+                        Some names of materials in this example has technical meaning (for better understanding).
+                        Normally you should use more natural names such as "glass", "copper", "wood", etc.
+                    </p>
+                    <img src="guide/materials.png" style="padding: 5px 0px 13px 0px"/>
+                    <p>
+                        Associated passes is executed from left to right and from top to bottom.
+                        And so if you want draw one material before another you need to add it first.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.
+    material("solid").
+        pass("shadow-cast", passA).
+        pass("main", passB).device().
+
+    material("self-shadowed").
+        pass("shadow-cast", passA).
+        pass("main", passC).device().
+
+    material("transparent").
+        pass("main", passD).device().
+
+    material("fx-bloom").
+        pass("bright", passE).
+        pass("h-blur", passF).
+        pass("v-blur", passG).
+        pass("combine", passH);</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="instance"><span class="value">Instance</span></h1>
+                <div class="t">
+                    <p>
+                        <a href="http://blackcelljs.com/api/B.Render.Instance.html">Instance</a> is the elementary unit of rendering.
+                        It represent a transformed mesh and material.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">instance = device.instance(material, mesh, transform);</code></pre>
+                    <p>
+                        You can transform the instance by matrices
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">instance.
+    transform(mxA).
+    transform(mxB).
+    transform(mxC);</code></pre>
+                    <p>
+                        or you can use named methods.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">instance.
+    scale(factor).
+    rotate(axis, angle).
+    move(offset);</code></pre>
+                    <p>
+                        To remove the instance from the draw use free method:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">instance.free()</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="uniforms"><span class="value">Uniforms</span></h1>
+                <div class="t">
+                    <p>
+                        Device, Stage, Material and Instance provide the <a href="http://blackcelljs.com/api/B.Render.Instance.html#uniform">uniform</a> interface.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.uniform("time", time);
+
+stage.uniform("shadowMap", map);
+
+material.uniform("refractionIndex", 0.95);
+
+instance.uniform("color", value);</code></pre>
+                    <p>
+                        Uniforms override each other so you can use default values:
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">material.uniform("albedoMap", defaultMap);
+
+instance.uniform("albedoMap", map);</code></pre>
+                    <p>
+                        Some objects provide uniform placeholders.
+                        If you set it as uniform's value it will apply some internal value automatically.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">device.uniform("time", R.Device.TIME);
+device.uniform("dt", R.Device.DELTA_TIME);
+
+stage.uniform("mxViewProj", R.Stage.VIEW_PROJ);
+stage.uniform("viewPos", R.Stage.VIEW_POS);
+stage.uniform("viewDir", R.Stage.VIEW_DIR);
+
+instance.uniform("mxTransform", B.Render.Instance.TRANSFORM);
+instance.uniform("mxNormalTransform", B.Render.Instance.NORMAL_TRANSFORM);</code></pre>
+                </div>
+                <div class="shb"></div>
+                <h1 id="culling"><span class="value">Culling</span></h1>
+                <div class="t">
+                    <p>
+                        The project implements the frustum culling approach.
+                    </p>
+                    <p>
+                        If you want to use it you need to set bounds for your meshes
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.bounds(aabox);</code></pre>
+                    <p>
+                        or compute it from the <a href="http://blackcelljs.com/api/B.Render.html#Attribute">POSITION</a> attribute.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">mesh.computeBounds();</code></pre>
+                    <p>
+                        An instance derives mesh's bounds and transform it by instance's transformation matrix.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">instance.bounds();</code></pre>
+                    <p>
+                        Stage's view-projecting matrix will be used to compute frustum planes.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">stage.view(mxView).proj(mxProj);</code></pre>
+                    <p>
+                        You can also disable frustum culling in the instance or the whole stage respectively.
+                    </p>
+                    <pre class="language-javascript"><code class="language-javascript">stage.culling(false);
+
+instance.culling(false);</code></pre>
+                </div>
+            </td>
+            <td id="separator"></td>
+            <td id="panel">
+                <h3 class="panel">TABLE OF CONTENT:</h3>
+                <ul style="padding-top: 2px">
+                    <li><p style="padding-bottom: 2px"><a href="#device">Device</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#mesh">Mesh</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#texture">Texture</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#depth">Depth</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#target">Target</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#stage">Stage</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#pass">Pass</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#material">Material</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#instance">Instance</a></p></li>
+                    <li><p style="padding-bottom: 2px"><a href="#uniforms">Uniforms</a></p></li>
+                    <li><p><a href="#culling">Culling</a></p></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>

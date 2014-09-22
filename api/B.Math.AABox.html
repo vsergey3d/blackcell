@@ -1,0 +1,1281 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <link rel="shortcut icon" href="layout/favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BLACKCELL - Class: AABox</title>
+    <script type="text/javascript" src="layout/prism.js"></script>
+    <link rel="stylesheet" href="layout/prism.css" type="text/css" media="all" /></head>
+    <link rel="stylesheet" href="layout/style.css" type="text/css" />
+<body>
+<div id="wrap">
+    <div id="title">
+        <img class="logo" src="layout/logo.png"/>
+        <div class="svb"></div>
+        <div class="menu">
+            <p>
+                <a class="menu" href="http://blackcelljs.com/">Main</a>|
+                <a class="menu" href="http://blackcelljs.com/guide.html">Guide</a>|
+                <a class="menu" href="http://blackcelljs.com/api/B.html">API</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell">GitHub</a>|
+                <a class="menu" href="https://github.com/vsergey3d/blackcell/wiki">Wiki</a>|
+                <a class="menu" href="http://stackoverflow.com/questions/tagged/blackcell">FAQ</a>
+            </p>
+        </div>
+    </div>
+    
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+
+<span class="value">
+
+<a href="B.html" class="value">B</a><a href="B.Math.html" class="value">.Math</a>.AABox</span>()
+
+
+</h1>
+
+
+
+
+
+
+
+<div class="description"><p>Represents an axis-aligned box.</p>
+<p>To create the object use <a href="B.Math.html#makeAABox">B.Math.makeAABox()</a>.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="shb"></div>
+<h2>PROPERTIES:</h2>
+<div class="t">
+        
+
+
+<p id="min" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+    <span class="value">min</span>
+    
+
+</p>
+
+
+    <p>Minimum point.</p>
+
+
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+<p id="max" class="title">
+
+
+    <span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+    <span class="value">max</span>
+    
+
+</p>
+
+
+    <p>Maximum point.</p>
+
+
+
+
+
+        
+</div>
+    
+<div class="shb"></div>
+<h2>METHODS:</h2>
+<div class="t">
+        
+
+
+
+<p id="clone" class="title">
+
+<span class="value">clone</span>()
+</p>
+
+
+
+<div class="description"><p>Clones this box to a new box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="copy" class="title">
+
+<span class="value">copy</span>(aabox)
+</p>
+
+
+
+<div class="description"><p>Copies a given box into this box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span>
+aabox
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="set" class="title">
+
+<span class="value">set</span>(min, max)
+</p>
+
+
+
+<div class="description"><p>Sets this box from minimum and maximum points.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+min
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+max
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromArray" class="title">
+
+<span class="value">fromArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this box from a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="toArray" class="title">
+
+<span class="value">toArray</span>(array, offset)
+</p>
+
+
+
+<div class="description"><p>Sets this box to a part of array.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;number>}</span>
+array
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{number}</span>
+[offset]
+ = 0
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{number}</span></p>
+
+<p>new offset</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromCenterSize" class="title">
+
+<span class="value">fromCenterSize</span>(center, size)
+</p>
+
+
+
+<div class="description"><p>Sets this box from a center and a size.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+center
+
+</p>
+
+
+
+
+
+<div class="sh"></div>
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+size
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromPoints" class="title">
+
+<span class="value">fromPoints</span>(points)
+</p>
+
+
+
+<div class="description"><p>Sets this box from an array of points.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>>}</span>
+points
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="fromSphere" class="title">
+
+<span class="value">fromSphere</span>(sphere)
+</p>
+
+
+
+<div class="description"><p>Sets this box from a sphere.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Sphere.html" class="type">B.Math.Sphere</a>}</span>
+sphere
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="reset" class="title">
+
+<span class="value">reset</span>()
+</p>
+
+
+
+<div class="description"><p>Resets this box to the initial state.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="empty" class="title">
+
+<span class="value">empty</span>()
+</p>
+
+
+
+<div class="description"><p>Check this box for zero volume.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+
+    
+    
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="center" class="title">
+
+<span class="value">center</span>(result)
+</p>
+
+
+
+<div class="description"><p>Returns the center of this box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+[result]
+
+</p>
+
+<p>omit if you want to return newly created vector</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="size" class="title">
+
+<span class="value">size</span>(result)
+</p>
+
+
+
+<div class="description"><p>Returns the size of this box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+[result]
+
+</p>
+
+<p>omit if you want to return newly created vector</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="cornerPoints" class="title">
+
+<span class="value">cornerPoints</span>(result)
+</p>
+
+
+
+<div class="description"><p>Returns corner points of this box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{Array.&lt;<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>>}</span>
+[result]
+
+</p>
+
+<p>omit if you want to return newly created array</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{Array.&lt;<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>>}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="translate" class="title">
+
+<span class="value">translate</span>(offset)
+</p>
+
+
+
+<div class="description"><p>Translates this box by a given offset.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a>}</span>
+offset
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="transform" class="title">
+
+<span class="value">transform</span>(matrix)
+</p>
+
+
+
+<div class="description"><p>Transforms this box by a 4x4 matrix.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Matrix4.html" class="type">B.Math.Matrix4</a>}</span>
+matrix
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="merge" class="title">
+
+<span class="value">merge</span>(object)
+</p>
+
+
+
+<div class="description"><p>Merges this box with an object.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.Vector3.html" class="type">B.Math.Vector3</a> | <a href="B.Math.Segment.html" class="type">B.Math.Segment</a> | <a href="B.Math.Triangle.html" class="type">B.Math.Triangle</a> | <a href="B.Math.AABox.html" class="type">B.Math.AABox</a> | <a href="B.Math.Sphere.html" class="type">B.Math.Sphere</a>}</span>
+object
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span></p>
+
+<p>this</p>
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>THROWS:</h3>
+    <div class="t">
+
+
+
+
+
+<p><span class="type">{Error}</span></p>
+<p>if the object argument has unsupported type.</p>
+
+
+
+</div>
+    
+
+    
+</div>
+
+
+
+        
+<div class="sh"></div>
+            
+
+
+
+<p id="equal" class="title">
+
+<span class="value">equal</span>(aabox)
+</p>
+
+
+
+<div class="description"><p>Checks for strict equality of this box and another box.</p></div>
+
+
+
+
+
+<div class="sh"></div>
+<div class="t">
+
+    
+    <h3>PARAMETERS:</h3>
+    <div class="t">
+
+
+
+
+
+<p>
+<span class="type">{<a href="B.Math.AABox.html" class="type">B.Math.AABox</a>}</span>
+aabox
+
+</p>
+
+
+
+
+</div>
+    
+
+    
+    <div class="sh"></div>
+    <h3>RETURNS:</h3>
+    <div class="t">
+
+
+
+<p><span class="type">{boolean}</span></p>
+
+
+
+
+</div>
+    
+
+    
+
+    
+</div>
+
+
+
+        
+</div>
+    
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+
+<h3 class="panel">PROPERTIES:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#min" class="value">min</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#max" class="value">max</a></p></li>
+            
+</ul>
+    
+<div class="sh"></div>
+        
+<h3 class="panel">METHODS:</h3>
+<ul class="panel">
+        
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#clone" class="value">clone</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#copy" class="value">copy</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#set" class="value">set</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#fromArray" class="value">fromArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#toArray" class="value">toArray</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#fromCenterSize" class="value">fromCenterSize</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#fromPoints" class="value">fromPoints</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#fromSphere" class="value">fromSphere</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#reset" class="value">reset</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#empty" class="value">empty</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#center" class="value">center</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#size" class="value">size</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#cornerPoints" class="value">cornerPoints</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#translate" class="value">translate</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#transform" class="value">transform</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#merge" class="value">merge</a></p></li>
+            
+<li class="panel"><p class="np"><a href="B.Math.AABox.html#equal" class="value">equal</a></p></li>
+            
+</ul>
+    
+
+
+</td>
+</tr>
+</table>
+
+
+
+    <div id="footer">
+        <p class="np">
+            This website is licensed under the <a class="licence" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+            The code examples are colorized by <a class="licence" href="http://prismjs.com/">prism.js</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>
