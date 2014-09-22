@@ -1,0 +1,4 @@
+<?js
+var data = obj,
+    self = this;
+data.forEach(function(name, i) { ?><?js= self.linkto(name, self.htmlsafe(name), "type") ?><?js if (i < data.length-1) { ?> | <?js } ?><?js });?>

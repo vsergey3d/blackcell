@@ -1,0 +1,13 @@
+<?js
+var data = obj,
+    self = this;
+?>
+
+<h1>
+<?js if (data.deprecated) { ?><span class="deprecated">DEPRECATED</span><?js } ?>
+<span class="value"><?js if (data.ancestors && data.ancestors.length) { ?><?js= data.ancestors.join("") ?><?js } ?><?js= self.linkto(data.longname, data.name, "value") ?></span>
+</h1>
+
+<?js if (data.description) { ?>
+    <div class="description"><?js= data.description ?></div>
+<?js } ?>

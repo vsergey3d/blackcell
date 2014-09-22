@@ -1,0 +1,11 @@
+{
+    "std": {
+        "deps": []
+    },
+    "math": {
+        "deps": []
+    },
+    "render": {
+        "deps": ["std", "math"]
+    }
+}

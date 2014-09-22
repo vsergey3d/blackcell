@@ -1,0 +1,15 @@
+<?js
+var rets = obj,
+    self = this;
+
+rets.forEach(function(ret, i) {
+    if (!ret) { return; }
+?>
+
+<?js if (i !== 0) { ?><div class="sh"></div><?js } ?>
+
+<?js if (ret.type && ret.type.names) {?><p><span class="type">{<?js= self.partial("type.tmpl", ret.type.names) ?>}</span></p><?js } ?>
+
+<?js if (ret.description) { ?><?js= ret.description ?><?js } ?>
+
+<?js }); ?>

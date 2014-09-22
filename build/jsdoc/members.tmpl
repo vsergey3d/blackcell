@@ -1,0 +1,49 @@
+<?js
+var data = obj,
+    self = this,
+    isEvent = (data.kind === "event"),
+    isType = (data.kind === "typedef"),
+    isEnum = data.isEnum;
+?>
+
+<p id="<?js= id ?>" class="title">
+<?js if (data.deprecated) { ?><span class="deprecated">DEPRECATED</span><?js } ?>
+<?js if (isType || isEnum) { ?>
+    <span class="value"><?js= name ?></span>
+<?js } else if (isEvent) { ?>
+    <span class="type"><?js if (data.type && type.names) {?>{<?js= self.partial("type.tmpl", type.names) ?>}<?js } ?></span>
+    <span class="value"><?js= name ?></span>
+<?js } else { ?>
+    <span class="type"><?js if (data.type && type.names) {?>{<?js= self.partial("type.tmpl", type.names) ?>}<?js } ?></span>
+    <span class="value"><?js= name ?></span>
+    <?js= (data.defaultvalue !== undefined) ? ("= " + data.defaultvalue) : "" ?>
+<?js } ?>
+</p>
+
+<?js if (data.description) { ?>
+    <?js= data.description ?>
+<?js } ?>
+
+<?js if (data.examples && data.examples.length) { ?>
+    <?js= this.partial("examples.tmpl", data.examples) ?>
+<?js } ?>
+
+<?js if ((isType || isEnum || isEvent) && data.properties && data.properties.length) { ?>
+    <div class="sh"></div>
+    <div class="t">
+    <?js data.properties.forEach(function(p, i) {
+        if (i !== 0) {?>
+            <div class="sh"></div>
+        <?js } ?>
+        <p id="<?js= name + "." + p.name ?>">
+        <?js if (p.deprecated) { ?><span class="deprecated">DEPRECATED</span><?js } ?>
+        <span class="type"><?js if (p.type && p.type.names) {?>{<?js= self.partial("type.tmpl", p.type.names) ?>}<?js } ?></span>
+        <span class="value"><?js= p.name ?></span>
+        <?js= (p.defaultvalue !== undefined) ? ("= " + p.defaultvalue) : "" ?>
+        </p>
+        <?js if (p.description) { ?>
+            <?js= p.description ?>
+        <?js } ?>
+    <?js }); ?>
+    </div>
+<?js } ?>

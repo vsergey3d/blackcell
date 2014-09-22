@@ -1,0 +1,13 @@
+<?js
+var fires = obj,
+    self = this;
+
+fires.forEach(function(fire, i) {
+    if (!fire) { return; }
+?>
+
+<?js if (i !== 0) { ?><div class="sh"></div><?js } ?>
+
+<p><?js= self.linkto(fire, "<span class='value'>" + fire.slice(fire.indexOf(":") + 1) + "</span>") ?></p>
+
+<?js }); ?>

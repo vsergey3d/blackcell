@@ -1,0 +1,57 @@
+<?js
+var data = obj,
+    self = this,
+    isType = (data.kind === "typedef");
+?>
+
+<?js if (data.kind !== "namespace" && data.kind !== "class") { ?>
+<p id="<?js= id ?>" class="title">
+<?js if (data.deprecated) { ?><span class="deprecated">DEPRECATED</span><?js } ?>
+<span class="value"><?js= name ?></span><?js if (!isType) { ?>(<?js= data.signatureParams ?>)<?js } ?>
+</p>
+<?js } ?>
+
+<?js if (data.description) { ?>
+<div class="description"><?js= data.description ?></div>
+<?js } ?>
+
+<?js if (data.examples && data.examples.length) { ?>
+    <?js= this.partial("examples.tmpl", data.examples) ?>
+<?js } ?>
+
+<?js
+var hasParams = data.params && params.length,
+    hasReturns = data.returns && returns.length,
+    hasThrows = data.exceptions && exceptions.length,
+    hasFires = data.fires && fires.length;
+
+if (hasParams || hasReturns || hasThrows || hasFires) {
+?>
+<div class="sh"></div>
+<div class="t">
+
+    <?js if (hasParams) { ?>
+    <h3>PARAMETERS:</h3>
+    <div class="t"><?js= this.partial("params.tmpl", data.params) ?></div>
+    <?js } ?>
+
+    <?js if (hasReturns) { ?>
+    <?js if (hasParams) { ?><div class="sh"></div><?js } ?>
+    <h3>RETURNS:</h3>
+    <div class="t"><?js= this.partial("returns.tmpl", data.returns) ?></div>
+    <?js } ?>
+
+    <?js if (hasThrows) { ?>
+    <?js if (hasReturns || hasParams) { ?><div class="sh"></div><?js } ?>
+    <h3>THROWS:</h3>
+    <div class="t"><?js= this.partial("exceptions.tmpl", data.exceptions) ?></div>
+    <?js } ?>
+
+    <?js if (hasFires) { ?>
+    <?js if (hasThrows || hasReturns || hasParams) { ?><div class="sh"></div><?js } ?>
+    <h3>FIRES:</h3>
+    <div class="t"><?js= this.partial("fires.tmpl", data.fires) ?></div>
+    <?js } ?>
+</div>
+
+<?js } ?>

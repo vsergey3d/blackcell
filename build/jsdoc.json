@@ -1,0 +1,15 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "plugins": ["plugins/markdown"],
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": true
+    },
+    "templates": {
+        "systemName": "BLACKCELL",
+        "layout": "../website/layout.tmpl",
+        "static": "../website/layout"
+    }
+}

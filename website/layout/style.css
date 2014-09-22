@@ -1,0 +1,165 @@
+:focus {
+    outline: none;
+}
+body {
+    width: 100%;
+    margin: 0;
+    background-image: url("bg.png");
+}
+#wrap {
+    padding-top: 15px;
+    width: 1000px;
+    margin: 0 auto;
+    min-width: 1000px;
+}
+#title {
+    width: 1000px;
+    height: 40px;
+    background-color: #444444;
+}
+#content {
+    width: 754px;
+    background-color: #333333;
+    padding: 20px 20px 20px 25px;
+}
+#separator {
+    margin: 0px;
+    padding: 0px;
+    background-color: #414141;
+    width: 1px;
+    border-top: 10px solid #333333;
+    border-bottom: 10px solid #333333;
+}
+#panel {
+    width: 170px;
+    background-color: #333333;
+    padding: 20px 15px 13px 15px;
+    vertical-align: top;
+}
+#footer {
+    width: 992px;
+    padding: 4px;
+    text-align: center;
+    background-color: #444444;
+    float: left;
+}
+.block {
+    padding: 0px 15px 13px 15px;
+}
+.t {
+    padding: 0px 0px 0px 12px;
+}
+.menu {
+    padding: 12px;
+}
+.deprecated {
+    padding: 0px 7px;
+    background-color: #2b2b2b;
+    color: #c52020;
+}
+.sh {
+    width: 100%;
+    min-width: 100%;
+    height: 1px;
+    background-color: #3B3B3B;
+    margin: 0px 0px 13px 0px;
+}
+.shb {
+    width: 100%;
+    min-width: 100%;
+    height: 1px;
+    background-color: #555555;
+    margin: 0px 0px 13px 0px;
+}
+p, h1, h2, h3, td, th {
+    font-family: Consolas, "Lucida Console", Monaco, monospace;
+    line-height: 16px;
+    color: #AAAAAA;
+    margin: 0px;
+    padding: 0px 0px 13px 0px;
+}
+td {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 0px 5px;
+}
+th {
+    padding: 0px 5px 3px 5px;
+    text-align: center;
+}
+table {
+    margin: 0px 0px 13px 0px;
+    padding: 5px 7px 7px 7px;
+    border: 1px solid #404040;
+}
+table.data {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+td.sample {
+    padding: 0px;
+}
+p {
+    font-size: 12px;
+}
+p.title {
+    font-size:13px;
+}
+img.logo {
+    float: right;
+    width:200px;
+    height: 40px;
+}
+p.np {
+    padding: 0px;
+}
+h1 {
+    font-size: 14px;
+    font-weight: normal;
+}
+h2 {
+    font-size: 14px;
+    color: #999999;
+    font-weight: bold;
+}
+h3 {
+    font-size: 12px;
+    color: #999999;
+    font-weight: bold;
+}
+h3.panel {
+    padding: 0px 0px 6px 0px;
+}
+a {
+    color: #cccd9a;
+    text-decoration: none;
+}
+a.menu {
+    color: #B4B4B4;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #B4B4B4;
+}
+a.licence {
+    color: #B4B4B4;
+    text-decoration: underline;
+}
+ul {
+    list-style-type: none;
+    padding: 0px 0px 0px 12px;
+    margin: 0px;
+}
+ul.panel {
+    padding: 0px 0px 10px 12px;
+}
+.type {
+    color: #cc937a;
+}
+.extends {
+    color: #7bba88;
+}
+.value {
+    color: #c0c27e;
+}

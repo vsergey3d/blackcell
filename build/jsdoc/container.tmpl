@@ -1,0 +1,182 @@
+<?js
+var self = this;
+
+docs.forEach(function(doc, i) {
+
+    var memberOf = (title === "Global" ? {isUndefined: true} : doc.longname),
+
+        entities = [
+            {
+                title: "MODULES:",
+                list: self.find({kind: "namespace", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("module.tmpl", element);
+                }
+            },
+            {
+                title: "CLASSES:",
+                list: self.find({kind: "class", memberof: memberOf})
+            },
+            {
+                title: "ENUMERATIONS:",
+                list: self.find({kind: "member", isEnum: true, memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("members.tmpl", element);
+                }
+            },
+            {
+                title: "TYPES:",
+                list: self.find({kind: "typedef", memberof: memberOf}),
+                partial: function (element) {
+                    return (element.signature) ? self.partial("method.tmpl", element) :
+                        self.partial("members.tmpl", element);
+                }
+            },
+            {
+                title: "CONSTANTS:",
+                list: self.find({kind: "member", attribsStr: "static, constant", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("members.tmpl", element);
+                }
+            },
+            {
+                title: "FUNCTIONS:",
+                list: self.find({kind: "function", attribsStr: "static", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("method.tmpl", element);
+                }
+            },
+            {
+                title: "PROPERTIES:",
+                inheritable: true,
+                list: self.find({kind: "member", attribsStr: "", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("members.tmpl", element);
+                }
+            },
+            {
+                title: "METHODS:",
+                inheritable: true,
+                list: self.find({kind: "function", attribsStr: "", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("method.tmpl", element);
+                }
+            },
+            {
+                title: "EVENTS:",
+                inheritable: true,
+                list: self.find({kind: "event", memberof: memberOf}),
+                partial: function (element) {
+                    return self.partial("members.tmpl", element);
+                }
+            }
+        ],
+
+        prepare = function (entity) {
+
+            var list = entity.list,
+                empty = !list || !list.length || !entity.partial;
+
+            if (!empty && entity.inheritable) {
+
+                list.sort(function (a, b) {
+                    if (!a.inherited && b.inherited) {
+                        return -1;
+                    }
+                    if (a.inherited && !b.inherited) {
+                        return 1;
+                    }
+                    return a.meta.lineno - b.meta.lineno;
+                });
+
+                return !list[0].inherited;
+            }
+            return !empty;
+        };
+?>
+
+<table cellpadding=0 cellspacing=0 class="data">
+<tr>
+<td id="content">
+
+
+<h1>
+<?js if (doc.deprecated) { ?><span class="deprecated">DEPRECATED</span><?js } ?>
+<span class="value">
+<?js if (doc.ancestors && doc.ancestors.length) { ?>
+<?js= doc.ancestors.join("") ?><?js } ?><?js= doc.name ?></span><?js if (doc.kind === "class") { ?>(<?js= doc.signatureParams ?>)
+<?js if (doc.augments && doc.augments.length) { ?>->&nbsp;<span class="extends"><?js= self.linkto(doc.augments[0], doc.augments[0], "extends") ?></span><?js } ?>
+<?js } ?>
+</h1>
+
+<?js if (doc.kind === "namespace" || doc.kind === "class") { ?>
+<?js= self.partial("method.tmpl", doc) ?>
+<?js } ?>
+
+
+<?js
+entities.forEach(function (entity) {
+    if (prepare(entity)) { ?>
+<div class="shb"></div>
+<h2><?js= entity.title ?></h2>
+<div class="t">
+        <?js
+        entity.list.forEach(function(element, i) {
+            if (entity.inheritable && element.inherited) {
+                return;
+            }
+            if (i !== 0) { ?>
+<div class="sh"></div>
+            <?js
+            } ?>
+<?js= entity.partial(element) ?>
+        <?js
+        }); ?>
+</div>
+    <?js
+    }
+}); ?>
+
+
+</td>
+<td id="separator"></td>
+<td id="panel">
+
+
+<?js
+var first = true;
+
+entities.forEach(function (entity) {
+    if (entity.list && entity.list.length) {
+        if (first) {
+            first = false;
+        } else { ?>
+<div class="sh"></div>
+        <?js
+        } ?>
+<h3 class="panel"><?js= entity.title ?></h3>
+<ul class="panel">
+        <?js
+        entity.list.forEach(function (element, i) {
+            if (i > 0 && element.name === entity.list[i-1].name) {
+                return; // filter overloads
+            }
+            if (entity.inheritable && element.inherited) { ?>
+<li class="panel"><p class="np"><?js= self.linkto(element.inherits, element.name, "extends") ?></p></li>
+            <?js
+            } else { ?>
+<li class="panel"><p class="np"><?js= self.linkto(element.longname, element.name, "value") ?></p></li>
+            <?js
+            }
+        }); ?>
+</ul>
+    <?js
+    }
+}); ?>
+
+
+</td>
+</tr>
+</table>
+
+<?js }); ?>

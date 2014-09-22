@@ -1,0 +1,24 @@
+{
+    "std": {
+        "srcFiles": ["std.js", "event.js"],
+        "testFiles": ["std.js", "event.js"]
+    },
+    "math": {
+        "srcFiles": ["math.js", "color.js", "vector2.js", "vector3.js", "vector4.js",
+            "matrix3.js", "matrix4.js", "quaternion.js", "angles.js", "plane.js", "ray.js",
+            "segment.js", "triangle.js", "aabox.js", "sphere.js", "frustum.js"],
+        "testFiles": ["prepare.js", "math.js", "color.js", "vector2.js", "vector3.js",
+            "vector4.js", "matrix3.js", "matrix4.js", "quaternion.js", "angles.js", "plane.js",
+            "ray.js", "segment.js", "triangle.js", "aabox.js", "sphere.js", "frustum.js"]
+    },
+    "render": {
+        "srcFiles": ["render.js", "geometry.js", "errors.js", "attribute.js", "index.js",
+            "primitive.js", "mesh.js", "format.js", "depth.js", "mip.js", "texture.js",
+            "target.js", "uniform.js", "states.js", "sampler.js", "pass.js", "stage.js",
+            "material.js", "instance.js", "device.js"],
+        "testFiles": ["prepare.js", "webgl.js", "render.js", "geometry.js", "errors.js",
+            "attribute.js", "index.js", "primitive.js", "mesh.js", "format.js", "depth.js",
+            "mip.js", "texture.js", "target.js", "uniform.js", "states.js", "sampler.js",
+            "pass.js", "stage.js", "material.js", "instance.js", "device.js"]
+    }
+}

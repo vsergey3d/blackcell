@@ -1,0 +1,39 @@
+{
+    "name": "b",
+    "version": "0.0.1",
+    "description": "API for Real-time 3D-rendering over WebGL",
+    "homepage": "https://github.com/vsergey3d/blackcell",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vsergey3d/blackcell.git"
+    },
+    "bugs": {
+        "url": "http://github.com/vsergey3d/blackcell/issues"
+    },
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "lodash": "~2.4.1",
+        "grunt": "~0.4.2",
+        "grunt-contrib-clean": "~0.6.0",
+        "grunt-contrib-concat": "~0.5.0",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-uglify": "~0.5.0",
+        "grunt-contrib-watch": "~0.6.1",
+        "grunt-jsdoc": "~0.5.6",
+        "karma-script-launcher": "~0.1.0",
+        "karma-requirejs": "~0.2.2",
+        "karma-firefox-launcher": "~0.1.3",
+        "karma-chrome-launcher": "~0.1.4",
+        "karma-coverage": "~0.2.5",
+        "karma": "~0.12.19",
+        "grunt-karma": "~0.8.3",
+        "mocha": "~1.21.3",
+        "karma-mocha": "~0.1.6",
+        "sinon": "~1.10.2",
+        "chai": "~1.9.1",
+        "sinon-chai": "~2.5.0",
+        "karma-chai-sinon": "~0.1.3",
+        "matchdep": "~0.3.0"
+    }
+}

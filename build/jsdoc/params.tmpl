@@ -1,0 +1,23 @@
+<?js
+    var params = obj;
+    var self = this;
+?>
+
+<?js
+var self = this;
+
+params.forEach(function(param, i) {
+    if (!param) { return; }
+?>
+
+<?js if (i !== 0) { ?><div class="sh"></div><?js } ?>
+
+<p>
+<?js if (param.type && param.type.names) {?><span class="type">{<?js= self.partial("type.tmpl", param.type.names) ?>}</span><?js } ?>
+<?js if (param.optional) { ?>[<?js } ?><?js= param.name ?><?js if (param.optional) { ?>]<?js } ?>
+<?js if (param.defaultvalue !== undefined) { ?><?js= (" = " + param.defaultvalue) ?><?js } ?>
+</p>
+
+<?js if (param.description) { ?><?js= param.description ?><?js } ?>
+
+<?js }); ?>

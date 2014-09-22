@@ -1,0 +1,18 @@
+<?js
+var excs = obj,
+    self = this;
+
+excs.forEach(function(exc, i) {
+    if (!exc) { return; }
+?>
+
+<?js if (i !== 0) { ?><div class="sh"></div><?js } ?>
+
+<?js if (exc.description || (exc.type && exc.type.names)) { ?>
+
+<?js if (exc.type && exc.type.names) {?><p><span class="type">{<?js= self.partial('type.tmpl', exc.type.names) ?>}</span></p><?js } ?>
+<?js if (exc.description) { ?><p><?js= exc.description ?></p><?js } ?>
+
+<?js } ?>
+
+<?js }); ?>
