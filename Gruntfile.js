@@ -191,7 +191,18 @@ module.exports = function(grunt) {
             },
             travis: {
                 singleRun: true,
-                browsers: ['PhantomJS']
+                browsers: ["PhantomJS"],
+                coverageReporter: {
+                    type : "lcov",
+                    dir : "<%= conf.coverageDir %>/"
+                }
+            }
+        },
+        coveralls: {
+            options: {
+                "coverage_dir": "<%= conf.coverageDir %>/",
+                dryRun: false,
+                force: true
             }
         },
 
@@ -276,7 +287,7 @@ module.exports = function(grunt) {
     registerGruntTask("doc", ["clean:beforeDoc", "jsdoc"]);
 
     registerGruntTask("bg", ["karma:server", "watch"]);
-    registerGruntTask("travis", ["lint", "karma:travis"]);
+    registerGruntTask("travis", ["lint", "karma:travis", "coveralls"]);
 
     registerGruntTask("dev", ["lint", "min"]);
     registerGruntTask("default", ["lint", "test", "min", "doc"]);
