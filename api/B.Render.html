@@ -1716,7 +1716,7 @@ To check hardware support use
 </p>
 
 
-    <p>Describea webgl-context settings.</p>
+    <p>Describe a webgl-context settings.</p>
 <p>See: <a href="http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2">http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2</a></p>
 
 
@@ -1798,7 +1798,16 @@ To check hardware support use
 
 
     
-<pre class="language-javascript"><code class="language-javascript">var device = B.Render.makeDevice(canvas);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, false);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, B.Render.Format.DEPTH_STENCIL,    {        antialias: false,        premultipliedAlpha: false    });</code></pre>
+<pre class="language-javascript"><code class="language-javascript">var device = B.Render.makeDevice(canvas);
+
+var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, false);
+
+var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, B.Render.Format.DEPTH_STENCIL,
+    {
+        antialias: false,
+        premultipliedAlpha: false
+    }
+);</code></pre>
 
 
 
