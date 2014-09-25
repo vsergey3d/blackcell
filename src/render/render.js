@@ -71,7 +71,7 @@ B.Render.applyColorMask = function (gl, mask) {
 
 
 /**
- * Describea webgl-context settings.
+ * Describe a webgl-context settings.
  *
  * See: http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2
  *
