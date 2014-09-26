@@ -51,6 +51,11 @@ B.Render.GLError = function (message, code) {
 
     B.Render.Error.call(this, "Internal WebGL error: " + message, "B.Render.GLError");
 
+    /**
+     * WebGL error code.
+     *
+     * @type {string}
+     */
     this.code = code;
 };
 
