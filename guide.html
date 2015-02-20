@@ -36,7 +36,7 @@
                     <p>
                         You can also specify output color & depth <a href="http://blackcelljs.com/api/B.Render.html#Format">formats</a> and WebGL context attributes (see the <a href="http://blackcelljs.com/api/B.Render.html#makeDevice">reference page</a>).
                     </p>
-                    <pre class="language-javascript"><code class="language-javascript">device = B.Render.makeDevice(canvas, B.Render.Format.RGBA, false,
+                    <pre class="language-javascript"><code class="language-javascript">device = R.makeDevice(canvas, R.Format.RGBA, false,
     {
         antialias: false,
         premultipliedAlpha: false
@@ -48,7 +48,7 @@
                     <pre class="language-javascript"><code class="language-javascript">device.on("resize", handler);</code></pre>
                     <p>
                         If the WebGL context is lost, the device will trigger <a href="http://blackcelljs.com/api/B.Render.Device.html#event:lose">lose</a> event.
-                        When it is restored, the device will trigger restore event and <a href="http://blackcelljs.com/api/B.Render.Device.html#event:restore">restore</a> all entities automatically.
+                        When it is restored, the device will trigger <a href="http://blackcelljs.com/api/B.Render.Device.html#event:restore">restore</a> event and restore all entities automatically.
                     </p>
                     <pre class="language-javascript"><code class="language-javascript">device.
     on("lose", loseHandler).
@@ -206,20 +206,20 @@ mesh.updateIndices(array);</code></pre>
     stage("shadow-cast").output(shadowMap).device().
 
     stage("main").output(mainMap).
-        uniform("shadowMap", shadowMap.color()).device().
+        uniform("shadowMap", shadowMap.depth()).device().
 
     stage("bright").output(blurMap0).
-        uniform("shadowMap", mainMap.color()).device().
+        uniform("sourceMap", mainMap.color()).device().
 
     stage("h-blur").output(blurMap1).
-        uniform("shadowMap", blurMap0.color()).device().
+        uniform("sourceMap", blurMap0.color()).device().
 
     stage("v-blur").output(blurMap0).
-        uniform("shadowMap", blurMap1.color()).device().
+        uniform("sourceMap", blurMap1.color()).device().
 
     stage("combine").output(device.target()).
-        uniform("mainMap", mainMap.color()).
-        uniform("blurMap", blurMap0.color());</code></pre>
+        uniform("map0", mainMap.color()).
+        uniform("map1", blurMap0.color());</code></pre>
                 </div>
                 <div class="shb"></div>
                 <h1 id="pass"><span class="value">Pass</span></h1>
@@ -316,7 +316,7 @@ mesh.updateIndices(array);</code></pre>
                     <p>
                         To remove the instance from the draw use free method:
                     </p>
-                    <pre class="language-javascript"><code class="language-javascript">instance.free()</code></pre>
+                    <pre class="language-javascript"><code class="language-javascript">instance.free();</code></pre>
                 </div>
                 <div class="shb"></div>
                 <h1 id="uniforms"><span class="value">Uniforms</span></h1>
@@ -348,8 +348,8 @@ stage.uniform("mxViewProj", R.Stage.VIEW_PROJ);
 stage.uniform("viewPos", R.Stage.VIEW_POS);
 stage.uniform("viewDir", R.Stage.VIEW_DIR);
 
-instance.uniform("mxTransform", B.Render.Instance.TRANSFORM);
-instance.uniform("mxNormalTransform", B.Render.Instance.NORMAL_TRANSFORM);</code></pre>
+instance.uniform("mxTransform", R.Instance.TRANSFORM);
+instance.uniform("mxNormalTransform", R.Instance.NORMAL_TRANSFORM);</code></pre>
                 </div>
                 <div class="shb"></div>
                 <h1 id="culling"><span class="value">Culling</span></h1>
