@@ -162,16 +162,12 @@ B.Sample.CameraProto = function () {
 
             get = function (event) {
 
-                var target;
+                event.preventDefault();
 
                 if (!event) {
                     event = window.event;
                 }
-                target = (window.event) ? event.srcElement : event.target;
-                if (target === canvas) {
-                    return target;
-                }
-                return null;
+                return (window.event) ? event.srcElement : event.target;
             },
 
             onMouseButton = function (event, pressed) {
