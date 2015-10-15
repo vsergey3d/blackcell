@@ -5,7 +5,7 @@ Modern, JS-friendly API for real-time 3D-rendering over [WebGL](http://www.khron
 [API documentation](http://blackcelljs.com/api/B.html) | [Guide](http://blackcelljs.com/guide.html) | [Samples](http://blackcelljs.com/) | [Contributing](CONTRIBUTING.md)  | [Developer guide](https://github.com/vsergey3d/blackcell/wiki/Developer-guide)  | [FAQ](http://stackoverflow.com/questions/tagged/blackcell)
 
 [![Build Status](https://travis-ci.org/vsergey3d/blackcell.svg?branch=master)](https://travis-ci.org/vsergey3d/blackcell)
-[![Coverage Status](https://img.shields.io/coveralls/vsergey3d/blackcell.svg)](https://coveralls.io/r/vsergey3d/blackcell?branch=master)
+[![Coverage Status](https://coveralls.io/repos/vsergey3d/blackcell/badge.svg?branch=master&service=github)](https://coveralls.io/github/vsergey3d/blackcell?branch=master)
 
 ## Features
 
