@@ -36,5 +36,4 @@ Elena Velnikovskaia <velnikovskaia@gmail.com>
 
 ### Donate
 
-BTC: 19qfXzn5UMUyHjR4bxDWFM5YiPP4WuNnpK<br/>
-LTC: LV4SXpshdFewo5wEGWL5JDvuKX7Umg2Kgh
+BTC: 15LYGWZhSyJw8nynzFdEhuY5jfQSGProyv
