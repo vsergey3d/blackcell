@@ -76,7 +76,7 @@ window.onload = function () {
                             albedoMap: device.makeTexture(app.image("brick_a.png")).buildMips(),
                             normalMap: device.makeTexture(app.image("brick_n.png")).buildMips(),
                             heightMap: device.makeTexture(app.image("brick_h.png")).buildMips(),
-                            parallaxScale: 0.013
+                            parallaxScale: 0.015
                         }
                     },
                     "copper": {
