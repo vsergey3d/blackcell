@@ -31,11 +31,28 @@ varying vec2 vUV;
 varying vec3 vPos;
 varying mat3 vInvTBN;
 
-vec2 computeParallax(vec3 view, vec2 uv) {
+#define PARALLAX_HEIGHT_STEPS 12
 
-    const float bias = 0.01;
-    float height = parallaxScale * texture2D(heightMap, uv).r - bias;
-    return uv - min(height * view.xy, vec2(bias));
+vec2 computeParallax(vec3 view, vec2 uv)
+{
+	const float numSteps = float(PARALLAX_HEIGHT_STEPS);
+	float step = 1.0 / numSteps;
+	vec2 duv = view.xy * parallaxScale / (numSteps * view.z);
+	float height = 1.0;
+	float h = texture2D(heightMap, uv).r;
+	for (int i = 0; i < PARALLAX_HEIGHT_STEPS; i++)
+	{
+	   if (h < height) {
+	       height -= step;
+	       uv -= duv;
+	       h = texture2D(heightMap, uv).r;
+	   }
+	}
+	vec2  prev = uv + duv;
+	float hPrev = texture2D(heightMap, prev).r - (height + step);
+	float hCur = h - height;
+	float weight = hCur / (hCur - hPrev );
+	return weight * prev + (1.0 - weight) * uv;
 }
 
 float computeFresnel (vec3 view, vec3 reflectVN, float offset, float power) {

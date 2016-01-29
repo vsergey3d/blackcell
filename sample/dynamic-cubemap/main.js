@@ -17,11 +17,15 @@ window.onload = function () {
         function (app) {
 
             var V3 = M.Vector3,
+                CF = R.CubeFace,
                 device = app.device(), boxMesh,
                 cubemap = device.makeTexture(R.Format.RGB, 512, 512, 1, R.CubeFace.COUNT),
                 depth = device.makeDepth(R.Format.DEPTH, 512, 512),
                 clearColor = M.makeColor().setHex(0xcccccc),
-                cubeFaceProj = M.makeMatrix4().perspective(Math.PI / 2, 1, 0.1, 200);
+                cubeFaceView = [[V3.X, V3.N_Y], [V3.N_X, V3.N_Y], [V3.Y, V3.Z],
+                    [V3.N_Y, V3.N_Z], [V3.Z, V3.N_Y], [V3.N_Z, V3.N_Y]],
+                cubeFaceProj = M.makeMatrix4().perspective(Math.PI / 2, 1, 0.1, 200),
+                view, name, face, stages = [];
 
             device.
                 uniform("ambientIntensity", 0.6).
@@ -34,41 +38,18 @@ window.onload = function () {
 
             // create reflection stages
 
-            device.stage("cube-px").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.POSITIVE_X), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.X, V3.N_Y)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
+            for (face = 0; face < CF.COUNT; ++face) {
+                view = cubeFaceView[face];
+                name = "face-" + face;
 
-            device.stage("cube-nx").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.NEGATIVE_X), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.N_X, V3.N_Y)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
+                device.stage("face-" + face).
+                    output(device.makeTarget(cubemap.mip(0, face), depth)).
+                    cleanup(clearColor, 1).
+                    view(M.makeMatrix4().lookAt(V3.ZERO, view[0], view[1])).proj(cubeFaceProj).
+                    uniform("mxVP", R.Stage.VIEW_PROJ);
 
-            device.stage("cube-py").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.POSITIVE_Y), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.Y, V3.Z)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
-
-            device.stage("cube-ny").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.NEGATIVE_Y), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.N_Y, V3.N_Z)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
-
-            device.stage("cube-pz").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.POSITIVE_Z), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.Z, V3.N_Y)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
-
-            device.stage("cube-nz").
-                output(device.makeTarget(cubemap.mip(0, R.CubeFace.NEGATIVE_Z), depth)).
-                cleanup(clearColor, 1).
-                view(M.makeMatrix4().lookAt(V3.ZERO, V3.N_Z, V3.N_Y)).proj(cubeFaceProj).
-                uniform("mxVP", R.Stage.VIEW_PROJ);
+                stages.push(name);
+            }
 
             // create main stage
 
@@ -81,12 +62,14 @@ window.onload = function () {
                 uniform("viewPos", R.Stage.VIEW_POS).
                 uniform("environmentCube", cubemap);
 
+            stages.push("main");
+
             // create environment
 
             boxMesh = R.genBox(device).computeBounds();
 
             device.material("env").
-                pass(["cube-px", "cube-nx", "cube-py", "cube-ny", "cube-pz", "cube-nz", "main"],
+                pass(stages,
                     device.makePass(app.text("env.vs"), app.text("env.fs")).
                         state(R.State.POLYGON).cull(R.Face.FRONT).pass()).
                 uniform("environmentCube", device.makeTexture([
@@ -116,7 +99,7 @@ window.onload = function () {
             // create boxes
 
             device.material("concrete").
-                pass(["cube-px", "cube-nx", "cube-py", "cube-ny", "cube-pz", "cube-nz", "main"],
+                pass(stages,
                     device.makePass(app.text("surface.vs"), app.text("surface.fs"),
                         {"ALBEDO_MAP": "", "NORMAL_MAP": "", "PARALLAX": ""}).
                         sampler("albedoMap").filter(R.Filter.TRILINEAR).anisotropy(4).pass().
