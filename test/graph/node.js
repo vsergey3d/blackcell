@@ -181,10 +181,11 @@ describe("B.Graph.Node", function () {
 
     describe("#find", function () {
 
-        it("should find the node by prop", function () {
+        var node, result;
 
-            var result, out = [],
-                node = G.makeNode().
+        beforeEach(function () {
+
+            node = G.makeNode().
                 attach(G.makeNode()).
                 attach(G.makeNode().
                     attach(G.makeNode()).
@@ -197,6 +198,11 @@ describe("B.Graph.Node", function () {
             node.children()[1].children()[0].prop("id", 31);
             node.children()[1].children()[1].prop("id", 77);
             node.children()[1].children()[2].prop("id", 31);
+        });
+
+        it("should find the node by prop", function () {
+
+            var out = [];
 
             result = node.find("name", "abc");
             expect(result).to.be.an("array");
@@ -232,20 +238,7 @@ describe("B.Graph.Node", function () {
 
         it("should find the node by prop deeply", function () {
 
-            var result, out = [],
-                node = G.makeNode().
-                    attach(G.makeNode()).
-                    attach(G.makeNode().
-                        attach(G.makeNode()).
-                        attach(G.makeNode()).
-                        attach(G.makeNode()));
-
-            node.prop("id", 15);
-            node.children()[0].prop("id", 2);
-            node.children()[1].prop("id", 5);
-            node.children()[1].children()[0].prop("id", 31);
-            node.children()[1].children()[1].prop("id", 77);
-            node.children()[1].children()[2].prop("id", 31);
+            var out = [];
 
             result = node.find("name", "abc", true);
             expect(result).to.be.an("array");
