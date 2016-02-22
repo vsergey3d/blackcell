@@ -292,14 +292,25 @@ describe("B.Graph.Node", function () {
 
     describe("#clone", function () {
 
-        it("should clone the node", function () {
+        var node, otherNode, clone;
 
-            var node = G.makeNode(), otherNode = G.makeNode(), clone, name;
+        beforeEach(function () {
+
+            var name;
+
+            node = G.makeNode();
+            otherNode = G.makeNode();
 
             node.attach(otherNode);
             for (name in props) {
-                node.prop(name, props[name], false, false);
+                node.prop(name, props[name], true, false);
             }
+        });
+
+        it("should clone the node", function () {
+
+            var name;
+
             clone = node.clone();
 
             expect(clone.parent()).to.equal(null);
@@ -311,12 +322,8 @@ describe("B.Graph.Node", function () {
 
         it("should clone the node deeply", function () {
 
-            var node = G.makeNode(), otherNode = G.makeNode(), clone, name;
+            var name;
 
-            node.attach(otherNode);
-            for (name in props) {
-                node.prop(name, props[name], true, false);
-            }
             clone = node.clone(true);
 
             expect(clone.parent()).to.equal(null);
