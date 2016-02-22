@@ -20,5 +20,9 @@
             "attribute.js", "index.js", "primitive.js", "mesh.js", "format.js", "depth.js",
             "mip.js", "texture.js", "target.js", "uniform.js", "states.js", "sampler.js",
             "pass.js", "stage.js", "material.js", "instance.js", "device.js"]
+    },
+    "graph": {
+        "srcFiles": ["graph.js", "node.js"],
+        "testFiles": ["graph.js", "node.js"]
     }
 }
