@@ -1,4 +1,22 @@
 
+/**
+ * Reporting that the visual has been shown.
+ *
+ * @event B.Graph.Visual#shown
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Reporting that the visual has been hidden.
+ *
+ * @event B.Graph.Visual#hidden
+ * @type {B.Std.Event}
+ */
+
+/**
+ * @ignore
+ * @this B.Graph.Visual
+ */
 B.Graph.VisualProto = function () {
 
     var G = B.Graph;
@@ -19,36 +37,22 @@ B.Graph.VisualProto = function () {
      */
     this.visible = function (enable, deep) {
 
+        var changed = false;
+
         if (arguments.length === 0) {
             return this._visible;
         }
-        this._visible = enable;
-        this._callDeep("visible", enable);
-        this._updateInstance();
-        return this;
-    };
-
-    /**
-     * Sets frustum culling enable.
-     *
-     * @function B.Graph.Visual#culling
-     * @param {boolean} enable
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
-     * @returns {B.Graph.Visual} this
-     */
-    /**
-     * Gets frustum culling enable.
-     *
-     * @function B.Graph.Visual#culling
-     * @returns {boolean}
-     */
-    this.culling = function (enable, deep) {
-
-        if (arguments.length === 0) {
-            return this._culling;
+        if (this._visible !== enable) {
+            this._visible = enable;
+            this._updateInstance();
+            changed = true;
         }
-        this._culling = enable;
-        this._callDeep("culling", enable);
+        if (deep) {
+            this._callDeep("visible", enable);
+        }
+        if (changed) {
+            this.trigger(enable ? "shown" : "hidden");
+        }
         return this;
     };
 
@@ -71,9 +75,13 @@ B.Graph.VisualProto = function () {
         if (arguments.length === 0) {
             return this._material;
         }
-        this._material = material;
-        this._callDeep("material", material);
-        this._updateInstance();
+        if (this._material !== material) {
+            this._material = material;
+            this._updateInstance();
+        }
+        if (deep) {
+            this._callDeep("material", material);
+        }
     };
 
     /**
@@ -95,9 +103,13 @@ B.Graph.VisualProto = function () {
         if (arguments.length === 0) {
             return this._mesh;
         }
-        this._mesh = mesh;
-        this._callDeep("mesh", mesh);
-        this._updateInstance();
+        if (this._mesh !== mesh) {
+            this._mesh = mesh;
+            this._updateInstance();
+        }
+        if (deep) {
+            this._callDeep("mesh", mesh);
+        }
         this._updateBounds();
     };
 
@@ -163,7 +175,7 @@ B.Graph.VisualProto = function () {
     /**
      * Returns bounds.
      *
-     * @param {boolean} [deep] true if you want to return bounds of all hierarchy.
+     * @param {boolean} [deep] true if you want to return bounds of all hierarchy
      * @returns {B.Math.AABox|null} null if the object is not visible
      */
     this.bounds = function (deep) {
@@ -176,13 +188,32 @@ B.Graph.VisualProto = function () {
         }
         return this._instance.bounds();
     };
-    /*
-     this.traceable = function (enable, deep) {
-     };
 
-     this.trace = function (orig, dir, deep {
-     };
+    /**
+     * Sets frustum culling enable.
+     *
+     * @function B.Graph.Visual#culling
+     * @param {boolean} enable
+     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @returns {B.Graph.Visual} this
      */
+    /**
+     * Gets frustum culling enable.
+     *
+     * @function B.Graph.Visual#culling
+     * @returns {boolean}
+     */
+    this.culling = function (enable, deep) {
+
+        if (arguments.length === 0) {
+            return this._culling;
+        }
+        this._culling = enable;
+        if (deep) {
+            this._callDeep("culling", enable);
+        }
+        return this;
+    };
 
     this._clone = function () {
 
@@ -205,32 +236,15 @@ B.Graph.VisualProto = function () {
         this._updateBounds();
     };
 
-    this._onAttach = function (node) {
-
-        G.Locator.prototype._onAttach.call(this, node);
-        this._updateBounds();
-        return this;
-    };
-
-    this._onDetach = function () {
-
-        G.Locator.prototype._onDetach.call(this);
-        this._updateBounds();
-        node._updateBounds();
-        return this;
-    };
-
     this._updateInstance = function () {
 
         var name, uniforms = this._uniforms;
 
-        if (this._instance || !this._visible || !this._mesh || !this._material) {
-
+        if (this._instance) {
             this._instance.free();
             this._instance = null;
-
-        } else if (!this._instance) {
-
+        }
+        if (this._visible && this._mesh && this._material) {
             this._instance = this._device.instance(this._material,
                 this._mesh, this.transform(), this._culling);
             for (name in uniforms) {
@@ -243,17 +257,17 @@ B.Graph.VisualProto = function () {
 
         this._traversePost(function (node, firstOnLevel) {
 
-            var parent;
+            var parent = node.parent();
 
             if (!node._instance) {
                 return;
             }
             node._bounds.copy(node._instance.bounds());
-
-            while (parent = node.parent()) {
+            while (parent) {
                 if (parent._bounds) {
                     break;
                 }
+                parent = node.parent();
             }
             if (parent) {
                 if (firstOnLevel) {
@@ -264,19 +278,41 @@ B.Graph.VisualProto = function () {
             }
         });
     };
+
+    this._onAttach = function (node) {
+
+        G.Locator.prototype._onAttach.call(this, node);
+        this._updateBounds();
+    };
+
+    this._onDetach = function (parent) {
+
+        G.Locator.prototype._onDetach.call(this);
+        parent._updateBounds();
+        this._updateBounds();
+    };
 };
 
 B.Graph.VisualProto.prototype = new B.Graph.LocatorProto();
 
+/**
+ * Represents a visual (transformed mesh + material).
+ *
+ * To create the object use [B.Graph.makeVisual()]{@link B.Graph.makeVisual}.
+ *
+ * @class
+ * @this B.Graph.Visual
+ * @augments B.Graph.Locator
+ */
 B.Graph.Visual = function (device) {
 
     B.Graph.Locator.call(this);
 
     this._device = device;
     this._visible = true;
-    this._culling = true;
     this._material = null;
     this._mesh = null;
+    this._culling = true;
     this._bounds = B.Math.makeAABox();
     this._uniforms = {};
     this._instance = null;
