@@ -78,7 +78,7 @@ B.Graph.NodeProto = function () {
      * @function B.Graph.Node#prop
      * @param {string} name
      * @param {any} value
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+ * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Node} this node
      * @fires B.Graph.Node#prop-changed
      */

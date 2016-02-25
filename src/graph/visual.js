@@ -26,7 +26,7 @@ B.Graph.VisualProto = function () {
      *
      * @function B.Graph.Visual#visible
      * @param {boolean} enable
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
      */
     /**
@@ -61,7 +61,7 @@ B.Graph.VisualProto = function () {
      *
      * @function B.Graph.Visual#material
      * @param {B.Render.Material} material
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
      */
     /**
@@ -90,7 +90,7 @@ B.Graph.VisualProto = function () {
      *
      * @function B.Graph.Visual#mesh
      * @param {B.Render.Mesh} mesh
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
      */
     /**
@@ -131,7 +131,7 @@ B.Graph.VisualProto = function () {
      * @param {string} name
      * @param {null | number | B.Math.Vector2 | B.Math.Vector3 | B.Math.Vector4 | B.Math.Color |
      *  B.Math.Matrix3 | B.Math.Matrix4 | B.Render.Texture | B.Render.Depth} value
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
      *
      * @example
@@ -180,7 +180,7 @@ B.Graph.VisualProto = function () {
      *
      * @function B.Graph.Visual#culling
      * @param {boolean} enable
-     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
      */
     /**
