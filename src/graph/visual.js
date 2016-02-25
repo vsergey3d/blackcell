@@ -82,6 +82,7 @@ B.Graph.VisualProto = function () {
         if (deep) {
             this._callDeep("material", material);
         }
+        return this;
     };
 
     /**
@@ -110,6 +111,7 @@ B.Graph.VisualProto = function () {
         if (deep) {
             this._callDeep("mesh", mesh);
         }
+        return this;
     };
 
     /**
@@ -206,22 +208,25 @@ B.Graph.VisualProto = function () {
      * Returns bounds.
      *
      * @param {boolean} [deep] true if you want to return bounds for the whole hierarchy
-     * @returns {B.Math.AABox|null} null if the object is not visible
+     * @returns {B.Math.AABox|null} null if the node is not visible
      */
     this.bounds = function (deep) {
 
+        var thisBounds = this._bounds, nodeBounds;
+
         if (deep) {
             if (this._instance) {
-                this._bounds.copy(this._instance.bounds());
+                thisBounds.copy(this._instance.bounds());
             } else {
-                this._bounds.reset();
+                thisBounds.reset();
             }
             this.traverse(function (node) {
-                if (node.bounds) {
-                    this._bounds.merge(node.bounds());
+                nodeBounds = node.bounds && node.bounds();
+                if (nodeBounds) {
+                    thisBounds.merge(nodeBounds);
                 }
             });
-            return this._bounds;
+            return thisBounds;
         }
         return this._instance ? this._instance.bounds() : null;
     };
@@ -240,6 +245,7 @@ B.Graph.VisualProto = function () {
         this._material = other._material;
         this._bounds = other._bounds;
         this._culling = other._culling;
+        this._bounds = other._bounds;
         for (name in other._uniforms) {
             this._uniforms[name] = other._uniforms[name];
         }
@@ -281,11 +287,12 @@ B.Graph.Visual = function (device) {
     B.Graph.Locator.call(this);
 
     this._device = device;
-    this._visible = true;
+    this._visible = false;
     this._mesh = null;
     this._material = null;
     this._uniforms = {};
     this._culling = true;
+    this._bounds = B.Math.makeAABox();
     this._instance = null;
 };
 

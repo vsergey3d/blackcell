@@ -23,6 +23,6 @@
     },
     "graph": {
         "srcFiles": ["graph.js", "node.js", "locator.js", "visual.js"],
-        "testFiles": ["prepare.js", "graph.js", "node.js", "locator.js", "visual.js"]
+        "testFiles": ["graph.js", "node.js", "locator.js", "visual.js"]
     }
 }

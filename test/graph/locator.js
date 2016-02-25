@@ -38,12 +38,12 @@ describe("B.Graph.Locator", function () {
 
             node.move(M.makeVector3(1.5, 2.0, -10));
             expect(node.transform(), "1").to.equalByComponents(mxT1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.move(M.makeVector3(10, -2.0, 0.5));
             expect(node.transform(), "2").to.equalByComponents(mxT2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
 
@@ -51,12 +51,12 @@ describe("B.Graph.Locator", function () {
 
             node.move(1.5, 2.0, -10);
             expect(node.transform(), "1").to.equalByComponents(mxT1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.move(10, -2.0, 0.5);
             expect(node.transform(), "2").to.equalByComponents(mxT2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
     });
@@ -78,12 +78,12 @@ describe("B.Graph.Locator", function () {
 
             node.rotate(B.Math.Vector3.Y, HALF_PI);
             expect(node.transform(), "1").to.be.closeByComponents(mxR1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.rotate(B.Math.Vector3.Z, -HALF_PI);
             expect(node.transform(), "2").to.be.closeByComponents(mxR2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
 
@@ -91,12 +91,12 @@ describe("B.Graph.Locator", function () {
 
             node.rotate(B.Math.makeAngles(HALF_PI, 0, 0));
             expect(node.transform(), "1").to.be.closeByComponents(mxR1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.rotate(B.Math.makeAngles(0, 0, -HALF_PI));
             expect(node.transform(), "2").to.be.closeByComponents(mxR2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
 
@@ -104,12 +104,12 @@ describe("B.Graph.Locator", function () {
 
             node.rotate(B.Math.makeQuaternion().fromAxisAngle(B.Math.Vector3.Y, HALF_PI));
             expect(node.transform(), "1").to.be.closeByComponents(mxR1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.rotate(B.Math.makeQuaternion().fromAxisAngle(B.Math.Vector3.Z, -HALF_PI));
             expect(node.transform(), "2").to.be.closeByComponents(mxR2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
     });
@@ -131,12 +131,12 @@ describe("B.Graph.Locator", function () {
 
             node.scale(M.makeVector3(4, 1, 2));
             expect(node.transform(), "1").to.equalByComponents(mxS1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.scale(M.makeVector3(1, 2, 0.5));
             expect(node.transform(), "2").to.equalByComponents(mxS2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
 
@@ -144,12 +144,12 @@ describe("B.Graph.Locator", function () {
 
             node.scale(4, 1, 2);
             expect(node.transform(), "1").to.equalByComponents(mxS1);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.scale(1, 2, 0.5);
             expect(node.transform(), "2").to.equalByComponents(mxS2);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
 
@@ -157,7 +157,7 @@ describe("B.Graph.Locator", function () {
 
             node.scale(5);
             expect(node.transform()).to.equalByComponents(mxSU);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
     });
@@ -187,17 +187,17 @@ describe("B.Graph.Locator", function () {
 
             node.transform(mxS);
             expect(node.transform(), "S").to.equalByComponents(mxS);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.transform(mxR3);
             expect(node.transform(), "S*R").to.equalByComponents(mxSR);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.transform(mxT);
             expect(node.transform(), "S*R*T").to.equalByComponents(mxSRT);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
     });
@@ -220,27 +220,27 @@ describe("B.Graph.Locator", function () {
 
             node.setTransform(mxS3);
             expect(node.transform(), "S").to.equalByComponents(mxS);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.setTransform(mxS);
             expect(node.transform(), "S").to.equalByComponents(mxS);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.setTransform(mxR);
             expect(node.transform(), "R").to.equalByComponents(mxR);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.setTransform(mxT);
             expect(node.transform(), "T").to.equalByComponents(mxT);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
 
             node.setTransform();
             expect(node.transform(), "identity").to.equalByComponents(M.Matrix4.IDENTITY);
-            checkEvent(handler, node, "transformed", null);
+            checkEvent(handler, node, "transformed");
             handler.reset();
         });
     });
@@ -316,8 +316,8 @@ describe("B.Graph.Locator", function () {
             clone = node.clone();
 
             expect(clone.parent()).to.equal(null);
-            expect(clone.transform()).to.be.closeByComponents(mxS);
             expect(clone.children().length).to.equal(0);
+            expect(clone.transform()).to.be.closeByComponents(mxS);
         });
 
         it("should clone the node deeply", function () {
@@ -325,11 +325,11 @@ describe("B.Graph.Locator", function () {
             clone = node.clone(true);
 
             expect(clone.parent()).to.equal(null);
-            expect(clone.transform()).to.be.closeByComponents(mxS);
             expect(clone.children().length).to.equal(1);
+            expect(clone.transform()).to.be.closeByComponents(mxS);
             expect(clone.children()[0].parent()).to.equal(clone);
-            expect(clone.children()[0].transform()).to.be.closeByComponents(mxR);
             expect(clone.children()[0].children().length).to.equal(0);
+            expect(clone.children()[0].transform()).to.be.closeByComponents(mxR);
         });
     });
 });

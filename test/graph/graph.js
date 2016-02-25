@@ -1,6 +1,12 @@
 
 describe("B.Graph", function () {
 
+    var gl;
+
+    before(function () {
+        gl = new B.Test.FakeWebGLContext({});
+    });
+
     describe("#makeNode", function () {
 
         it("should create a new node", function () {
@@ -29,11 +35,12 @@ describe("B.Graph", function () {
 
         it("should create a new visual", function () {
 
-            var spy = sinon.spy(B.Graph, "Visual"),
-                node = B.Graph.makeVisual();
+            var device = B.Render.makeDevice(new B.Test.FakeCanvas(300, 200)),
+                spy = sinon.spy(B.Graph, "Visual"),
+                node = B.Graph.makeVisual(device);
 
             expect(node).to.be.instanceof(B.Graph.Visual);
-            expect(spy).to.be.calledWith();
+            expect(spy).to.be.calledWith(device);
         });
     });
 });

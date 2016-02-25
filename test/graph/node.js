@@ -53,8 +53,8 @@ describe("B.Graph.Node", function () {
             expect(otherNode.parent()).to.equal(node);
             expect(otherNode.children().length).to.equal(0);
 
-            checkEvent(attachedHandler, otherNode, "attached", null);
-            checkEvent(childAttachedHandler, node, "child-attached", null);
+            checkEvent(attachedHandler, otherNode, "attached");
+            checkEvent(childAttachedHandler, node, "child-attached");
         });
 
         it("should detach the node from its parent", function () {
@@ -81,8 +81,8 @@ describe("B.Graph.Node", function () {
             expect(otherNode.children().length).to.equal(0);
             expect(anotherNode.parent()).to.equal(node);
             expect(anotherNode.children().length).to.equal(0);
-            checkEvent(detachedHandler, otherNode, "detached", null);
-            checkEvent(childDetachedHandler, node, "child-detached", null);
+            checkEvent(detachedHandler, otherNode, "detached");
+            checkEvent(childDetachedHandler, node, "child-detached");
 
             detachedHandler.reset();
             childDetachedHandler.reset();
@@ -95,8 +95,8 @@ describe("B.Graph.Node", function () {
             expect(otherNode.children().length).to.equal(0);
             expect(anotherNode.parent()).to.equal(null);
             expect(anotherNode.children().length).to.equal(0);
-            checkEvent(detachedHandler, anotherNode, "detached", null);
-            checkEvent(childDetachedHandler, node, "child-detached", null);
+            checkEvent(detachedHandler, anotherNode, "detached");
+            checkEvent(childDetachedHandler, node, "child-detached");
         });
 
         it("should provide a (protected) deep call through the whole hierarchy", function () {
