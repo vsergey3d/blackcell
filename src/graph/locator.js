@@ -44,7 +44,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 mx.translation(ox, oy, oz);
             }
-            return this.transform(mx)._recalculate();
+            return this.transform(mx)._rebuildFinal();
         };
     }());
 
@@ -81,7 +81,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 mx.rotationAxis(axis, angle);
             }
-            return this.transform(mx)._recalculate();
+            return this.transform(mx)._rebuildFinal();
         };
     }());
 
@@ -156,7 +156,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 this._transform.mul(matrix instanceof M.Matrix3 ?
                     mx4.identity().setMatrix3(matrix) : matrix);
-                this._recalculate();
+                this._rebuildFinal();
                 this.trigger("transformed");
                 return this;
             }
@@ -164,13 +164,13 @@ B.Graph.LocatorProto = function () {
     }());
 
     /**
-     * Sets the new locator transformation (overwrites the current).
+     * Sets the locator transformation (overwrites the current).
      *
      * @param {B.Math.Matrix3 | B.Math.Matrix4} [matrix={@link B.Math.Matrix4.IDENTITY}]
      * @returns {B.Graph.Locator} this
      * @fires B.Graph.Locator#transformed
      */
-    this.resetTransform = function (matrix) {
+    this.setTransform = function (matrix) {
 
         if (matrix === undefined) {
             this._transform.identity();
@@ -179,7 +179,7 @@ B.Graph.LocatorProto = function () {
         } else {
             this._transform.copy(matrix);
         }
-        this._recalculate();
+        this._rebuildFinal();
         this.trigger("transformed");
         return this;
     };
@@ -194,21 +194,19 @@ B.Graph.LocatorProto = function () {
         return this._finalTransform;
     };
 
-    this.attach = function (node) {
+    this._clone = function () {
 
-        G.Node.prototype.attach.call(this, node);
-        this._recalculate();
-        return this;
+        return new G.Locator();
     };
 
-    this.detach = function () {
+    this._assign = function (other) {
 
-        G.Node.prototype.detach.call(this);
-        this._recalculate();
-        return this;
+        G.Node.prototype._assign.call(this, other);
+
+        this.transform(other._transform);
     };
 
-    this._recalculate = function () {
+    this._rebuildFinal = function () {
 
         var parent = this.parent(), children = this.children(), i, l;
 
@@ -218,15 +216,19 @@ B.Graph.LocatorProto = function () {
             this._finalTransform.copy(this._transform);
         }
         for (i = 0, l = children.length; i < l; i += 1) {
-            if (children[i]._recalculate) {
-                children[i]._recalculate();
+            if (children[i]._rebuildFinal) {
+                children[i]._rebuildFinal();
             }
         }
     };
+    this._attached = function () {
 
-    this._clone = function () {
+        this._rebuildFinal();
+    };
 
-        return (new B.Graph.Locator()).transform(this._transform);
+    this._detached = function () {
+
+        this._rebuildFinal();
     };
 };
 

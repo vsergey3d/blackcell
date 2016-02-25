@@ -6,6 +6,38 @@
  */
 B.Graph = {};
 
+
+/**
+ * Graph traverse order.
+ *
+ * @enum {number}
+ * @readonly
+ */
+B.Graph.Order = {
+
+    /**
+     * Pre-order (depth-first) traversal.
+     *
+     * @constant
+     */
+    PRE: 1,
+
+    /**
+     * Post-order (depth-first) traversal.
+     *
+     * @constant
+     */
+    POST: 2//,
+
+    /**
+     * Level-order (breadth-first) traversal.
+     *
+     * @constant
+     */
+    //LEVEL: 3
+};
+
+
 /**
  * Makes a node.
  *
@@ -24,4 +56,14 @@ B.Graph.makeNode = function () {
 B.Graph.makeLocator = function () {
 
     return new B.Graph.Locator();
+};
+
+/**
+ * Makes a visual (transformed mesh + material).
+ *
+ * @returns {B.Graph.Visual}
+ */
+B.Graph.makeVisual = function () {
+
+    return new B.Graph.Visual();
 };

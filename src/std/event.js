@@ -197,6 +197,32 @@ B.Std.ListenableProto = function () {
         return this;
     };
 
+    /**
+     * Mutes event listening.
+     *
+     * If the listened is mute, event handler functions will not execute.
+     *
+     * Not muted by default.
+     *
+     * @function B.Std.Listenable#mute
+     * @param {boolean} enable
+     * @returns {B.Std.Listenable} this
+     */
+    /**
+     * Checks if muted.
+     *
+     * @function B.Std.Listenable#mute
+     * @returns {boolean}
+     */
+    this.mute = function (enable) {
+
+        if (arguments.length === 0) {
+            return this._muted;
+        }
+        this._muted = enable;
+        return this;
+    };
+
     this._trigger = function (event) {
 
         var i, h, f,
@@ -211,7 +237,7 @@ B.Std.ListenableProto = function () {
             for (i = handlers.length - 1; i >= 0; i -= 1) {
                 h = handlers[i];
                 f = h.filter;
-                if (!f || f(event)) {
+                if (!this._muted && (!f || f(event))) {
                     h.handler(event);
                 }
                 if (event.omitted === true) {
@@ -222,6 +248,17 @@ B.Std.ListenableProto = function () {
         if (parent && event.stopped !== true) {
             parent._trigger(event);
         }
+    };
+
+    this._assign = function (other) {
+
+        var name;
+
+        for (name in other._handlers) {
+            this._handlers[name] = other._handlers[name];
+        }
+        this._bubbling = other._bubbling;
+        this._muted = other._muted;
     };
 };
 
@@ -237,6 +274,7 @@ B.Std.Listenable = function (parent) {
     this._parent = parent || null;
     this._handlers = {};
     this._bubbling = false;
+    this._muted = false;
 };
 
 B.Std.Listenable.prototype = new B.Std.ListenableProto();

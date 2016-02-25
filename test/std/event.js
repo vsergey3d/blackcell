@@ -7,6 +7,34 @@ describe("B.Std.Listenable", function() {
         expect(S.Listenable).to.exist;
     });
 
+    it("should be created", function () {
+
+        var obj;
+
+        expect(function () {
+            obj = new S.Listenable();
+        }).to.not.throw();
+
+        expect(obj).to.be.instanceof(S.Listenable);
+        expect(obj.bubbling()).to.be.equal(false);
+        expect(obj.mute()).to.be.equal(false);
+    });
+
+    it("should be assigned (protected)", function () {
+
+        var objA = new S.Listenable(),
+            objB = new S.Listenable();
+
+        objA.bubbling(true);
+        objA.mute(true);
+        objA.on("some", function () {});
+
+        objB._assign(objA);
+
+        expect(objB.bubbling()).to.be.equal(objA.bubbling());
+        expect(objB.mute()).to.be.equal(objA.mute());
+    });
+
     describe("[functional]", function() {
 
         var obj = new S.Listenable(),
@@ -34,6 +62,24 @@ describe("B.Std.Listenable", function() {
         it("should add event", function() {
 
             obj.on(type, handler1);
+            obj.trigger(type, data);
+            expect(handler1).to.be.called;
+        });
+
+        it("should mute event", function() {
+
+            obj.mute(true);
+            expect(obj.mute()).to.equal(true);
+
+            obj.trigger(type, data);
+            expect(handler1).to.be.not.called;
+        });
+
+        it("should unmute event", function() {
+
+            obj.mute(false);
+            expect(obj.mute()).to.equal(false);
+
             obj.trigger(type, data);
             expect(handler1).to.be.called;
         });

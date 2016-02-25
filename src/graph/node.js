@@ -37,10 +37,19 @@
  */
 
 /**
+ * Graph traverse callback.
+ *
+ * @callback B.Graph.Node~TraverseHandler
+ * @param {B.Graph.Node} node
+ */
+
+/**
  * @ignore
  * @this B.Graph.Node
  */
 B.Graph.NodeProto = function () {
+
+    var G = B.Graph;
 
     /**
      * Clones this node to a new node.
@@ -52,6 +61,8 @@ B.Graph.NodeProto = function () {
 
         var cloned = this._clone(),
             i, l, children = this._children;
+
+        cloned._assign(this);
 
         if (deep) {
             for (i = 0, l = children.length; i < l; i += 1) {
@@ -68,7 +79,6 @@ B.Graph.NodeProto = function () {
      * @param {string} name
      * @param {any} value
      * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
-     * @param {boolean} [trigger=true] true if you want to trigger the "prop-changed" event
      * @returns {B.Graph.Node} this node
      * @fires B.Graph.Node#prop-changed
      */
@@ -79,7 +89,7 @@ B.Graph.NodeProto = function () {
      * @param {string} name
      * @returns {any}
      */
-    this.prop = function (name, value, deep, trigger) {
+    this.prop = function (name, value, deep) {
 
         var i, l, children = this._children;
 
@@ -87,19 +97,26 @@ B.Graph.NodeProto = function () {
             return this._props[name];
         }
         this._props[name] = value;
-
-        if(trigger === undefined || trigger === true) {
-            this.trigger("prop-changed", {
-                name: name,
-                value: value
-            });
-        }
+        this.trigger("prop-changed", {
+            name: name,
+            value: value
+        });
         if (deep) {
             for (i = 0, l = children.length; i < l; i += 1) {
-                children[i].prop(name, value, deep, trigger);
+                children[i].prop(name, value, deep);
             }
         }
         return this;
+    };
+
+    /**
+     * Returns array of properties names.
+     *
+     * @returns {Array.<string>}
+     */
+    this.props = function () {
+
+        return Object.keys(this._props);
     };
 
     /**
@@ -150,6 +167,50 @@ B.Graph.NodeProto = function () {
     };
 
     /**
+     * Traverses through the node's hierarchy.
+     *
+     * @param {B.Graph.Node~TraverseHandler} handler a function to execute
+     *  when the node is traversed
+     * @param {B.Graph.Order} [order=B.Graph.Order.PRE]
+     * @returns {B.Graph.Node} this
+     */
+    this.traverse = function (handler, order) {
+
+        var cur = this, prev = null, nextIndex,
+            isPre = (order === undefined) || (order === G.Order.PRE),
+            isPost = (order === G.Order.POST);
+
+        while (cur && cur !== this._parent) {
+            if (!prev || prev === cur._parent) { // moving down
+                if (isPre) {
+                    handler(cur);
+                }
+                prev = cur;
+                if (cur._children.length > 0) {
+                    cur = cur._children[0]; // down (if not leaf)
+                } else {
+                    if (isPost) {
+                        handler(cur);
+                    }
+                    cur = cur._parent; // up (if leaf)
+                }
+            } else { // moving up
+                nextIndex = prev._index + 1;
+                prev = cur;
+                if (nextIndex < cur._children.length) {
+                    cur = cur._children[nextIndex]; // down (if not last child)
+                } else {
+                    if (isPost) {
+                        handler(cur);
+                    }
+                    cur = cur._parent; // up (if last child)
+                }
+            }
+        }
+        return this;
+    };
+
+    /**
      * Attaches some node to this node.
      *
      * @param {B.Graph.Node} node
@@ -164,6 +225,9 @@ B.Graph.NodeProto = function () {
         node._parent = this;
         node._index = this._children.push(node) - 1;
 
+        if (this._attached) {
+            this._attached(this._parent);
+        }
         node.trigger("attached");
         this.trigger("child-attached");
 
@@ -192,35 +256,40 @@ B.Graph.NodeProto = function () {
             this._parent = null;
             this._index = -1;
 
+            if (this._detached) {
+                this._detached(this._parent);
+            }
             this.trigger("detached");
             parent.trigger("child-detached");
         }
         return this;
     };
 
-    /**
-     * Detaches the node and frees all internal data.
-     *
-     * If this node is not attached the function will not trigger
-     *  "detached" and "child-detached" events.
-     *
-     * @fires B.Graph.Node#detached
-     * @fires B.Graph.Node#child-detached
-     */
-    this.free = function () {
-
-        this.detach();
-        B.Std.freeObject(this);
-    };
-
     this._clone = function () {
 
-        var node = new B.Graph.Node(), name;
+        return new G.Node();
+    };
 
-        for (name in this._props) {
-            node._props[name] = this._props[name];
+    this._assign = function (other) {
+
+        var name;
+
+        B.Std.Listenable.prototype._assign.call(this, other);
+
+        for (name in other._props) {
+            this._props[name] = other._props[name];
         }
-        return node;
+    };
+
+    this._callDeep = function (funcName) {
+
+        var args = Array.prototype.splice.call(arguments, 1);
+
+        this.traverse(function (node) {
+            if (node[funcName]) {
+                node[funcName].apply(node, args);
+            }
+        });
     };
 };
 

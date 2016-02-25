@@ -4,16 +4,7 @@ describe("B.Graph.Locator", function () {
     var M = B.Math,
         G = B.Graph,
 
-        checkEvent = function (spy, caster, type, data) {
-
-            var e = spy.getCall(0).args[0];
-
-            expect(spy).to.be.calledOnce;
-            expect(e).to.be.instanceof(B.Std.Event);
-            expect(e.caster).to.equal(caster);
-            expect(e.type).to.equal(type);
-            expect(e.data).to.deep.equal(data);
-        };
+        checkEvent = B.Test.checkEvent;
 
     it("should exist", function () {
 
@@ -24,10 +15,9 @@ describe("B.Graph.Locator", function () {
 
         var node;
 
-        expect(
-            function () {
-                node = G.makeLocator();
-            }).to.not.throw();
+        expect(function () {
+            node = G.makeLocator();
+        }).to.not.throw();
 
         expect(node).to.be.instanceof(G.Locator);
     });
@@ -212,7 +202,7 @@ describe("B.Graph.Locator", function () {
         });
     });
 
-    describe("#resetTransform", function () {
+    describe("#setTransform", function () {
 
         var mxS3 = M.makeMatrix3().scale(2, 2, 2),
             mxS = M.makeMatrix4().setMatrix3(mxS3),
@@ -228,27 +218,27 @@ describe("B.Graph.Locator", function () {
 
         it("should set transformation", function () {
 
-            node.resetTransform(mxS3);
+            node.setTransform(mxS3);
             expect(node.transform(), "S").to.equalByComponents(mxS);
             checkEvent(handler, node, "transformed", null);
             handler.reset();
 
-            node.resetTransform(mxS);
+            node.setTransform(mxS);
             expect(node.transform(), "S").to.equalByComponents(mxS);
             checkEvent(handler, node, "transformed", null);
             handler.reset();
 
-            node.resetTransform(mxR);
+            node.setTransform(mxR);
             expect(node.transform(), "R").to.equalByComponents(mxR);
             checkEvent(handler, node, "transformed", null);
             handler.reset();
 
-            node.resetTransform(mxT);
+            node.setTransform(mxT);
             expect(node.transform(), "T").to.equalByComponents(mxT);
             checkEvent(handler, node, "transformed", null);
             handler.reset();
 
-            node.resetTransform();
+            node.setTransform();
             expect(node.transform(), "identity").to.equalByComponents(M.Matrix4.IDENTITY);
             checkEvent(handler, node, "transformed", null);
             handler.reset();
@@ -287,13 +277,22 @@ describe("B.Graph.Locator", function () {
 
         });
 
-        it("should recalculate child transform if the parent was changed", function () {
+        it("should recalculate final transform if the parent was changed", function () {
 
-            node.resetTransform(mxS2);
+            node.setTransform(mxS2);
 
             expect(node.finalTransform()).to.equalByComponents(mxS2);
             expect(otherNode1.finalTransform()).to.equalByComponents(mxS2R);
             expect(otherNode2.finalTransform()).to.equalByComponents(mxS2T);
+        });
+
+        it("should recalculate final transform if the node was detached", function () {
+
+            otherNode1.detach();
+            expect(otherNode1.finalTransform()).to.equalByComponents(mxR);
+
+            otherNode2.detach();
+            expect(otherNode2.finalTransform()).to.equalByComponents(mxT);
         });
     });
 

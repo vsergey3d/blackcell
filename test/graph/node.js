@@ -2,18 +2,9 @@
 describe("B.Graph.Node", function () {
 
     var G = B.Graph,
-        props = {"a": true, "b": 128, "c": "asd"},
 
-        checkEvent = function (spy, caster, type, data) {
-
-            var e = spy.getCall(0).args[0];
-
-            expect(spy).to.be.calledOnce;
-            expect(e).to.be.instanceof(B.Std.Event);
-            expect(e.caster).to.equal(caster);
-            expect(e.type).to.equal(type);
-            expect(e.data).to.deep.equal(data);
-        };
+        checkEvent = B.Test.checkEvent,
+        props = {"a": true, "b": 128, "c": "asd"};
 
     it("should exist", function () {
 
@@ -24,10 +15,9 @@ describe("B.Graph.Node", function () {
 
         var node;
 
-        expect(
-            function () {
-                node = G.makeNode();
-            }).to.not.throw();
+        expect(function () {
+            node = G.makeNode();
+        }).to.not.throw();
 
         expect(node).to.be.instanceof(G.Node);
     });
@@ -108,6 +98,16 @@ describe("B.Graph.Node", function () {
             checkEvent(detachedHandler, anotherNode, "detached", null);
             checkEvent(childDetachedHandler, node, "child-detached", null);
         });
+
+        it("should provide a (protected) deep call through the whole hierarchy", function () {
+
+            var node = G.makeNode().attach(G.makeNode());
+
+            expect(function () {
+                node._callDeep("parent");
+                node._callDeep("any");
+            }).to.not.throw();
+        });
     });
 
     describe("properties", function () {
@@ -119,6 +119,7 @@ describe("B.Graph.Node", function () {
             for (name in props) {
                 expect(node.prop(name)).to.equal(undefined);
             }
+            expect(node.props()).to.be.empty;
         });
 
         it("should set/get a property", function () {
@@ -137,6 +138,7 @@ describe("B.Graph.Node", function () {
                 expect(node.prop(name)).to.equal(props[name]);
                 setHandler.reset();
             }
+            expect(node.props()).to.deep.equal(Object.keys(props));
         });
 
         it("should set/get a property through the whole hierarchy", function () {
@@ -162,28 +164,13 @@ describe("B.Graph.Node", function () {
                 expect(node.children()[0].children()[0].prop(name)).to.equal(props[name]);
             }
         });
-
-        it("should set/get a property without triggering", function () {
-
-            var node = G.makeNode(), name,
-                setHandler = sinon.spy();
-
-            node.on("prop-changed", setHandler);
-
-            for (name in props) {
-                expect(node.prop(name, props[name], false, false)).to.equal(node);
-                expect(setHandler.callCount).to.equal(0);
-                expect(node.prop(name)).to.equal(props[name]);
-                setHandler.reset();
-            }
-        });
     });
 
-    describe("#find", function () {
+    describe("find & traverse", function () {
 
         var node, result;
 
-        beforeEach(function () {
+        before(function () {
 
             node = G.makeNode().
                 attach(G.makeNode()).
@@ -281,6 +268,36 @@ describe("B.Graph.Node", function () {
             expect(out[1]).to.equal(node.children()[1].children()[0]);
             expect(out[2]).to.equal(node.children()[1].children()[2]);
         });
+
+        it("should traverse through the node's hierarchy (pre-order)", function () {
+
+            var out = [], desired = [15, 2, 5, 31, 77, 31];
+
+            expect(node.traverse(function (curNode) {
+                out.push(curNode.prop("id"));
+            })).to.equal(node);
+
+            expect(out).to.deep.equal(desired);
+
+            out = [];
+
+            expect(node.traverse(function (curNode) {
+                out.push(curNode.prop("id"));
+            }), G.Order.PRE).to.equal(node);
+
+            expect(out).to.deep.equal(desired);
+        });
+
+        it("should traverse through the node's hierarchy (post-order)", function () {
+
+            var out = [], desired = [2, 31, 77, 31, 5, 15];
+
+            expect(node.traverse(function (curNode) {
+                out.push(curNode.prop("id"));
+            }, G.Order.POST)).to.equal(node);
+
+            expect(out).to.deep.equal(desired);
+        });
     });
 
     describe("#clone", function () {
@@ -329,30 +346,6 @@ describe("B.Graph.Node", function () {
             for (name in props) {
                 expect(clone.children()[0].prop(name)).to.equal(props[name]);
             }
-        });
-    });
-
-    describe("#free", function () {
-
-        it("should free the node", function () {
-
-            var node = G.makeNode(), otherNode = G.makeNode(),
-                detachedHandler = sinon.spy(),
-                childDetachedHandler = sinon.spy();
-
-            node.on("detached", detachedHandler);
-            node.on("child-detached", childDetachedHandler);
-            otherNode.on("detached", detachedHandler);
-            otherNode.on("child-detached", childDetachedHandler);
-
-            node.attach(otherNode);
-            otherNode.free();
-
-            expect(node.parent()).to.equal(null);
-            expect(node.children().length).to.equal(0);
-
-            checkEvent(detachedHandler, otherNode, "detached", null);
-            checkEvent(childDetachedHandler, node, "child-detached", null);
         });
     });
 });

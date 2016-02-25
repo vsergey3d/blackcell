@@ -12,4 +12,28 @@ describe("B.Graph", function () {
             expect(spy).to.be.calledWith();
         });
     });
+
+    describe("#makeLocator", function () {
+
+        it("should create a new locator", function () {
+
+            var spy = sinon.spy(B.Graph, "Locator"),
+                node = B.Graph.makeLocator();
+
+            expect(node).to.be.instanceof(B.Graph.Locator);
+            expect(spy).to.be.calledWith();
+        });
+    });
+
+    describe("#makeVisual", function () {
+
+        it("should create a new visual", function () {
+
+            var spy = sinon.spy(B.Graph, "Visual"),
+                node = B.Graph.makeVisual();
+
+            expect(node).to.be.instanceof(B.Graph.Visual);
+            expect(spy).to.be.calledWith();
+        });
+    });
 });

@@ -110,7 +110,6 @@ B.Graph.VisualProto = function () {
         if (deep) {
             this._callDeep("mesh", mesh);
         }
-        this._updateBounds();
     };
 
     /**
@@ -168,25 +167,10 @@ B.Graph.VisualProto = function () {
                 this._instance.uniform(name, value);
             }
         }
-        this._callDeep("uniform", name, value);
-        return this;
-    };
-
-    /**
-     * Returns bounds.
-     *
-     * @param {boolean} [deep] true if you want to return bounds of all hierarchy
-     * @returns {B.Math.AABox|null} null if the object is not visible
-     */
-    this.bounds = function (deep) {
-
-        if (!this._instance) {
-            return null;
-        }
         if (deep) {
-            return this._bounds;
+            this._callDeep("uniform", name, value);
         }
-        return this._instance.bounds();
+        return this;
     };
 
     /**
@@ -209,10 +193,37 @@ B.Graph.VisualProto = function () {
             return this._culling;
         }
         this._culling = enable;
+        if (this._instance) {
+            this._instance.culling(this._culling);
+        }
         if (deep) {
             this._callDeep("culling", enable);
         }
         return this;
+    };
+
+    /**
+     * Returns bounds.
+     *
+     * @param {boolean} [deep] true if you want to return bounds for the whole hierarchy
+     * @returns {B.Math.AABox|null} null if the object is not visible
+     */
+    this.bounds = function (deep) {
+
+        if (deep) {
+            if (this._instance) {
+                this._bounds.copy(this._instance.bounds());
+            } else {
+                this._bounds.reset();
+            }
+            this.traverse(function (node) {
+                if (node.bounds) {
+                    this._bounds.merge(node.bounds());
+                }
+            });
+            return this._bounds;
+        }
+        return this._instance ? this._instance.bounds() : null;
     };
 
     this._clone = function () {
@@ -225,15 +236,14 @@ B.Graph.VisualProto = function () {
         var name;
 
         this._visible = other._visible;
-        this._culling = other._culling;
-        this._material = other._material;
         this._mesh = other._mesh;
+        this._material = other._material;
         this._bounds = other._bounds;
+        this._culling = other._culling;
         for (name in other._uniforms) {
             this._uniforms[name] = other._uniforms[name];
         }
         this._updateInstance();
-        this._updateBounds();
     };
 
     this._updateInstance = function () {
@@ -247,49 +257,11 @@ B.Graph.VisualProto = function () {
         if (this._visible && this._mesh && this._material) {
             this._instance = this._device.instance(this._material,
                 this._mesh, this.transform(), this._culling);
+            this._instance.culling(this._culling);
             for (name in uniforms) {
                 this._instance.uniform(name, uniforms[name]);
             }
         }
-    };
-
-    this._updateBounds = function () {
-
-        this._traversePost(function (node, firstOnLevel) {
-
-            var parent = node.parent();
-
-            if (!node._instance) {
-                return;
-            }
-            node._bounds.copy(node._instance.bounds());
-            while (parent) {
-                if (parent._bounds) {
-                    break;
-                }
-                parent = node.parent();
-            }
-            if (parent) {
-                if (firstOnLevel) {
-                    parent._bounds.copy(node._bounds);
-                } else {
-                    parent._bounds.merge(node._bounds);
-                }
-            }
-        });
-    };
-
-    this._onAttach = function (node) {
-
-        G.Locator.prototype._onAttach.call(this, node);
-        this._updateBounds();
-    };
-
-    this._onDetach = function (parent) {
-
-        G.Locator.prototype._onDetach.call(this);
-        parent._updateBounds();
-        this._updateBounds();
     };
 };
 
@@ -310,11 +282,10 @@ B.Graph.Visual = function (device) {
 
     this._device = device;
     this._visible = true;
-    this._material = null;
     this._mesh = null;
-    this._culling = true;
-    this._bounds = B.Math.makeAABox();
+    this._material = null;
     this._uniforms = {};
+    this._culling = true;
     this._instance = null;
 };
 
