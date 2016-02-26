@@ -222,7 +222,7 @@ B.Graph.VisualProto = function () {
             }
             this.traverse(function (node) {
                 nodeBounds = node.bounds && node.bounds();
-                if (nodeBounds) {
+                if (nodeBounds && nodeBounds !== thisBounds) {
                     thisBounds.merge(nodeBounds);
                 }
             });
@@ -233,12 +233,14 @@ B.Graph.VisualProto = function () {
 
     this._clone = function () {
 
-        return new G.Visual(this._device);
+        return new G.Visual();
     };
 
     this._assign = function (other) {
 
         var name;
+
+        G.Locator.prototype._assign.call(this, other);
 
         this._visible = other._visible;
         this._mesh = other._mesh;
@@ -261,8 +263,8 @@ B.Graph.VisualProto = function () {
             this._instance = null;
         }
         if (this._visible && this._mesh && this._material) {
-            this._instance = this._device.instance(this._material,
-                this._mesh, this.transform(), this._culling);
+            this._instance = this._mesh.device().instance(
+                this._material, this._mesh, this.transform(), this._culling);
             this._instance.culling(this._culling);
             for (name in uniforms) {
                 this._instance.uniform(name, uniforms[name]);
@@ -282,11 +284,10 @@ B.Graph.VisualProto.prototype = new B.Graph.LocatorProto();
  * @this B.Graph.Visual
  * @augments B.Graph.Locator
  */
-B.Graph.Visual = function (device) {
+B.Graph.Visual = function () {
 
     B.Graph.Locator.call(this);
 
-    this._device = device;
     this._visible = false;
     this._mesh = null;
     this._material = null;

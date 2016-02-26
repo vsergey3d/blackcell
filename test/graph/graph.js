@@ -35,12 +35,23 @@ describe("B.Graph", function () {
 
         it("should create a new visual", function () {
 
-            var device = B.Render.makeDevice(new B.Test.FakeCanvas(300, 200)),
-                spy = sinon.spy(B.Graph, "Visual"),
-                node = B.Graph.makeVisual(device);
+            var spy = sinon.spy(B.Graph, "Visual"),
+                node = B.Graph.makeVisual();
 
             expect(node).to.be.instanceof(B.Graph.Visual);
-            expect(spy).to.be.calledWith(device);
+            expect(spy).to.be.calledWith();
+        });
+    });
+
+    describe("#makeCamera", function () {
+
+        it("should create a new camera", function () {
+
+            var spy = sinon.spy(B.Graph, "Camera"),
+                node = B.Graph.makeCamera();
+
+            expect(node).to.be.instanceof(B.Graph.Camera);
+            expect(spy).to.be.calledWith();
         });
     });
 });

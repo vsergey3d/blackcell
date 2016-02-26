@@ -283,10 +283,11 @@ B.Graph.NodeProto = function () {
 
     this._callDeep = function (funcName) {
 
-        var args = Array.prototype.splice.call(arguments, 1);
+        var args = Array.prototype.splice.call(arguments, 1),
+            that = this;
 
         this.traverse(function (node) {
-            if (node[funcName]) {
+            if (node !== that && node[funcName]) {
                 node[funcName].apply(node, args);
             }
         });

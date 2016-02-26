@@ -31,10 +31,8 @@ describe("B.Graph.Visual", function () {
 
     it("should be created", function () {
 
-        var node;
-
         expect(function () {
-            node = G.makeVisual(device);
+            node = G.makeVisual();
         }).to.not.throw();
 
         expect(node).to.be.instanceof(G.Visual);
@@ -46,8 +44,8 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device);
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode));
+            childNode = G.makeVisual();
+            node = G.makeVisual().attach(G.makeNode().attach(childNode));
         });
 
         it("should not be visible initially", function () {
@@ -114,8 +112,8 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device);
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode));
+            childNode = G.makeVisual();
+            node = G.makeVisual().attach(G.makeNode().attach(childNode));
         });
 
         it("should not have material initially", function () {
@@ -129,6 +127,8 @@ describe("B.Graph.Visual", function () {
 
             expect(node.material()).to.equal(material);
             expect(childNode.material()).to.equal(null);
+
+            expect(node.material(material)).to.equal(node);
         });
 
         it("should set/get material through the whole hierarchy", function () {
@@ -144,8 +144,8 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device);
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode));
+            childNode = G.makeVisual();
+            node = G.makeVisual().attach(G.makeNode().attach(childNode));
         });
 
         it("should not have mesh initially", function () {
@@ -159,6 +159,8 @@ describe("B.Graph.Visual", function () {
 
             expect(node.mesh()).to.equal(mesh);
             expect(childNode.mesh()).to.equal(null);
+
+            expect(node.mesh(mesh)).to.equal(node);
         });
 
         it("should set/get mesh through the whole hierarchy", function () {
@@ -174,8 +176,8 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device);
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode));
+            childNode = G.makeVisual();
+            node = G.makeVisual().attach(G.makeNode().attach(childNode));
 
             node.visible(true);
             node.mesh(mesh);
@@ -235,8 +237,8 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device);
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode));
+            childNode = G.makeVisual();
+            node = G.makeVisual().attach(G.makeNode().attach(childNode));
 
             node.visible(true);
             node.mesh(mesh);
@@ -273,12 +275,12 @@ describe("B.Graph.Visual", function () {
 
         beforeEach(function () {
 
-            childNode = G.makeVisual(device).
+            childNode = G.makeVisual().
                 visible(true).
                 material(material).
                 mesh(device.makeMesh().bounds(aaboxB));
 
-            node = G.makeVisual(device).attach(G.makeNode().attach(childNode)).
+            node = G.makeVisual().attach(G.makeNode().attach(childNode)).
                 visible(true).
                 material(material).
                 mesh(device.makeMesh().bounds(aaboxA));
@@ -317,7 +319,7 @@ describe("B.Graph.Visual", function () {
 
             var name;
 
-            node = G.makeVisual(device).attach(G.makeVisual(device)).
+            node = G.makeVisual().attach(G.makeVisual()).
                 visible(true, true).
                 culling(false, true).
                 mesh(mesh, true).
@@ -376,7 +378,7 @@ describe("B.Graph.Visual", function () {
 
         var spy = sinon.spy(device, "instance");
 
-        node = G.makeVisual(device).
+        node = G.makeVisual().
             mesh(mesh).
             material(material);
 

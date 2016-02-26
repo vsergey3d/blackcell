@@ -44,7 +44,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 mx.translation(ox, oy, oz);
             }
-            return this.transform(mx)._rebuildFinal();
+            return this.transform(mx);
         };
     }());
 
@@ -81,7 +81,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 mx.rotationAxis(axis, angle);
             }
-            return this.transform(mx)._rebuildFinal();
+            return this.transform(mx);
         };
     }());
 
@@ -156,8 +156,7 @@ B.Graph.LocatorProto = function () {
             } else {
                 this._transform.mul(matrix instanceof M.Matrix3 ?
                     mx4.identity().setMatrix3(matrix) : matrix);
-                this._rebuildFinal();
-                this.trigger("transformed");
+                this._rebuild();
                 return this;
             }
         };
@@ -179,8 +178,7 @@ B.Graph.LocatorProto = function () {
         } else {
             this._transform.copy(matrix);
         }
-        this._rebuildFinal();
-        this.trigger("transformed");
+        this._rebuild();
         return this;
     };
 
@@ -206,29 +204,30 @@ B.Graph.LocatorProto = function () {
         this.transform(other._transform);
     };
 
-    this._rebuildFinal = function () {
+    this._rebuild = function () {
 
-        var parent = this.parent(), children = this.children(), i, l;
+        var parent = this.parent();
 
         if (parent && parent.finalTransform) {
             this._finalTransform.copy(parent.finalTransform()).mul(this._transform);
         } else {
             this._finalTransform.copy(this._transform);
         }
-        for (i = 0, l = children.length; i < l; i += 1) {
-            if (children[i]._rebuildFinal) {
-                children[i]._rebuildFinal();
-            }
+        if (this._transformed) {
+            this._transformed();
         }
+        this.trigger("transformed");
+        this._callDeep("_rebuild");
     };
+
     this._attached = function () {
 
-        this._rebuildFinal();
+        this._rebuild();
     };
 
     this._detached = function () {
 
-        this._rebuildFinal();
+        this._rebuild();
     };
 };
 

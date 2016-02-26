@@ -61,10 +61,19 @@ B.Graph.makeLocator = function () {
 /**
  * Makes a visual (transformed mesh + material).
  *
- * @param {B.Render.Device} device a rendering device
  * @returns {B.Graph.Visual}
  */
-B.Graph.makeVisual = function (device) {
+B.Graph.makeVisual = function () {
 
-    return new B.Graph.Visual(device);
+    return new B.Graph.Visual();
+};
+
+/**
+ * Makes a camera.
+ *
+ * @returns {B.Graph.Camera}
+ */
+B.Graph.makeCamera = function () {
+
+    return new B.Graph.Camera();
 };
