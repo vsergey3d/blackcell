@@ -288,8 +288,8 @@ describe("B.Graph.Visual", function () {
 
         it("should get bounds", function () {
 
-            expect(node.bounds()).to.equalByComponents(aaboxA);
-            expect(childNode.bounds()).to.equalByComponents(aaboxB);
+            expect(node.bounds()).to.closeByComponents(aaboxA);
+            expect(childNode.bounds()).to.closeByComponents(aaboxB);
         });
 
         it("should get null bounds if the node is not visible", function () {
@@ -300,16 +300,14 @@ describe("B.Graph.Visual", function () {
 
         it("should get bounds deeply", function () {
 
-            expect(node.bounds(true)).to.equalByComponents(aaboxA.clone().merge(aaboxB));
-            expect(childNode.bounds(true)).to.equalByComponents(aaboxB);
+            expect(node.bounds(true)).to.closeByComponents(aaboxA.clone().merge(aaboxB));
+            expect(childNode.bounds(true)).to.closeByComponents(aaboxB);
         });
 
         it("should get bounds deeply (parent is not visible)", function () {
 
-            debugger;
-
             node.visible(false);
-            expect(node.bounds(true)).to.equalByComponents(aaboxB);
+            expect(node.bounds(true)).to.closeByComponents(aaboxB);
         });
     });
 

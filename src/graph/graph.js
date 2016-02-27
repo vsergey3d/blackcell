@@ -77,3 +77,13 @@ B.Graph.makeCamera = function () {
 
     return new B.Graph.Camera();
 };
+
+/**
+ * Makes a light.
+ *
+ * @returns {B.Graph.Light}
+ */
+B.Graph.makeLight = function () {
+
+    return new B.Graph.Light();
+};

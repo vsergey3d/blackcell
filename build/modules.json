@@ -22,7 +22,7 @@
             "pass.js", "stage.js", "material.js", "instance.js", "device.js"]
     },
     "graph": {
-        "srcFiles": ["graph.js", "node.js", "locator.js", "visual.js", "camera.js"],
-        "testFiles": ["graph.js", "node.js", "locator.js", "visual.js", "camera.js"]
+        "srcFiles": ["graph.js", "node.js", "locator.js", "visual.js", "camera.js", "light.js"],
+        "testFiles": ["graph.js", "node.js", "locator.js", "visual.js", "camera.js", "light.js"]
     }
 }
