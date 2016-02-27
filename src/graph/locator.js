@@ -192,6 +192,16 @@ B.Graph.LocatorProto = function () {
         return this._finalTransform;
     };
 
+    /**
+     * Gets locator's world position.
+     *
+     * @returns {B.Math.Vector3}
+     */
+    this.position = function () {
+
+        return this._finalTransform.getPosition();
+    };
+
     this._clone = function () {
 
         return new G.Locator();

@@ -28,6 +28,8 @@ B.Graph.VisualProto = function () {
      * @param {boolean} enable
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
      * @returns {B.Graph.Visual} this
+     * @fires B.Graph.Visual#shown
+     * @fires B.Graph.Visual#hidden
      */
     /**
      * Gets visibility enable.
