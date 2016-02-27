@@ -131,19 +131,19 @@ B.Render.InstanceProto = function () {
     /**
      * Sets the instance transformation.
      *
-     * @param {B.Math.Matrix3 | B.Math.Matrix4} [transform={@link B.Math.Matrix4.IDENTITY}]
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} [matrix={@link B.Math.Matrix4.IDENTITY}]
      * @returns {B.Render.Instance} this
      */
-    this.setTransform = function (transform) {
+    this.setTransform = function (matrix) {
 
-        return this._setTransform(transform || M.Matrix4.IDENTITY);
+        return this._setTransform(matrix || M.Matrix4.IDENTITY);
     };
 
     /**
      * Add a given transformation to the instance transformation.
      *
      * @function B.Render.Instance#transform
-     * @param {B.Math.Matrix3 | B.Math.Matrix4} transform
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} matrix
      * @returns {B.Render.Instance} this
      */
     /**
@@ -156,13 +156,13 @@ B.Render.InstanceProto = function () {
 
         var mx4 = M.makeMatrix4();
 
-        return function (transform) {
+        return function (matrix) {
 
             if (arguments.length === 0) {
                 return this._transform;
             } else {
-                this._transform.mul(transform instanceof M.Matrix3 ?
-                    mx4.identity().setMatrix3(transform) : transform);
+                this._transform.mul(matrix instanceof M.Matrix3 ?
+                    mx4.identity().setMatrix3(matrix) : matrix);
                 return this._setTransform();
             }
         };
@@ -173,7 +173,7 @@ B.Render.InstanceProto = function () {
      *
      * @function B.Render.Instance#move
      * @param {B.Math.Vector3} offset
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Moves the instance by given offsets.
@@ -182,7 +182,7 @@ B.Render.InstanceProto = function () {
      * @param {number} ox offset along X-axis
      * @param {number} oy offset along Y-axis
      * @param {number} oz offset along Z-axis
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     this.move = (function () {
 
@@ -203,16 +203,16 @@ B.Render.InstanceProto = function () {
      * Rotates the instance around an arbitrary axis.
      *
      * @function B.Render.Instance#rotate
-     * @param {B.Render.Vector3} axis
+     * @param {B.Math.Vector3} axis
      * @param {number} angle in radians
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Rotates instance by a quaternion or canonized euler angles.
      *
      * @function B.Render.Instance#rotate
-     * @param {B.Render.Quaternion | B.Render.Angles} object
-     * @returns {B.Render.Instance}
+     * @param {B.Math.Quaternion | B.Math.Angles} object
+     * @returns {B.Render.Instance} this
      */
     this.rotate = (function () {
 
@@ -239,7 +239,7 @@ B.Render.InstanceProto = function () {
      *
      * @function B.Render.Instance#scale
      * @param {B.Math.Vector3} coeffs
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Scales instance by given coefficients.
@@ -248,14 +248,14 @@ B.Render.InstanceProto = function () {
      * @param {number} cx scale along X-axis
      * @param {number} cy scale along Y-axis
      * @param {number} cz scale along Z-axis
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Scales (uniformly) instance by a given coefficient.
      *
      * @function B.Render.Instance#scale
      * @param {number} c scale along all axis uniformly
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     this.scale = (function () {
 
