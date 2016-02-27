@@ -20,7 +20,7 @@ B.Graph.LightProto = function () {
      * The direction is calculating from Locator's transformation.
      * It has no meaning for "point" lights.
      *
-     * @function B.Graph.Camera#direction
+     * @function B.Graph.Light#direction
      * @returns {B.Math.Vector3} direction
      */
     this.direction = function () {
@@ -29,21 +29,21 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets an angle of light.
+     * Sets an angle of the light.
      *
      * The angle has meaning only for "spot" lights.
      * The "point" lights always has angle 2*PI.
      *
-     * @function B.Graph.Camera#angle
+     * @function B.Graph.Light#angle
      * @param {number} radians
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns angle of the light.
      *
-     * @function B.Graph.Camera#angle
+     * @function B.Graph.Light#angle
      * @returns {number} radians
      */
     this.angle = function (radians, deep) {
@@ -60,18 +60,18 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets a radius of light.
+     * Sets a radius of the light.
      *
-     * @function B.Graph.Camera#radius
+     * @function B.Graph.Light#radius
      * @param {number} radius
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns radius of the light.
      *
-     * @function B.Graph.Camera#radius
+     * @function B.Graph.Light#radius
      * @returns {number} radius
      */
     this.radius = function (radius, deep) {
@@ -88,18 +88,18 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets intensity of light.
+     * Sets intensity of the light.
      *
-     * @function B.Graph.Camera#intensity
+     * @function B.Graph.Light#intensity
      * @param {number} value
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns intensity of the light.
      *
-     * @function B.Graph.Camera#intensity
+     * @function B.Graph.Light#intensity
      * @returns {number} intensity
      */
     this.intensity = function (value, deep) {
@@ -116,18 +116,18 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets deviation of light.
+     * Sets deviation of the light.
      *
-     * @function B.Graph.Camera#deviation
+     * @function B.Graph.Light#deviation
      * @param {number} value
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns deviation of the light.
      *
-     * @function B.Graph.Camera#deviation
+     * @function B.Graph.Light#deviation
      * @returns {number} deviation
      */
     this.deviation = function (value, deep) {
@@ -144,18 +144,18 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets cutoff of light.
+     * Sets cutoff of the light.
      *
-     * @function B.Graph.Camera#cutoff
+     * @function B.Graph.Light#cutoff
      * @param {number} value
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns cutoff of the light.
      *
-     * @function B.Graph.Camera#cutoff
+     * @function B.Graph.Light#cutoff
      * @returns {number} cutoff
      */
     this.cutoff = function (value, deep) {
@@ -172,18 +172,18 @@ B.Graph.LightProto = function () {
     };
 
     /**
-     * Sets color of light.
+     * Sets color of the light.
      *
-     * @function B.Graph.Camera#color
+     * @function B.Graph.Light#color
      * @param {B.Math.Color} value
      * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
-     * @returns {B.Graph.Camera} this
+     * @returns {B.Graph.Light} this
      * @fires B.Graph.Light#light-changed
      */
     /**
      * Returns color of the light.
      *
-     * @function B.Graph.Camera#color
+     * @function B.Graph.Light#color
      * @returns {B.Math.Color} color
      */
     this.color = function (value, deep) {
@@ -229,7 +229,7 @@ B.Graph.LightProto.prototype = new B.Graph.LocatorProto();
  * The Light object doesn't bring the lighting to the "scene". Any lighting technique could be
  *  implemented using this object. For example, you can traverse through all lights and set
  *  its parameters to your stages.
- * Another example is deferred technique where you are rendering each light to the special.
+ * Another example is deferred technique where you are rendering each light to the special
  *  stage. In that case you can attach a Visual to your Light and specify mesh and material.
  *
  * There are no conceptual difference between "point" and "spot" light.

@@ -195,11 +195,12 @@ B.Graph.LocatorProto = function () {
     /**
      * Gets locator's world position.
      *
+     * @param {B.Math.Vector3} [result] omit if you want to return newly created vector
      * @returns {B.Math.Vector3}
      */
-    this.position = function () {
+    this.position = function (result) {
 
-        return this._finalTransform.getPosition();
+        return this._finalTransform.getPosition(result);
     };
 
     this._clone = function () {
