@@ -238,6 +238,32 @@ B.Std.ListenableProto = function () {
         return this;
     };
 
+    /**
+     * Mutes event listening.
+     *
+     * If the listened is mute, event handler functions will not execute.
+     *
+     * Not muted by default.
+     *
+     * @function B.Std.Listenable#mute
+     * @param {boolean} enable
+     * @returns {B.Std.Listenable} this
+     */
+    /**
+     * Checks if muted.
+     *
+     * @function B.Std.Listenable#mute
+     * @returns {boolean}
+     */
+    this.mute = function (enable) {
+
+        if (arguments.length === 0) {
+            return this._muted;
+        }
+        this._muted = enable;
+        return this;
+    };
+
     this._trigger = function (event) {
 
         var i, h, f,
@@ -252,7 +278,7 @@ B.Std.ListenableProto = function () {
             for (i = handlers.length - 1; i >= 0; i -= 1) {
                 h = handlers[i];
                 f = h.filter;
-                if (!f || f(event)) {
+                if (!this._muted && (!f || f(event))) {
                     h.handler(event);
                 }
                 if (event.omitted === true) {
@@ -263,6 +289,17 @@ B.Std.ListenableProto = function () {
         if (parent && event.stopped !== true) {
             parent._trigger(event);
         }
+    };
+
+    this._assign = function (other) {
+
+        var name;
+
+        for (name in other._handlers) {
+            this._handlers[name] = other._handlers[name];
+        }
+        this._bubbling = other._bubbling;
+        this._muted = other._muted;
     };
 };
 
@@ -278,6 +315,7 @@ B.Std.Listenable = function (parent) {
     this._parent = parent || null;
     this._handlers = {};
     this._bubbling = false;
+    this._muted = false;
 };
 
 B.Std.Listenable.prototype = new B.Std.ListenableProto();
@@ -7503,7 +7541,7 @@ B.Render.applyColorMask = function (gl, mask) {
 
 
 /**
- * Describea webgl-context settings.
+ * Describe a webgl-context settings.
  *
  * See: http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2
  *
@@ -7820,6 +7858,11 @@ B.Render.GLError = function (message, code) {
 
     B.Render.Error.call(this, "Internal WebGL error: " + message, "B.Render.GLError");
 
+    /**
+     * WebGL error code.
+     *
+     * @type {string}
+     */
     this.code = code;
 };
 
@@ -14495,19 +14538,19 @@ B.Render.InstanceProto = function () {
     /**
      * Sets the instance transformation.
      *
-     * @param {B.Math.Matrix3 | B.Math.Matrix4} [transform={@link B.Math.Matrix4.IDENTITY}]
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} [matrix={@link B.Math.Matrix4.IDENTITY}]
      * @returns {B.Render.Instance} this
      */
-    this.setTransform = function (transform) {
+    this.setTransform = function (matrix) {
 
-        return this._setTransform(transform || M.Matrix4.IDENTITY);
+        return this._setTransform(matrix || M.Matrix4.IDENTITY);
     };
 
     /**
      * Add a given transformation to the instance transformation.
      *
      * @function B.Render.Instance#transform
-     * @param {B.Math.Matrix3 | B.Math.Matrix4} transform
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} matrix
      * @returns {B.Render.Instance} this
      */
     /**
@@ -14520,13 +14563,13 @@ B.Render.InstanceProto = function () {
 
         var mx4 = M.makeMatrix4();
 
-        return function (transform) {
+        return function (matrix) {
 
             if (arguments.length === 0) {
                 return this._transform;
             } else {
-                this._transform.mul(transform instanceof M.Matrix3 ?
-                    mx4.identity().setMatrix3(transform) : transform);
+                this._transform.mul(matrix instanceof M.Matrix3 ?
+                    mx4.identity().setMatrix3(matrix) : matrix);
                 return this._setTransform();
             }
         };
@@ -14537,7 +14580,7 @@ B.Render.InstanceProto = function () {
      *
      * @function B.Render.Instance#move
      * @param {B.Math.Vector3} offset
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Moves the instance by given offsets.
@@ -14546,7 +14589,7 @@ B.Render.InstanceProto = function () {
      * @param {number} ox offset along X-axis
      * @param {number} oy offset along Y-axis
      * @param {number} oz offset along Z-axis
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     this.move = (function () {
 
@@ -14567,16 +14610,16 @@ B.Render.InstanceProto = function () {
      * Rotates the instance around an arbitrary axis.
      *
      * @function B.Render.Instance#rotate
-     * @param {B.Render.Vector3} axis
+     * @param {B.Math.Vector3} axis
      * @param {number} angle in radians
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Rotates instance by a quaternion or canonized euler angles.
      *
      * @function B.Render.Instance#rotate
-     * @param {B.Render.Quaternion | B.Render.Angles} object
-     * @returns {B.Render.Instance}
+     * @param {B.Math.Quaternion | B.Math.Angles} object
+     * @returns {B.Render.Instance} this
      */
     this.rotate = (function () {
 
@@ -14603,7 +14646,7 @@ B.Render.InstanceProto = function () {
      *
      * @function B.Render.Instance#scale
      * @param {B.Math.Vector3} coeffs
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Scales instance by given coefficients.
@@ -14612,14 +14655,14 @@ B.Render.InstanceProto = function () {
      * @param {number} cx scale along X-axis
      * @param {number} cy scale along Y-axis
      * @param {number} cz scale along Z-axis
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     /**
      * Scales (uniformly) instance by a given coefficient.
      *
      * @function B.Render.Instance#scale
      * @param {number} c scale along all axis uniformly
-     * @returns {B.Render.Instance}
+     * @returns {B.Render.Instance} this
      */
     this.scale = (function () {
 
@@ -15966,3 +16009,945 @@ B.Render.Device.Target = function (device, colorFormat, depthFormat, width, heig
 };
 
 B.Render.Device.Target.prototype = new B.Render.Device.TargetProto();
+
+/**
+ * Contains scene graph nodes and utilities.
+ *
+ * @namespace B.Graph
+ */
+B.Graph = {};
+
+
+/**
+ * Graph traverse order.
+ *
+ * @enum {number}
+ * @readonly
+ */
+B.Graph.Order = {
+
+    /**
+     * Pre-order (depth-first) traversal.
+     *
+     * @constant
+     */
+    PRE: 1,
+
+    /**
+     * Post-order (depth-first) traversal.
+     *
+     * @constant
+     */
+    POST: 2//,
+
+    /**
+     * Level-order (breadth-first) traversal.
+     *
+     * @constant
+     */
+    //LEVEL: 3
+};
+
+
+/**
+ * Makes a node.
+ *
+ * @returns {B.Graph.Node}
+ */
+B.Graph.makeNode = function () {
+
+    return new B.Graph.Node();
+};
+
+/**
+ * Makes a locator (transformed location in 3D-space).
+ *
+ * @returns {B.Graph.Locator}
+ */
+B.Graph.makeLocator = function () {
+
+    return new B.Graph.Locator();
+};
+
+/**
+ * Makes a visual (transformed mesh + material).
+ *
+ * @param {B.Render.Device} device a rendering device
+ * @returns {B.Graph.Visual}
+ */
+B.Graph.makeVisual = function (device) {
+
+    return new B.Graph.Visual(device);
+};
+
+
+/**
+ * Reporting that node's property has been changed.
+ *
+ * @event B.Graph.Node#prop-changed
+ * @type {B.Std.Event}
+ * @property {name} data.name property name
+ * @property {value} data.value a new value
+ */
+
+/**
+ * Reporting that the node has been attached to a new parent.
+ *
+ * @event B.Graph.Node#attached
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Reporting that a child has been attached to the node.
+ *
+ * @event B.Graph.Node#child-attached
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Reporting that the node has been detached from its parent.
+ *
+ * @event B.Graph.Node#detached
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Reporting that a child has been detached from the node.
+ *
+ * @event B.Graph.Node#child-detached
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Graph traverse callback.
+ *
+ * @callback B.Graph.Node~TraverseHandler
+ * @param {B.Graph.Node} node
+ */
+
+/**
+ * @ignore
+ * @this B.Graph.Node
+ */
+B.Graph.NodeProto = function () {
+
+    var G = B.Graph;
+
+    /**
+     * Clones this node to a new node.
+     *
+     * @param {boolean} [deep=false] true if you want to clone the whole hierarchy
+     * @returns {B.Graph.Node}
+     */
+    this.clone = function (deep) {
+
+        var cloned = this._clone(),
+            i, l, children = this._children;
+
+        cloned._assign(this);
+
+        if (deep) {
+            for (i = 0, l = children.length; i < l; i += 1) {
+                cloned.attach(children[i].clone(deep));
+            }
+        }
+        return cloned;
+    };
+
+    /**
+     * Sets property value.
+     *
+     * @function B.Graph.Node#prop
+     * @param {string} name
+     * @param {any} value
+     * @param {boolean} [deep=false] true if you want to set value to the whole hierarchy
+     * @returns {B.Graph.Node} this node
+     * @fires B.Graph.Node#prop-changed
+     */
+    /**
+     * Gets property value.
+     *
+     * @function B.Graph.Node#prop
+     * @param {string} name
+     * @returns {any}
+     */
+    this.prop = function (name, value, deep) {
+
+        var i, l, children = this._children;
+
+        if (arguments.length === 1) {
+            return this._props[name];
+        }
+        this._props[name] = value;
+        this.trigger("prop-changed", {
+            name: name,
+            value: value
+        });
+        if (deep) {
+            for (i = 0, l = children.length; i < l; i += 1) {
+                children[i].prop(name, value, deep);
+            }
+        }
+        return this;
+    };
+
+    /**
+     * Returns array of properties names.
+     *
+     * @returns {Array.<string>}
+     */
+    this.props = function () {
+
+        return Object.keys(this._props);
+    };
+
+    /**
+     * Returns parent of this node.
+     *
+     * @returns {B.Graph.Node}
+     */
+    this.parent = function () {
+
+        return this._parent;
+    };
+
+    /**
+     * Returns children of this node.
+     *
+     * @returns {Array<B.Graph.Node>}
+     */
+    this.children = function () {
+
+        return this._children;
+    };
+
+    /**
+     * Finds children of this node by specified property name and value.
+     *
+     * @param {string} propName
+     * @param {any} propValue
+     * @param {boolean} [deep=false] true if you want to find through the whole hierarchy
+     * @param {Array<B.Graph.Node>} [out] if you need you can pass an existing array to append
+     * @returns {Array<B.Graph.Node>}
+     */
+    this.find = function (propName, propValue, deep, out) {
+
+        var i, l, children = this._children, node;
+
+        out = out || [];
+
+        for (i = 0, l = children.length; i < l; i += 1) {
+            node = children[i];
+            if (node._props[propName] === propValue) {
+                out.push(node);
+            }
+            if (deep) {
+                node.find(propName, propValue, deep, out);
+            }
+        }
+        return out;
+    };
+
+    /**
+     * Traverses through the node's hierarchy.
+     *
+     * @param {B.Graph.Node~TraverseHandler} handler a function to execute
+     *  when the node is traversed
+     * @param {B.Graph.Order} [order=B.Graph.Order.PRE]
+     * @returns {B.Graph.Node} this
+     */
+    this.traverse = function (handler, order) {
+
+        var cur = this, prev = null, nextIndex,
+            isPre = (order === undefined) || (order === G.Order.PRE),
+            isPost = (order === G.Order.POST);
+
+        while (cur && cur !== this._parent) {
+            if (!prev || prev === cur._parent) { // moving down
+                if (isPre) {
+                    handler(cur);
+                }
+                prev = cur;
+                if (cur._children.length > 0) {
+                    cur = cur._children[0]; // down (if not leaf)
+                } else {
+                    if (isPost) {
+                        handler(cur);
+                    }
+                    cur = cur._parent; // up (if leaf)
+                }
+            } else { // moving up
+                nextIndex = prev._index + 1;
+                prev = cur;
+                if (nextIndex < cur._children.length) {
+                    cur = cur._children[nextIndex]; // down (if not last child)
+                } else {
+                    if (isPost) {
+                        handler(cur);
+                    }
+                    cur = cur._parent; // up (if last child)
+                }
+            }
+        }
+        return this;
+    };
+
+    /**
+     * Attaches some node to this node.
+     *
+     * @param {B.Graph.Node} node
+     * @returns {B.Graph.Node} this node
+     * @fires B.Graph.Node#attached
+     * @fires B.Graph.Node#child-attached
+     */
+    this.attach = function (node) {
+
+        node.detach();
+
+        node._parent = this;
+        node._index = this._children.push(node) - 1;
+
+        if (this._attached) {
+            this._attached(this._parent);
+        }
+        node.trigger("attached");
+        this.trigger("child-attached");
+
+        return this;
+    };
+
+    /**
+     * Detaches this node from its parent.
+     *
+     * If this node is not attached the function will do nothing.
+     *
+     * @returns {B.Graph.Node} this node
+     * @fires B.Graph.Node#detached
+     * @fires B.Graph.Node#child-detached
+     */
+    this.detach = function () {
+
+        var parent = this._parent, last;
+
+        if (parent) {
+            last = parent._children.pop();
+            if (last._index !== this._index) {
+                last._index = this._index;
+                parent._children[this._index] = last;
+            }
+            this._parent = null;
+            this._index = -1;
+
+            if (this._detached) {
+                this._detached(this._parent);
+            }
+            this.trigger("detached");
+            parent.trigger("child-detached");
+        }
+        return this;
+    };
+
+    this._clone = function () {
+
+        return new G.Node();
+    };
+
+    this._assign = function (other) {
+
+        var name;
+
+        B.Std.Listenable.prototype._assign.call(this, other);
+
+        for (name in other._props) {
+            this._props[name] = other._props[name];
+        }
+    };
+
+    this._callDeep = function (funcName) {
+
+        var args = Array.prototype.splice.call(arguments, 1);
+
+        this.traverse(function (node) {
+            if (node[funcName]) {
+                node[funcName].apply(node, args);
+            }
+        });
+    };
+};
+
+B.Graph.NodeProto.prototype = new B.Std.ListenableProto();
+
+/**
+ * Represents a scene graph node.
+ *
+ * To create the object use [B.Graph.makeNode()]{@link B.Graph.makeNode}.
+ *
+ * @class
+ * @this B.Graph.Node
+ * @augments B.Std.Listenable
+ */
+B.Graph.Node = function () {
+
+    B.Std.Listenable.call(this);
+
+    this._props = {};
+    this._children = [];
+    this._index = -1;
+};
+
+B.Graph.Node.prototype = new B.Graph.NodeProto();
+
+
+/**
+ * Reporting that the locator has been transformed.
+ *
+ * @event B.Graph.Locator#transformed
+ * @type {B.Std.Event}
+ */
+
+/**
+ * @ignore
+ * @this B.Graph.Locator
+ */
+B.Graph.LocatorProto = function () {
+
+    var M = B.Math,
+        G = B.Graph;
+
+    /**
+     * Moves the locator by a given offset vector.
+     *
+     * @function B.Graph.Locator#move
+     * @param {B.Math.Vector3} offset
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    /**
+     * Moves the locator by given offsets.
+     *
+     * @function B.Graph.Locator#move
+     * @param {number} ox offset along X-axis
+     * @param {number} oy offset along Y-axis
+     * @param {number} oz offset along Z-axis
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    this.move = (function () {
+
+        var mx = M.makeMatrix4();
+
+        return function (ox, oy, oz) {
+
+            if (arguments.length === 1) {
+                mx.translation(ox.x, ox.y, ox.z);
+            } else {
+                mx.translation(ox, oy, oz);
+            }
+            return this.transform(mx)._rebuildFinal();
+        };
+    }());
+
+    /**
+     * Rotates the locator around an arbitrary axis.
+     *
+     * @function B.Graph.Locator#rotate
+     * @param {B.Math.Vector3} axis
+     * @param {number} angle in radians
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    /**
+     * Rotates the locator by a quaternion or canonized euler angles.
+     *
+     * @function B.Graph.Locator#rotate
+     * @param {B.Math.Quaternion | B.Math.Angles} object
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    this.rotate = (function () {
+
+        var mx = M.makeMatrix4();
+
+        return function (axis, angle) {
+
+            if (arguments.length === 1) {
+                if (axis instanceof M.Angles) {
+                    mx.fromAngles(axis);
+                }
+                if (axis instanceof M.Quaternion) {
+                    mx.fromQuaternion(axis);
+                }
+            } else {
+                mx.rotationAxis(axis, angle);
+            }
+            return this.transform(mx)._rebuildFinal();
+        };
+    }());
+
+    /**
+     * Scales the locator by a given coefficient vector.
+     *
+     * @function B.Graph.Locator#scale
+     * @param {B.Math.Vector3} coeffs
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    /**
+     * Scales the locator by given coefficients.
+     *
+     * @function B.Graph.Locator#scale
+     * @param {number} cx scale along X-axis
+     * @param {number} cy scale along Y-axis
+     * @param {number} cz scale along Z-axis
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    /**
+     * Scales the locator uniformly by a given coefficient.
+     *
+     * @function B.Graph.Locator#scale
+     * @param {number} c scale along all axis uniformly
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    this.scale = (function () {
+
+        var mx = M.makeMatrix4();
+
+        return function (cx, cy, cz) {
+
+            if (arguments.length === 1) {
+                if (typeof cx === "number") {
+                    mx.scale(cx, cx, cx);
+                } else {
+                    mx.scale(cx.x, cx.y, cx.z);
+                }
+            } else {
+                mx.scale(cx, cy, cz);
+            }
+            return this.transform(mx);
+        };
+    }());
+
+    /**
+     * Add a given transformation to the locator transformation.
+     *
+     * @function B.Graph.Locator#transform
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} matrix
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    /**
+     * Gets the locator transformation.
+     *
+     * @function B.Graph.Locator#transform
+     * @returns {B.Math.Matrix4}
+     * @fires B.Graph.Locator#transformed
+     */
+    this.transform = (function () {
+
+        var mx4 = M.makeMatrix4();
+
+        return function (matrix) {
+
+            if (arguments.length === 0) {
+                return this._transform;
+            } else {
+                this._transform.mul(matrix instanceof M.Matrix3 ?
+                    mx4.identity().setMatrix3(matrix) : matrix);
+                this._rebuildFinal();
+                this.trigger("transformed");
+                return this;
+            }
+        };
+    }());
+
+    /**
+     * Sets the locator transformation (overwrites the current).
+     *
+     * @param {B.Math.Matrix3 | B.Math.Matrix4} [matrix={@link B.Math.Matrix4.IDENTITY}]
+     * @returns {B.Graph.Locator} this
+     * @fires B.Graph.Locator#transformed
+     */
+    this.setTransform = function (matrix) {
+
+        if (matrix === undefined) {
+            this._transform.identity();
+        } else if (matrix instanceof M.Matrix3) {
+            this._transform.identity().setMatrix3(matrix);
+        } else {
+            this._transform.copy(matrix);
+        }
+        this._rebuildFinal();
+        this.trigger("transformed");
+        return this;
+    };
+
+    /**
+     * Gets locator's final (world) transformation.
+     *
+     * @returns {B.Math.Matrix4}
+     */
+    this.finalTransform = function () {
+
+        return this._finalTransform;
+    };
+
+    this._clone = function () {
+
+        return new G.Locator();
+    };
+
+    this._assign = function (other) {
+
+        G.Node.prototype._assign.call(this, other);
+
+        this.transform(other._transform);
+    };
+
+    this._rebuildFinal = function () {
+
+        var parent = this.parent(), children = this.children(), i, l;
+
+        if (parent && parent.finalTransform) {
+            this._finalTransform.copy(parent.finalTransform()).mul(this._transform);
+        } else {
+            this._finalTransform.copy(this._transform);
+        }
+        for (i = 0, l = children.length; i < l; i += 1) {
+            if (children[i]._rebuildFinal) {
+                children[i]._rebuildFinal();
+            }
+        }
+    };
+    this._attached = function () {
+
+        this._rebuildFinal();
+    };
+
+    this._detached = function () {
+
+        this._rebuildFinal();
+    };
+};
+
+B.Graph.LocatorProto.prototype = new B.Graph.NodeProto();
+
+/**
+ * Represents a locator (transformed location in 3D-space).
+ *
+ * To create the object use [B.Graph.makeLocator()]{@link B.Graph.makeLocator}.
+ *
+ * @class
+ * @this B.Graph.Locator
+ * @augments B.Graph.Node
+ */
+B.Graph.Locator = function () {
+
+    B.Graph.Node.call(this);
+
+    this._transform = B.Math.makeMatrix4();
+    this._finalTransform = B.Math.makeMatrix4();
+};
+
+B.Graph.Locator.prototype = new B.Graph.LocatorProto();
+
+
+/**
+ * Reporting that the visual has been shown.
+ *
+ * @event B.Graph.Visual#shown
+ * @type {B.Std.Event}
+ */
+
+/**
+ * Reporting that the visual has been hidden.
+ *
+ * @event B.Graph.Visual#hidden
+ * @type {B.Std.Event}
+ */
+
+/**
+ * @ignore
+ * @this B.Graph.Visual
+ */
+B.Graph.VisualProto = function () {
+
+    var G = B.Graph;
+
+    /**
+     * Sets visibility enable.
+     *
+     * @function B.Graph.Visual#visible
+     * @param {boolean} enable
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
+     * @returns {B.Graph.Visual} this
+     */
+    /**
+     * Gets visibility enable.
+     *
+     * @function B.Graph.Visual#visible
+     * @returns {boolean}
+     */
+    this.visible = function (enable, deep) {
+
+        var changed = false;
+
+        if (arguments.length === 0) {
+            return this._visible;
+        }
+        if (this._visible !== enable) {
+            this._visible = enable;
+            this._updateInstance();
+            changed = true;
+        }
+        if (deep) {
+            this._callDeep("visible", enable);
+        }
+        if (changed) {
+            this.trigger(enable ? "shown" : "hidden");
+        }
+        return this;
+    };
+
+    /**
+     * Sets a new material.
+     *
+     * @function B.Graph.Visual#material
+     * @param {B.Render.Material} material
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
+     * @returns {B.Graph.Visual} this
+     */
+    /**
+     * Returns material.
+     *
+     * @function B.Graph.Visual#material
+     * @returns {B.Render.Material}
+     */
+    this.material = function (material, deep) {
+
+        if (arguments.length === 0) {
+            return this._material;
+        }
+        if (this._material !== material) {
+            this._material = material;
+            this._updateInstance();
+        }
+        if (deep) {
+            this._callDeep("material", material);
+        }
+        return this;
+    };
+
+    /**
+     * Sets a new mesh.
+     *
+     * @function B.Graph.Visual#mesh
+     * @param {B.Render.Mesh} mesh
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
+     * @returns {B.Graph.Visual} this
+     */
+    /**
+     * Returns mesh.
+     *
+     * @function B.Graph.Visual#mesh
+     * @returns {B.Render.Mesh}
+     */
+    this.mesh = function (mesh, deep) {
+
+        if (arguments.length === 0) {
+            return this._mesh;
+        }
+        if (this._mesh !== mesh) {
+            this._mesh = mesh;
+            this._updateInstance();
+        }
+        if (deep) {
+            this._callDeep("mesh", mesh);
+        }
+        return this;
+    };
+
+    /**
+     * Returns array of uniforms names.
+     *
+     * @returns {Array.<string>}
+     */
+    this.uniforms = function () {
+
+        return Object.keys(this._uniforms);
+    };
+
+    /**
+     * Sets a uniform value.
+     *
+     * @function B.Graph.Visual#uniform
+     * @param {string} name
+     * @param {null | number | B.Math.Vector2 | B.Math.Vector3 | B.Math.Vector4 | B.Math.Color |
+     *  B.Math.Matrix3 | B.Math.Matrix4 | B.Render.Texture | B.Render.Depth} value
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
+     * @returns {B.Graph.Visual} this
+     *
+     * @example
+     * visual.
+     *     uniform("someNumber", 1.5).
+     *     uniform("someVector2", B.Math.makeVector2(1, 2)).
+     *     uniform("someVector3", B.Math.makeVector3(1, 2, 3)).
+     *     uniform("someVector4", B.Math.makeVector4(1, 2, 3, 4)).
+     *     uniform("someColor", B.Math.makeColor(1, 0, 0, 0.5)).
+     *     uniform("someMatrix3", B.Math.makeMatrix3().setRotationX(Math.PI)).
+     *     uniform("someMatrix4", B.Math.makeMatrix4().setTranslation(1, 2, 3)).
+     *     uniform("someTexture", dev.makeTexture(image)).
+     *     uniform("someTexture", dev.stage("someStage").output().color()).
+     *     uniform("someDepth", dev.stage("someStage").output().depth());
+     *
+     * visual.uniform("someTexture", null); // removing
+     */
+    /**
+     * Gets a uniform value.
+     *
+     * @function B.Graph.Visual#uniform
+     * @param {string} name
+     * @returns {null | number | B.Math.Vector2 | B.Math.Vector3 | B.Math.Vector4 | B.Math.Color |
+     *  B.Math.Matrix3 | B.Math.Matrix4 | B.Render.Texture | B.Render.Depth}
+     */
+    this.uniform = function (name, value, deep) {
+
+        if (arguments.length === 1) {
+            return this._uniforms[name] || null;
+        } else if (value === null) {
+            delete this._uniforms[name];
+        } else {
+            this._uniforms[name] = value;
+            if (this._instance) {
+                this._instance.uniform(name, value);
+            }
+        }
+        if (deep) {
+            this._callDeep("uniform", name, value);
+        }
+        return this;
+    };
+
+    /**
+     * Sets frustum culling enable.
+     *
+     * @function B.Graph.Visual#culling
+     * @param {boolean} enable
+     * @param {boolean} [deep=false] true if you want to set value through the whole hierarchy
+     * @returns {B.Graph.Visual} this
+     */
+    /**
+     * Gets frustum culling enable.
+     *
+     * @function B.Graph.Visual#culling
+     * @returns {boolean}
+     */
+    this.culling = function (enable, deep) {
+
+        if (arguments.length === 0) {
+            return this._culling;
+        }
+        this._culling = enable;
+        if (this._instance) {
+            this._instance.culling(this._culling);
+        }
+        if (deep) {
+            this._callDeep("culling", enable);
+        }
+        return this;
+    };
+
+    /**
+     * Returns bounds.
+     *
+     * @param {boolean} [deep] true if you want to return bounds for the whole hierarchy
+     * @returns {B.Math.AABox|null} null if the node is not visible
+     */
+    this.bounds = function (deep) {
+
+        var thisBounds = this._bounds, nodeBounds;
+
+        if (deep) {
+            if (this._instance) {
+                thisBounds.copy(this._instance.bounds());
+            } else {
+                thisBounds.reset();
+            }
+            this.traverse(function (node) {
+                nodeBounds = node.bounds && node.bounds();
+                if (nodeBounds) {
+                    thisBounds.merge(nodeBounds);
+                }
+            });
+            return thisBounds;
+        }
+        return this._instance ? this._instance.bounds() : null;
+    };
+
+    this._clone = function () {
+
+        return new G.Visual(this._device);
+    };
+
+    this._assign = function (other) {
+
+        var name;
+
+        this._visible = other._visible;
+        this._mesh = other._mesh;
+        this._material = other._material;
+        this._bounds = other._bounds;
+        this._culling = other._culling;
+        this._bounds = other._bounds;
+        for (name in other._uniforms) {
+            this._uniforms[name] = other._uniforms[name];
+        }
+        this._updateInstance();
+    };
+
+    this._updateInstance = function () {
+
+        var name, uniforms = this._uniforms;
+
+        if (this._instance) {
+            this._instance.free();
+            this._instance = null;
+        }
+        if (this._visible && this._mesh && this._material) {
+            this._instance = this._device.instance(this._material,
+                this._mesh, this.transform(), this._culling);
+            this._instance.culling(this._culling);
+            for (name in uniforms) {
+                this._instance.uniform(name, uniforms[name]);
+            }
+        }
+    };
+};
+
+B.Graph.VisualProto.prototype = new B.Graph.LocatorProto();
+
+/**
+ * Represents a visual (transformed mesh + material).
+ *
+ * To create the object use [B.Graph.makeVisual()]{@link B.Graph.makeVisual}.
+ *
+ * @class
+ * @this B.Graph.Visual
+ * @augments B.Graph.Locator
+ */
+B.Graph.Visual = function (device) {
+
+    B.Graph.Locator.call(this);
+
+    this._device = device;
+    this._visible = false;
+    this._mesh = null;
+    this._material = null;
+    this._uniforms = {};
+    this._culling = true;
+    this._bounds = B.Math.makeAABox();
+    this._instance = null;
+};
+
+B.Graph.Visual.prototype = new B.Graph.VisualProto();

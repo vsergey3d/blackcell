@@ -1798,16 +1798,7 @@ To check hardware support use
 
 
     
-<pre class="language-javascript"><code class="language-javascript">var device = B.Render.makeDevice(canvas);
-
-var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, false);
-
-var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, B.Render.Format.DEPTH_STENCIL,
-    {
-        antialias: false,
-        premultipliedAlpha: false
-    }
-);</code></pre>
+<pre class="language-javascript"><code class="language-javascript">var device = B.Render.makeDevice(canvas);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, false);var device = B.Render.makeDevice(canvas, B.Render.Format.RGB, B.Render.Format.DEPTH_STENCIL,    {        antialias: false,        premultipliedAlpha: false    });</code></pre>
 
 
 
