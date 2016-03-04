@@ -16,7 +16,7 @@ Modern, JS-friendly API for real-time 3D-rendering over [WebGL](http://www.khron
 
 ## Download
 
-The current version is `v.0.0.1`
+The current version is `v.0.1.0`
 
 - Download [minified](http://blackcelljs.com/b.min.zip) library ([source map](http://blackcelljs.com/b.map.zip))
 - Download [debug](http://blackcelljs.com/b.zip) library
